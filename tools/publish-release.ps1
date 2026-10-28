@@ -118,7 +118,11 @@ try {
     $dinoCreateArguments = @('release', 'create', $dinoTag, '--repo', $Repository, '--target', $Target, '--title', "Dino Lab $dinoTag", '--notes-file', $dinoNotes.FullName, '--draft', $dinoAssets[0].File.FullName, $dinoAssets[1].File.FullName)
     & gh @dinoCreateArguments
     if ($LASTEXITCODE -ne 0) { throw 'Release draft creation or asset upload failed.' }
-    $dinoDraft = Invoke-DinoGhJson -Arguments @('api', "repos/$Repository/releases/tags/$dinoTag")
+    # An unpublished tag may not yet exist, so GitHub's releases/tags endpoint
+    # can return 404 for a newly created draft. Resolve the owned draft by ID.
+    $dinoDraftMatches = @(Invoke-DinoGhJson -Arguments @('api', "repos/$Repository/releases?per_page=100") | Where-Object { $_.tag_name -ceq $dinoTag -and $_.draft })
+    if ($dinoDraftMatches.Count -ne 1) { throw 'Expected exactly one newly created draft release.' }
+    $dinoDraft = Invoke-DinoGhJson -Arguments @('api', "repos/$Repository/releases/$($dinoDraftMatches[0].id)")
     if (-not $dinoDraft.draft -or $dinoDraft.prerelease) { throw 'Expected an unpublished stable draft before final publication.' }
     foreach ($asset in $dinoAssets) {
         $remoteAssets = @($dinoDraft.assets | Where-Object { $_.name -ceq $asset.File.Name })
