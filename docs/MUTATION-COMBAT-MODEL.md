@@ -6,20 +6,20 @@ The mutation percentages come from the [requested community guide](https://www.e
 
 ## Separate combatants and conditions
 
-Each combatant has its own listed strength, selections, starting health, bleeding state and larger-species condition. Outgoing damage uses your bonuses and the recipient's defense; reverse damage exchanges those roles. Both panes show every supported active HP damage/defense control. Wildlife controls are disabled. The three documented damage boosters are carnivore-only in the supplied source, so herbivore/omnivore controls remain visible with an explicit disabled eligibility reason; they are not silently hidden or incorrectly made universal.
+Each combatant has its own mutation level, selections, starting health, bleeding state and larger-species condition. Outgoing damage uses your bonuses and the recipient's defense; reverse damage exchanges those roles. Both panes show every supported active HP damage/defense control. Wildlife controls are disabled. The three documented damage boosters are carnivore-only in the supplied source, so herbivore/omnivore controls remain visible with an explicit disabled eligibility reason; they are not silently hidden or incorrectly made universal.
 
 Congenital Hypoalgesia requires an explicit statement that the opponent is a larger **species**. Current growth/weight does not infer it. The same species cannot satisfy that condition, only one side of a pair can be marked as the smaller species, and changing opponent clears the prior size assumption. Starting health affects remaining HP, independently of mutation selection.
 
-The UI calls the four sequences **listed strengths 1–4**. It does not claim a verified mapping between those indices and a particular Entombment count. Slot restrictions are shown where supplied; this is a combat scenario, not an unlock/inheritance/slot validator.
+The calculator offers **Default**, **Entombed 1** and **Entombed 2**, following the requested product labels. These select the first three listed percentages. The source's fourth repeated maximum is retained internally for reference but is not a selectable calculator level. Slot restrictions are shown where supplied; this is a combat scenario, not an unlock/inheritance/slot validator.
 
 ## Damage model
 
-| Mutation | Listed strengths | Model condition |
+| Mutation | Default / Entombed 1 / Entombed 2 | Model condition |
 | --- | --- | --- |
-| Accelerated Prey Drive | 10%, 15%, 20%, 20% | Carnivore attacker; recipient strictly below 35% HP before an event |
-| Hemomania | 5%, 7%, 10%, 10% | Carnivore attacker; recipient marked bleeding |
-| Hypermetabolic Inanition | 15%, 20%, 25%, 25% | Carnivore attacker; unknown curve gives a 0–listed-value scenario range, or a manually entered effective bonus |
-| Congenital Hypoalgesia | 15%, 20%, 25%, 25% | Recipient selected it and the attacking species is explicitly larger |
+| Accelerated Prey Drive | 10%, 15%, 20% | Carnivore attacker; recipient strictly below 35% HP before an event |
+| Hemomania | 5%, 7%, 10% | Carnivore attacker; recipient marked bleeding |
+| Hypermetabolic Inanition | 15%, 20%, 25% | Carnivore attacker; unknown curve gives a 0–listed-value scenario range, or a manually entered effective bonus |
+| Congenital Hypoalgesia | 15%, 20%, 25% | Recipient selected it and the attacking species is explicitly larger |
 
 For outgoing bonuses `b`, the default scenario adds them: `base damage × (1 + sum(b))`. The alternate scenario multiplies them: `base damage × product(1 + b)`. Both are labeled **stacking assumptions**. Conditional Congenital reduction is applied afterward, multiplying by `1 − reduction`. Neither choice is presented as a verified game stacking law.
 

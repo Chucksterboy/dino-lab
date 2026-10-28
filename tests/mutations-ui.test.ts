@@ -41,8 +41,25 @@ test('actual outgoing selectors apply Hemomania only after the target bleeding c
  assert.equal(yourDamage(markup),'183.75');assert.ok(markup.includes('Without mutations:'));
 });
 
+test('both combatants have three named entombment levels with the matching damage bonuses',()=>{
+ const initial=renderScenario([{id:'target',value:'allosaurus'}]);
+ for(const side of ['Your','Target']){
+  const select=[...initial.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/g)].find(match=>match[1].includes(`aria-label="${side} entombment level"`));
+  assert.ok(select,`${side} mutation level selector`);
+  const choices=[...select[2].matchAll(/<option\b[^>]*value="([^"]+)"[^>]*>([^<]+)<\/option>/g)].map(match=>[match[1],match[2]]);
+  assert.deepEqual(choices,[['0','Default'],['1','Entombed 1'],['2','Entombed 2']]);
+ }
+ assert.doesNotMatch(initial,/Strength [1-4]|Listed strength/);
+ for(const [level,damage,hits] of [['0','183.75','15'],['1','187.25','14'],['2','192.5','14']]){
+  const markup=renderScenario([{id:'target',value:'allosaurus'},{aria:'Your entombment level',value:level},{aria:'Target entombment level',value:level},{aria:'Your Hemomania',checked:true},{aria:'Target Hemomania',checked:true},{aria:'Your bleeding',checked:true},{aria:'Target bleeding',checked:true}]);
+  assert.equal(yourDamage(markup),damage,`outgoing level ${level}`);
+  assert.ok(markup.includes(`First damage: ${damage}`),`incoming level ${level}`);
+  assert.equal(incomingHits(markup),hits,`reverse hit count at level ${level}`);
+ }
+});
+
 test('target mutation loadout affects incoming damage and reverse hit counts independently',()=>{
- const markup=renderScenario([{id:'target',value:'allosaurus'},{aria:'Target listed mutation strength',value:'2'},{aria:'Target Hemomania',checked:true},{aria:'Your bleeding',checked:true}]);
+ const markup=renderScenario([{id:'target',value:'allosaurus'},{aria:'Target entombment level',value:'2'},{aria:'Target Hemomania',checked:true},{aria:'Your bleeding',checked:true}]);
  assert.equal(yourDamage(markup),'175');
  assert.equal(incomingHits(markup),'14');
  assert.ok(markup.includes('First damage: 192.5'));
@@ -59,7 +76,7 @@ test('larger-species defense changes the correct direction and is never inferred
 });
 
 test('Prey Drive first damage follows target health while its count models both health stages',()=>{
- const selected=[{aria:'Your listed mutation strength',value:'2'},{aria:'Your Accelerated Prey Drive',checked:true}];
+ const selected=[{aria:'Your entombment level',value:'2'},{aria:'Your Accelerated Prey Drive',checked:true}];
  assert.equal(yourDamage(renderScenario(selected)),'175');
  assert.equal(yourDamage(renderScenario([...selected,{aria:'Target starting health percentage',value:'35'}])),'175');
  assert.equal(yourDamage(renderScenario([...selected,{aria:'Target starting health percentage',value:'34'}])),'210');

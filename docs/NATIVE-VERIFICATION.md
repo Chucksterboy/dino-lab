@@ -1,6 +1,19 @@
 # Windows build verification
 
-## Current version 0.1.9
+## Current version 0.1.10
+
+Built on 29 October 2026 after removing the species-library count callout and changing both combat mutation selectors to Default, Entombed 1 and Entombed 2. The fourth repeated maximum is not offered. Existing percentages, raw references, mutation catalog data and all Gallimimus speeds remain unchanged; the Galli investigation is paused at the user’s request.
+
+- Portable: `release/Dino Lab.exe`, **7,498,752 bytes**, ProductVersion **0.1.10**, SHA-256 `14C1616F23F57B31E8C0C68FAA9581CC2CB4E0688D2868D842B1893B37583D8A`.
+- Installer: `release/Dino Lab Setup.exe`, **3,944,247 bytes**, ProductVersion **0.1.10**, SHA-256 `BD3B9DADF981DD0167A7292D150473D65FF848F685F1EF0570C836B54D10E2B8`.
+- Identical versioned review copies are under `preview/` with version 0.1.10 in their names.
+- Sequential production packaging passed TypeScript, Vite, isolated desktop staging, Rust compilation and NSIS. Rust release compilation reported 1m 27s. The staged snapshot contains **33 files / 10,069,045 bytes**.
+- The exact preview executable passed hidden `--verify-assets` diagnostics: version 0.1.10, index.html present, all 33 expected assets, no missing assets or hash mismatches. Its report was copied to `release/embedded-assets-report.json`.
+- The full nonvisual JavaScript suite passed **110/110 tests**. Focused handler tests cover both selectors’ exact three options and damage/hit-count behavior at all three levels. No browser, screenshot or visual QA was performed.
+
+The user confirmed exiting the prior app before promotion. The immediate process guard found no Dino Lab process; canonical portable/installer hashes match the verified previews. The desktop shortcut still targets `E:\Dino Lab\release\Dino Lab.exe`. The updated canonical app was launched at the user’s request: PID **73464**, title **Dino Lab**, nonzero main-window handle **186713768**, `Responding: true`, ProductVersion **0.1.10**. These are read-only process observations, not a visual review. No user process was stopped, no installer was run and no GitHub publication was performed for this update.
+
+## Historical version 0.1.9
 
 Built on 28 October 2026 from the frozen icon-code update. The source implements larger 31px glyphs in fixed 52px buttons, a 17-frame multicolour DNA rotation, opening/flipping book pages, a holographic comparison concept, live statistics bars and a brighter flask. **The user explicitly requested no visual QA for this revision. No UI, browser, headless-browser, screenshot or visual checks were performed. Appearance and animation quality are left to the user.**
 

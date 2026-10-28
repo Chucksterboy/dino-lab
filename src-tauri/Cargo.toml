@@ -1,6 +1,6 @@
 [package]
 name = "dino-lab"
-version = "0.1.9"
+version = "0.1.10"
 description = "Dino Lab — The Isle species research workbench"
 authors = ["Dino Lab"]
 edition = "2021"

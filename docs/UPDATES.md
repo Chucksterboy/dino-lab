@@ -24,10 +24,10 @@ Project source is published on `main`, and Windows downloads are attached to sta
 
 ```powershell
 $releaseRepo = 'Chucksterboy/dino-lab'
-.\tools\publish-release.ps1 -Version '0.1.9' -Repository $releaseRepo `
-  -NotesPath '.\docs\release-notes-0.1.9.md' `
-  -ExecutablePath '.\release\Dino-Lab-0.1.9-Windows-Portable.exe' `
-  -SetupPath '.\release\Dino-Lab-0.1.9-Windows-Setup.exe'
+.\tools\publish-release.ps1 -Version '0.1.10' -Repository $releaseRepo `
+  -NotesPath '.\docs\release-notes-0.1.10.md' `
+  -ExecutablePath '.\release\Dino-Lab-0.1.10-Windows-Portable.exe' `
+  -SetupPath '.\release\Dino-Lab-0.1.10-Windows-Setup.exe'
 ```
 
 The default is a dry run with **no GitHub requests or writes**. It checks the three project versions, both files’ PE signatures and embedded product/file versions, and prints SHA-256 hashes. Its default files are `release\Dino Lab.exe` and `release\Dino Lab Setup.exe`.
