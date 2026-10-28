@@ -1,0 +1,178 @@
+[
+  {
+    "id": "allosaurus",
+    "path": "/art/allosaurus.webp",
+    "source": "https://efg.io.vn/playables/allosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/allosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:26.428Z"
+  },
+  {
+    "id": "austroraptor",
+    "path": "/art/austroraptor.webp",
+    "source": "https://efg.io.vn/playables/austroraptor?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/austroraptor.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:26.888Z"
+  },
+  {
+    "id": "beipiaosaurus",
+    "path": "/art/beipiaosaurus.webp",
+    "source": "https://efg.io.vn/playables/beipiaosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/beipiaosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:27.331Z"
+  },
+  {
+    "id": "carnotaurus",
+    "path": "/art/carnotaurus.webp",
+    "source": "https://efg.io.vn/playables/carnotaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/carnotaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:27.779Z"
+  },
+  {
+    "id": "ceratosaurus",
+    "path": "/art/ceratosaurus.webp",
+    "source": "https://efg.io.vn/playables/ceratosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/ceratosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:28.247Z"
+  },
+  {
+    "id": "deinosuchus",
+    "path": "/art/deinosuchus.webp",
+    "source": "https://efg.io.vn/playables/deinosuchus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/deinosuchus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:28.683Z"
+  },
+  {
+    "id": "diabloceratops",
+    "path": "/art/diabloceratops.webp",
+    "source": "https://efg.io.vn/playables/diabloceratops?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/diabloceratops.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:29.145Z"
+  },
+  {
+    "id": "dilophosaurus",
+    "path": "/art/dilophosaurus.webp",
+    "source": "https://efg.io.vn/playables/dilophosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/dilophosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:29.579Z"
+  },
+  {
+    "id": "dryosaurus",
+    "path": "/art/dryosaurus.webp",
+    "source": "https://efg.io.vn/playables/dryosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/dryosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:29.997Z"
+  },
+  {
+    "id": "gallimimus",
+    "path": "/art/gallimimus.webp",
+    "source": "https://efg.io.vn/playables/gallimimus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/gallimimus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:30.431Z"
+  },
+  {
+    "id": "herrerasaurus",
+    "path": "/art/herrerasaurus.webp",
+    "source": "https://efg.io.vn/playables/herrerasaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/herrerasaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:30.828Z"
+  },
+  {
+    "id": "hypsilophodon",
+    "path": "/art/hypsilophodon.webp",
+    "source": "https://efg.io.vn/playables/hypsilophodon?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/hypsilophodon.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:31.279Z"
+  },
+  {
+    "id": "kentrosaurus",
+    "path": "/art/kentrosaurus.webp",
+    "source": "https://efg.io.vn/playables/kentrosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/kentrosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:31.694Z"
+  },
+  {
+    "id": "maiasaura",
+    "path": "/art/maiasaura.webp",
+    "source": "https://efg.io.vn/playables/maiasaura?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/maiasaura.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:32.199Z"
+  },
+  {
+    "id": "omniraptor",
+    "path": "/art/omniraptor.webp",
+    "source": "https://efg.io.vn/playables/omniraptor?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/omniraptor.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:32.638Z"
+  },
+  {
+    "id": "pachycephalosaurus",
+    "path": "/art/pachycephalosaurus.webp",
+    "source": "https://efg.io.vn/playables/pachycephalosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/pachycephalosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:33.035Z"
+  },
+  {
+    "id": "pteranodon",
+    "path": "/art/pteranodon.webp",
+    "source": "https://efg.io.vn/playables/pteranodon?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/pteranodon.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:33.460Z"
+  },
+  {
+    "id": "stegosaurus",
+    "path": "/art/stegosaurus.webp",
+    "source": "https://efg.io.vn/playables/stegosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/stegosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:33.885Z"
+  },
+  {
+    "id": "tenontosaurus",
+    "path": "/art/tenontosaurus.webp",
+    "source": "https://efg.io.vn/playables/tenontosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/tenontosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:34.313Z"
+  },
+  {
+    "id": "triceratops",
+    "path": "/art/triceratops.webp",
+    "source": "https://efg.io.vn/playables/triceratops?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/triceratops.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:34.729Z"
+  },
+  {
+    "id": "troodon",
+    "path": "/art/troodon.webp",
+    "source": "https://efg.io.vn/playables/troodon?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/troodon.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:35.164Z"
+  },
+  {
+    "id": "tyrannosaurus",
+    "path": "/art/tyrannosaurus.webp",
+    "source": "https://efg.io.vn/playables/tyrannosaurus?lang=en",
+    "imageUrl": "https://efg.io.vn/dinos/individual/tyrannosaurus.webp",
+    "credit": "Evrima Field Guide · EVRIMA species artwork",
+    "retrievedAt": "2026-10-28T00:41:35.621Z"
+  }
+]

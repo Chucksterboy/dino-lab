@@ -1,0 +1,638 @@
+[
+  {
+    "Tag": "p",
+    "Text": "We are working on updating outdated information :) Stay tuned!"
+  },
+  {
+    "Tag": "h1",
+    "Text": "Mutations"
+  },
+  {
+    "Tag": "p",
+    "Text": "Mutations the newest mechanic for The Isle! Allows users to customize and change up your gameplay. Though this system won't see its final form until the Elder system is released."
+  },
+  {
+    "Tag": "p",
+    "Text": "Mutations are chosen as a player progresses through the game. The juvenile stage is when you select your first mutation and then again at sub-adult and then full adult. The larger hexagons represent your lifecycle chosen mutations. Hexagon 4 is for the Elder System and hexagon 5-6 are unknowns at this time."
+  },
+  {
+    "Tag": "p",
+    "Text": "You can unlock varieties to your mutations as opposed to the standard ones gained by default. This may require special actions to be taken in-game to be able to unlock them."
+  },
+  {
+    "Tag": "p",
+    "Text": "The smaller hexagons are gained by inheriting mutations from your parents. Only a few of the smaller hexagons can be filled in and others are reserved for later systems."
+  },
+  {
+    "Tag": "p",
+    "Text": "Yellow Names = Are mutations with information on how to obtain them in-game. These may change in the future so please be aware."
+  },
+  {
+    "Tag": "p",
+    "Text": "Mutations increase in strength per Entombment!"
+  },
+  {
+    "Tag": "h2",
+    "Text": "Mutations UI"
+  },
+  {
+    "Tag": "h2",
+    "Text": "Universal Lifecycle Mutations"
+  },
+  {
+    "Tag": "p",
+    "Text": "Advanced Gestation (Female Only)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Faster egg gestation/incubation/cooldown rate"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 50% | 75% | 1 | 1"
+  },
+  {
+    "Tag": "p",
+    "Text": "Cellular Regeneration"
+  },
+  {
+    "Tag": "p",
+    "Text": "Recovers health slightly faster"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Congenital Hypoalgesia"
+  },
+  {
+    "Tag": "p",
+    "Text": "Reduce incoming damage when fighting larger species"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Efficient Digestion"
+  },
+  {
+    "Tag": "p",
+    "Text": "Your food drains more slowly"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 20% | 25% | 30% | 30%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Enlarged Meniscus"
+  },
+  {
+    "Tag": "p",
+    "Text": "Fall damage hits stamina before draining health"
+  },
+  {
+    "Tag": "p",
+    "Text": "Epidermal Fibrosis"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increase bleed resistance"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Featherweight"
+  },
+  {
+    "Tag": "p",
+    "Text": "Your footprints fade much faster"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 50%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Gastronomic Regeneration"
+  },
+  {
+    "Tag": "p",
+    "Text": "Eating restores a small amount of health"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 10% | 15% | 15%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Slot 2 & 4"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hydrodynamic"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased swimming speed"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hydro-regenerative"
+  },
+  {
+    "Tag": "p",
+    "Text": "Recover health faster during rainy weather"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 25% | 50% | 75% | 75%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased Inspiratory Capacity"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased O2 Capacity"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Infrasound Communication"
+  },
+  {
+    "Tag": "p",
+    "Text": "Make significantly less noise when talking in chat"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 50% | 60% | 70% | 70%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Nocturnal"
+  },
+  {
+    "Tag": "p",
+    "Text": "Faster health/locked health recovery at night"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 7% | 10% | 10%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Osteosclerosis"
+  },
+  {
+    "Tag": "p",
+    "Text": "Resist or Reduce fracture damage"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 20% | 25% | 30% | 30%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Photosynthetic Tissue"
+  },
+  {
+    "Tag": "p",
+    "Text": "Faster health/locked health recovery during the day"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 7 % | 10% | 10%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Reabsorption"
+  },
+  {
+    "Tag": "p",
+    "Text": "Recover a small amount of water during the rainy weather or while swimming in drinkable water"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 1 | 2 | 3 | 3"
+  },
+  {
+    "Tag": "p",
+    "Text": "Sequential Hermaphroditism"
+  },
+  {
+    "Tag": "p",
+    "Text": "Changes  your sex. Mutation not passed on to children."
+  },
+  {
+    "Tag": "p",
+    "Text": "Submerged Optical Retention"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased underwater vision range"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 10% | 20% | 20%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Sustained Hydration"
+  },
+  {
+    "Tag": "p",
+    "Text": "Your water drains more slowly"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 20% | 25% | 30% | 30%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Wader"
+  },
+  {
+    "Tag": "p",
+    "Text": "Less hindered when wading through shallow water"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 25% | 50% | 75% | 75%"
+  },
+  {
+    "Tag": "h2",
+    "Text": "Dinosaur Type Lifecycle Mutations"
+  },
+  {
+    "Tag": "p",
+    "Text": "Barometric Sensitivity (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Receive an indication prior to storms or droughts"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hypervigilance (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increases camera angles when eating and drinking. Increases footsteps audio from others"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 50% | 60% | 70% | 70%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Photosynthetic Regeneration (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Regenerate stamina faster during the day"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 10%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Social Behavior (Herbivore/Omnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased group size."
+  },
+  {
+    "Tag": "p",
+    "Text": "Group Leader Only"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 1.5 | 2 | 3 | 3"
+  },
+  {
+    "Tag": "p",
+    "Text": "Tactile Endurance (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Convert incoming damage to stamina"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 25% | 35% | 50% | 50%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Slot 2 & 4"
+  },
+  {
+    "Tag": "p",
+    "Text": "Truculency (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Bucking has a higher chance to dismount latched animals"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 10% | 15% | 15%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Xerocole Adaptation (Herbivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Gain some water when eating plants"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Accelerated Prey Drive (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Deal more damage to animals below 35% health"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 10% | 15% | 20% | 20%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Cannibalistic (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "For species that are not, by default, cannibals. Adds their own species as a preferred prey for nutrients."
+  },
+  {
+    "Tag": "p",
+    "Text": "Available Slot 2 & 4"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hematophagy (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Restore some thirst while eating corpses"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 25% | 35% | 35%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hemomania (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Do extra damage on bleeding target"
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 7% | 10% | 10%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Hypermetabolic Inanition (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "The less hunger you have the more damage you deal."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 15% | 20% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Slot 2 & 4"
+  },
+  {
+    "Tag": "h2",
+    "Text": "Unlockable Lifestyle Mutations"
+  },
+  {
+    "Tag": "p",
+    "Text": "Enhanced Digestion"
+  },
+  {
+    "Tag": "p",
+    "Text": "Decrease nutrition decay rate"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Have nutirients for 60minutes. Unlocks on Slot 2/3."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 10% | 15% | 25% | 25%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Heightened Ghrelin"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased overeating capacity by a large amount."
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Maintain current hunger above 80% for 30 minutes. Unlocks on Slot 2."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 25% | 50% | 75% | 75%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Multichambered Lungs"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increases stamina regeneration threshold"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Drain 4500 stamina by sprinting or fast swimming. Unlocks on Slot 2/3."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 5% | 10% | 15% | 15%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Reinforced Tendons"
+  },
+  {
+    "Tag": "p",
+    "Text": "Jumping costs less stamina"
+  },
+  {
+    "Tag": "p",
+    "Text": "Reduces take off stamina for Ptera"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Unlock by Jumping 50 times."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 25% | 35% | 50% | 50%"
+  },
+  {
+    "Tag": "p",
+    "Text": "Reniculate Kidneys"
+  },
+  {
+    "Tag": "p",
+    "Text": "Can drink saltwater"
+  },
+  {
+    "Tag": "p",
+    "Text": "Thirst Pool: 1000"
+  },
+  {
+    "Tag": "p",
+    "Text": "Thirst intake value while drinking saltwater: -2.5%"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Lose 1250 thirst by drinking saltwater. 50 thirst grants the \"Fluid Deficient\" debuff and 1200 thirst removes it. Unlocks on Slot 2/3."
+  },
+  {
+    "Tag": "p",
+    "Text": "Augmented Tapetum (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Increased vision at night"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Kill 5 Players at night. Unlocks on Slot 2."
+  },
+  {
+    "Tag": "p",
+    "Text": "Value: 1 | 2 | 3"
+  },
+  {
+    "Tag": "p",
+    "Text": "Osteophagic (Carnivore)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Able to consume bones to regenerate fractures faster"
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Unlock by eating bones while you have a broken bone."
+  },
+  {
+    "Tag": "p",
+    "Text": "Parthenogenesis (Female Only)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Lets you nest without a mate. Mutation not passed onto children."
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Unlocks on slot 2"
+  },
+  {
+    "Tag": "p",
+    "Text": "Prolific Reproduction (Female Only)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Your babies have increased health and stamina regen. Your babies require less food and they grow faster."
+  },
+  {
+    "Tag": "p",
+    "Text": "How to get:"
+  },
+  {
+    "Tag": "p",
+    "Text": "Unlocks on slot 2"
+  },
+  {
+    "Tag": "h2",
+    "Text": "Removed Content"
+  },
+  {
+    "Tag": "p",
+    "Text": "Intraspecific Aggression (Removed 0.15.116)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Deal more damage to animals of your own species"
+  },
+  {
+    "Tag": "p",
+    "Text": "Traumatic Thrombosis (Removed 0.21.720)"
+  },
+  {
+    "Tag": "p",
+    "Text": "Prevent death from blood loss if resting"
+  },
+  {
+    "Tag": "p",
+    "Text": "Last Updated: 9/4/2026"
+  }
+]

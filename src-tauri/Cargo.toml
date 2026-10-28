@@ -1,0 +1,33 @@
+[package]
+name = "dino-lab"
+version = "0.1.9"
+description = "Dino Lab — The Isle species research workbench"
+authors = ["Dino Lab"]
+edition = "2021"
+rust-version = "1.90"
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-single-instance = "2"
+url = "2"
+open = { version = "5", features = ["shellexecute-on-windows"] }
+serde_json = "1"
+sha2 = "0.10"
+serde = { version = "1", features = ["derive"] }
+semver = "1"
+reqwest = { version = "0.13", default-features = false, features = ["native-tls"] }
+tokio = { version = "1", features = ["time"] }
+httpdate = "1"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+opt-level = 2
+strip = true
+panic = "abort"

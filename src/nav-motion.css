@@ -1,0 +1,151 @@
+/* Continuous, code-native motion. Fixed 52px controls retain their hit geometry. */
+.icon-rail nav .rail-button>svg.nav-glyph{width:31px;height:31px}
+.nav-glyph{overflow:visible;isolation:isolate;--nav-cyan:#6af5e1;--nav-lime:#c7fa67;--nav-magenta:#fa82dd;--nav-amber:#ffcb65}
+.nav-glyph [class^=nav-],.nav-glyph [class*=" nav-"]{transform-box:view-box}
+
+/* Field guide: the cover and two leaves are hinged on the same fixed spine. */
+.nav-guide-back{fill:#83e8d0;fill-opacity:.06;stroke:#91d8c8;stroke-opacity:.75}
+.nav-guide-paper{fill:#90f2e5;fill-opacity:.13;stroke:#a9f7df;stroke-width:.9}
+.nav-guide-print{stroke:#8bf1e0;stroke-width:1.15;fill:#c7fa67;animation:nav-guide-print 2.8s ease-in-out infinite}
+.nav-guide-cover{transform-origin:7.1px 13px;backface-visibility:hidden;animation:nav-guide-open 5.6s cubic-bezier(.45,0,.2,1) infinite}
+.nav-guide-cover-face{fill:#183b30;stroke:#c8f58b;stroke-width:1.4;filter:drop-shadow(0 0 .75px #a8ef6e66)}
+.nav-guide-profile{fill:#c7fa67;fill-opacity:.16;stroke:#d0fe99;stroke-width:1.45}
+.nav-guide-eye{fill:#7affef;filter:drop-shadow(0 0 1px #7affef)}
+.nav-guide-title{stroke:#8ce9d0;stroke-width:1.15}
+.nav-guide-spine{stroke:#d3fb9c;stroke-width:1.6}
+.nav-guide-leaf{transform-origin:7.4px 13px;animation:nav-guide-page 5.6s cubic-bezier(.45,0,.2,1) infinite}
+.nav-guide-leaf>path:first-child{fill:#225a51;fill-opacity:.96;stroke:#83f4de;stroke-width:1}
+.nav-guide-leaf>path+path{fill:none;stroke:#c5facd;stroke-width:1.1}
+.nav-guide-leaf-two{animation-delay:-.6s}
+@keyframes nav-guide-open{0%,12%,100%{transform:perspective(75px) rotateY(-4deg)}40%,73%{transform:perspective(75px) rotateY(-74deg)}}
+@keyframes nav-guide-page{0%,23%,100%{transform:perspective(75px) rotateY(0deg);opacity:.7}38%{opacity:1}65%{transform:perspective(75px) rotateY(-83deg);opacity:1}77%{transform:perspective(75px) rotateY(-85deg);opacity:.2}87%{transform:perspective(75px) rotateY(0deg);opacity:.2}}
+@keyframes nav-guide-print{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* Comparison: holographic card faces, opposing arrows and luminous transfers. */
+.nav-compare-panel{transform-origin:7px 13px;animation:nav-compare-panel 4s ease-in-out infinite}
+.nav-compare-panel-right{transform-origin:19px 13px;animation-delay:-2s}
+.nav-compare-card{fill:#45f2df;fill-opacity:.12;stroke:#79eee0;stroke-width:1.4;filter:drop-shadow(0 0 1px #41ebd65c)}
+.nav-compare-panel-right .nav-compare-card{fill:#ed75d3;stroke:#f6a0e5;filter:drop-shadow(0 0 1px #f268d65c)}
+.nav-compare-values{stroke:#c9ff8b;stroke-width:1.55;transform-origin:5.5px 13px;animation:nav-compare-values 4s ease-in-out infinite}
+.nav-compare-values-right{stroke:#ffd581;transform-origin:17.3px 13px;animation-delay:-2s}
+.nav-compare-sheen{stroke:#d0fff1;stroke-width:.7;stroke-opacity:.65}
+.nav-compare-forward-track{stroke:#69e8dc;stroke-opacity:.8;stroke-width:1.3}
+.nav-compare-return-track{stroke:#efa0dc;stroke-opacity:.8;stroke-width:1.3}
+.nav-compare-packet-forward{fill:#c7fa67;filter:drop-shadow(0 0 1.8px #b8fa65);animation:nav-compare-forward 3s cubic-bezier(.35,0,.25,1) infinite;animation-delay:-.4s}
+.nav-compare-packet-return{fill:#ffb2e9;filter:drop-shadow(0 0 1.8px #ff75d8);animation:nav-compare-return 3s cubic-bezier(.35,0,.25,1) infinite;animation-delay:-1.9s}
+.nav-compare-packet-forward.nav-compare-trail{animation-delay:-.2s;filter:none;fill:#8cffe7}
+.nav-compare-packet-return.nav-compare-trail{animation-delay:-1.7s;filter:none;fill:#ffcf7b}
+@keyframes nav-compare-panel{0%,100%{transform:perspective(65px) rotateY(-13deg) translateY(.65px)}50%{transform:perspective(65px) rotateY(13deg) translateY(-.65px)}}
+@keyframes nav-compare-values{0%,100%{transform:scaleX(.5);opacity:.65}45%,65%{transform:scaleX(1.05);opacity:1}}
+@keyframes nav-compare-forward{0%{transform:translateX(0);opacity:0}12%,74%{opacity:1}94%,100%{transform:translateX(11px);opacity:0}}
+@keyframes nav-compare-return{0%{transform:translateX(0);opacity:0}12%,74%{opacity:1}94%,100%{transform:translateX(-11px);opacity:0}}
+
+/* Table: the grid stays crisp while each value bar continuously changes. */
+.nav-table-frame{fill:#5ef1da;fill-opacity:.05;stroke:#a5d8cc}
+.nav-table-header{fill:#a6f3d4;fill-opacity:.15}
+.nav-table-grid{stroke:#a5d8cc;stroke-width:1.15;stroke-opacity:.9}
+.nav-table-sweep{fill:#70ffe0;filter:drop-shadow(0 0 .75px #70ffe0);animation:nav-table-sweep 3.4s ease-in-out infinite;animation-delay:-.9s}
+.nav-table-value{stroke-width:2.1;transform-origin:13.5px 13px;animation:nav-table-value 3.4s ease-in-out infinite}
+.nav-table-value-one{stroke:#ffcf70;animation-delay:-.6s;filter:drop-shadow(0 0 .8px #ffcf7070)}
+.nav-table-value-two{stroke:#65f3e2;animation-delay:-1.7s;filter:drop-shadow(0 0 .8px #65f3e270)}
+.nav-table-value-three{stroke:#c8fa71;animation-delay:-2.7s;filter:drop-shadow(0 0 .8px #c8fa7170)}
+.nav-table-status{fill:#a9ff95;filter:drop-shadow(0 0 1px #a9ff9590);animation:nav-table-status 3.4s ease-in-out infinite}
+.nav-table-status-two{fill:#ff9adf;filter:drop-shadow(0 0 1px #ff9adf90);animation-delay:-1.7s}
+@keyframes nav-table-sweep{0%{transform:translateY(-5px);opacity:0}20%,76%{opacity:.3}100%{transform:translateY(11px);opacity:0}}
+@keyframes nav-table-value{0%,100%{transform:scaleX(.28);opacity:.65}35%{transform:scaleX(1.12);opacity:1}72%{transform:scaleX(.68);opacity:.9}}
+@keyframes nav-table-status{0%,100%{opacity:.4}45%,65%{opacity:1}}
+
+/* A volumetric DNA turn: morph topology is identical at all 17 keyframes.
+ * Backbones, projected bonds and endpoint depth share the same 4.8s phase.
+ * No SVG SMIL or JavaScript animation loop bypasses reduced-motion settings. */
+.nav-dna-ghost{stroke:#a5bded;stroke-width:1;opacity:.17}
+.nav-dna-backbone{stroke-width:1.8;animation:nav-dna-turn 4.8s linear infinite}
+.nav-dna-backbone-one{stroke:#5bf0ff;filter:drop-shadow(0 0 1.1px #37dfffaa)}
+.nav-dna-backbone-two{stroke:#ff7bdb;filter:drop-shadow(0 0 1.1px #ff68d5aa);animation-delay:-2.4s}
+.nav-dna-rung{stroke:var(--dna-bond);stroke-width:1.2;transform-origin:13px 13px;transform:scaleX(var(--dna-rest-rung));animation:nav-dna-bond-turn 4.8s linear infinite;animation-delay:var(--dna-phase-a)}
+.nav-dna-orbit{fill:var(--dna-bond);transform-origin:var(--dna-origin);filter:drop-shadow(0 0 1.15px var(--dna-bond));animation:nav-dna-orbit-turn 4.8s linear infinite}
+.nav-dna-orbit-one{transform:translateX(var(--dna-rest-a));animation-delay:var(--dna-phase-a)}
+.nav-dna-orbit-two{transform:translateX(var(--dna-rest-b));animation-delay:var(--dna-phase-b)}
+@keyframes nav-dna-turn{
+0%{d:path("M19 3C19 4.111 17.814 5.222 16 6.333C14.186 7.444 11.814 8.556 10 9.667C8.186 10.778 7 11.889 7 13C7 14.111 8.186 15.222 10 16.333C11.814 17.444 14.186 18.556 16 19.667C17.814 20.778 19 21.889 19 23")}
+6.25%{d:path("M18.543 3C17.742 4.111 15.86 5.222 13.783 6.333C11.707 7.444 9.515 8.556 8.24 9.667C6.965 10.778 6.655 11.889 7.457 13C8.258 14.111 10.14 15.222 12.217 16.333C14.293 17.444 16.485 18.556 17.76 19.667C19.035 20.778 19.345 21.889 18.543 23")}
+12.5%{d:path("M17.243 3C15.762 4.111 13.47 5.222 11.447 6.333C9.424 7.444 7.747 8.556 7.204 9.667C6.662 10.778 7.276 11.889 8.757 13C10.238 14.111 12.53 15.222 14.553 16.333C16.576 17.444 18.253 18.556 18.796 19.667C19.338 20.778 18.724 21.889 17.243 23")}
+18.75%{d:path("M15.296 3C13.361 4.111 11.009 5.222 9.347 6.333C7.686 7.444 6.778 8.556 7.051 9.667C7.325 10.778 8.769 11.889 10.704 13C12.639 14.111 14.991 15.222 16.653 16.333C18.314 17.444 19.222 18.556 18.949 19.667C18.675 20.778 17.231 21.889 15.296 23")}
+25%{d:path("M13 3C10.906 4.111 8.851 5.222 7.804 6.333C6.757 7.444 6.757 8.556 7.804 9.667C8.851 10.778 10.906 11.889 13 13C15.094 14.111 17.149 15.222 18.196 16.333C19.243 17.444 19.243 18.556 18.196 19.667C17.149 20.778 15.094 21.889 13 23")}
+31.25%{d:path("M10.704 3C8.769 4.111 7.325 5.222 7.051 6.333C6.778 7.444 7.686 8.556 9.347 9.667C11.009 10.778 13.361 11.889 15.296 13C17.231 14.111 18.675 15.222 18.949 16.333C19.222 17.444 18.314 18.556 16.653 19.667C14.991 20.778 12.639 21.889 10.704 23")}
+37.5%{d:path("M8.757 3C7.276 4.111 6.662 5.222 7.204 6.333C7.747 7.444 9.424 8.556 11.447 9.667C13.47 10.778 15.762 11.889 17.243 13C18.724 14.111 19.338 15.222 18.796 16.333C18.253 17.444 16.576 18.556 14.553 19.667C12.53 20.778 10.238 21.889 8.757 23")}
+43.75%{d:path("M7.457 3C6.655 4.111 6.965 5.222 8.24 6.333C9.515 7.444 11.707 8.556 13.783 9.667C15.86 10.778 17.742 11.889 18.543 13C19.345 14.111 19.035 15.222 17.76 16.333C16.485 17.444 14.293 18.556 12.217 19.667C10.14 20.778 8.258 21.889 7.457 23")}
+50%{d:path("M7 3C7 4.111 8.186 5.222 10 6.333C11.814 7.444 14.186 8.556 16 9.667C17.814 10.778 19 11.889 19 13C19 14.111 17.814 15.222 16 16.333C14.186 17.444 11.814 18.556 10 19.667C8.186 20.778 7 21.889 7 23")}
+56.25%{d:path("M7.457 3C8.258 4.111 10.14 5.222 12.217 6.333C14.293 7.444 16.485 8.556 17.76 9.667C19.035 10.778 19.345 11.889 18.543 13C17.742 14.111 15.86 15.222 13.783 16.333C11.707 17.444 9.515 18.556 8.24 19.667C6.965 20.778 6.655 21.889 7.457 23")}
+62.5%{d:path("M8.757 3C10.238 4.111 12.53 5.222 14.553 6.333C16.576 7.444 18.253 8.556 18.796 9.667C19.338 10.778 18.724 11.889 17.243 13C15.762 14.111 13.47 15.222 11.447 16.333C9.424 17.444 7.747 18.556 7.204 19.667C6.662 20.778 7.276 21.889 8.757 23")}
+68.75%{d:path("M10.704 3C12.639 4.111 14.991 5.222 16.653 6.333C18.314 7.444 19.222 8.556 18.949 9.667C18.675 10.778 17.231 11.889 15.296 13C13.361 14.111 11.009 15.222 9.347 16.333C7.686 17.444 6.778 18.556 7.051 19.667C7.325 20.778 8.769 21.889 10.704 23")}
+75%{d:path("M13 3C15.094 4.111 17.149 5.222 18.196 6.333C19.243 7.444 19.243 8.556 18.196 9.667C17.149 10.778 15.094 11.889 13 13C10.906 14.111 8.851 15.222 7.804 16.333C6.757 17.444 6.757 18.556 7.804 19.667C8.851 20.778 10.906 21.889 13 23")}
+81.25%{d:path("M15.296 3C17.231 4.111 18.675 5.222 18.949 6.333C19.222 7.444 18.314 8.556 16.653 9.667C14.991 10.778 12.639 11.889 10.704 13C8.769 14.111 7.325 15.222 7.051 16.333C6.778 17.444 7.686 18.556 9.347 19.667C11.009 20.778 13.361 21.889 15.296 23")}
+87.5%{d:path("M17.243 3C18.724 4.111 19.338 5.222 18.796 6.333C18.253 7.444 16.576 8.556 14.553 9.667C12.53 10.778 10.238 11.889 8.757 13C7.276 14.111 6.662 15.222 7.204 16.333C7.747 17.444 9.424 18.556 11.447 19.667C13.47 20.778 15.762 21.889 17.243 23")}
+93.75%{d:path("M18.543 3C19.345 4.111 19.035 5.222 17.76 6.333C16.485 7.444 14.293 8.556 12.217 9.667C10.14 10.778 8.258 11.889 7.457 13C6.655 14.111 6.965 15.222 8.24 16.333C9.515 17.444 11.707 18.556 13.783 19.667C15.86 20.778 17.742 21.889 18.543 23")}
+100%{d:path("M19 3C19 4.111 17.814 5.222 16 6.333C14.186 7.444 11.814 8.556 10 9.667C8.186 10.778 7 11.889 7 13C7 14.111 8.186 15.222 10 16.333C11.814 17.444 14.186 18.556 16 19.667C17.814 20.778 19 21.889 19 23")}
+}
+@keyframes nav-dna-orbit-turn{
+0%{transform:translateX(6px) scale(0.94);opacity:0.72}
+6.25%{transform:translateX(5.5433px) scale(1.0395);opacity:0.8272}
+12.5%{transform:translateX(4.2426px) scale(1.1238);opacity:0.918}
+18.75%{transform:translateX(2.2961px) scale(1.1802);opacity:0.9787}
+25%{transform:translateX(0px) scale(1.2);opacity:1}
+31.25%{transform:translateX(-2.2961px) scale(1.1802);opacity:0.9787}
+37.5%{transform:translateX(-4.2426px) scale(1.1238);opacity:0.918}
+43.75%{transform:translateX(-5.5433px) scale(1.0395);opacity:0.8272}
+50%{transform:translateX(-6px) scale(0.94);opacity:0.72}
+56.25%{transform:translateX(-5.5433px) scale(0.8405);opacity:0.6128}
+62.5%{transform:translateX(-4.2426px) scale(0.7562);opacity:0.522}
+68.75%{transform:translateX(-2.2961px) scale(0.6998);opacity:0.4613}
+75%{transform:translateX(0px) scale(0.68);opacity:0.44}
+81.25%{transform:translateX(2.2961px) scale(0.6998);opacity:0.4613}
+87.5%{transform:translateX(4.2426px) scale(0.7562);opacity:0.522}
+93.75%{transform:translateX(5.5433px) scale(0.8405);opacity:0.6128}
+100%{transform:translateX(6px) scale(0.94);opacity:0.72}
+}
+@keyframes nav-dna-bond-turn{
+0%{transform:scaleX(1);opacity:0.65}
+6.25%{transform:scaleX(0.92388);opacity:0.7457}
+12.5%{transform:scaleX(0.70711);opacity:0.8268}
+18.75%{transform:scaleX(0.38268);opacity:0.881}
+25%{transform:scaleX(0);opacity:0.9}
+31.25%{transform:scaleX(-0.38268);opacity:0.881}
+37.5%{transform:scaleX(-0.70711);opacity:0.8268}
+43.75%{transform:scaleX(-0.92388);opacity:0.7457}
+50%{transform:scaleX(-1);opacity:0.65}
+56.25%{transform:scaleX(-0.92388);opacity:0.5543}
+62.5%{transform:scaleX(-0.70711);opacity:0.4732}
+68.75%{transform:scaleX(-0.38268);opacity:0.419}
+75%{transform:scaleX(0);opacity:0.4}
+81.25%{transform:scaleX(0.38268);opacity:0.419}
+87.5%{transform:scaleX(0.70711);opacity:0.4732}
+93.75%{transform:scaleX(0.92388);opacity:0.5543}
+100%{transform:scaleX(1);opacity:0.65}
+}
+
+/* The main flask keeps its glass silhouette, with brighter liquid and bubbles. */
+.nav-flask{--nav-flow:#89ffeb;--nav-signal:#c7fa67}
+.nav-flask-halo{stroke:var(--nav-signal);transform-origin:13px 14px;opacity:.1;animation:nav-flask-halo 4.6s ease-in-out infinite}
+.nav-flask-liquid{transform-origin:13px 20px;animation:nav-flask-liquid 4.6s ease-in-out infinite}
+.nav-flask-surface{stroke:var(--nav-flow);stroke-opacity:.95;filter:drop-shadow(0 0 .9px #72ffe0)}
+.nav-flask-bubble{fill:var(--nav-flow);fill-opacity:.4;stroke:var(--nav-flow);filter:drop-shadow(0 0 .8px #83fbe0);animation:nav-flask-bubble 3s ease-in-out infinite}
+.nav-glyph .nav-flask-bubble{transform-box:fill-box;transform-origin:center}
+.nav-flask-bubble-one{animation-delay:-.4s}.nav-flask-bubble-two{animation-delay:-1.7s;animation-duration:3.8s;stroke:#d0ff8b}.nav-flask-bubble-three{animation-delay:-2.6s;animation-duration:3.3s}
+.nav-flask-glint{stroke:var(--nav-flow);animation:nav-flask-glint 4.6s ease-in-out infinite}
+@keyframes nav-flask-liquid{0%,100%{transform:translateX(-1.4px) rotate(-3deg)}50%{transform:translateX(1.4px) rotate(3deg)}}
+@keyframes nav-flask-bubble{0%{transform:translate(0,1px) scale(.65);opacity:0}20%{opacity:1}80%{opacity:.9}100%{transform:translate(.6px,-10px) scale(1.15);opacity:0}}
+@keyframes nav-flask-halo{0%,100%{transform:scale(.92);opacity:.07}50%{transform:scale(1.02);opacity:.27}}
+@keyframes nav-flask-glint{0%,100%{stroke-opacity:.4}50%{stroke-opacity:1}}
+
+/* A bright, complete still icon remains when either reduction preference is on. */
+@media(prefers-reduced-motion:reduce){
+ .nav-glyph *{animation:none!important;transition:none!important}
+ .nav-guide-leaf,.nav-compare-packet,.nav-table-sweep,.nav-flask-halo{display:none}
+ .nav-guide-cover,.nav-compare-panel,.nav-compare-values,.nav-table-value,.nav-flask-liquid{transform:none}
+ .nav-guide-print,.nav-table-status{opacity:1}.nav-flask-bubble{opacity:.75}
+}
+.reduce-motion .nav-glyph *{animation:none!important;transition:none!important}
+.reduce-motion .nav-guide-leaf,.reduce-motion .nav-compare-packet,.reduce-motion .nav-table-sweep,.reduce-motion .nav-flask-halo{display:none}
+.reduce-motion .nav-guide-cover,.reduce-motion .nav-compare-panel,.reduce-motion .nav-compare-values,.reduce-motion .nav-table-value,.reduce-motion .nav-flask-liquid{transform:none}
+.reduce-motion .nav-guide-print,.reduce-motion .nav-table-status{opacity:1}.reduce-motion .nav-flask-bubble{opacity:.75}

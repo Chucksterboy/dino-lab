@@ -1,0 +1,275 @@
+{
+  "spreadsheetId": "15aOvzrA6Wf5SORil4CQdplKLr6wsSGTE7uGitZlSDGM",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/15aOvzrA6Wf5SORil4CQdplKLr6wsSGTE7uGitZlSDGM/edit",
+  "properties": {
+    "title": "Isle EVRIMA Species Stat Sheet",
+    "locale": "en_US",
+    "timeZone": "America/Mexico_City"
+  },
+  "sheets": [
+    {
+      "properties": {
+        "sheetId": 138094778,
+        "title": "Allosaurus",
+        "index": 0,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1004,
+          "columnCount": 28
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1044821695,
+        "title": "Austroraptor",
+        "index": 1,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 999,
+          "columnCount": 28
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 19114547,
+        "title": "Beipiaosaurus",
+        "index": 2,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 999,
+          "columnCount": 29
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1072070444,
+        "title": "Carnotaurus",
+        "index": 3,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 998,
+          "columnCount": 30
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1360605304,
+        "title": "Ceratosaurus",
+        "index": 4,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 998,
+          "columnCount": 29
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 909871400,
+        "title": "Deinosuchus",
+        "index": 5,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1002,
+          "columnCount": 28
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1865868356,
+        "title": "Diabloceratops",
+        "index": 6,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1006,
+          "columnCount": 28
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1475946337,
+        "title": "Dilophosaurus",
+        "index": 7,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 999,
+          "columnCount": 25
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 776590714,
+        "title": "Dryosaurus",
+        "index": 8,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 27
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1236000214,
+        "title": "Gallimimus",
+        "index": 9,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 34
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1909853893,
+        "title": "Herrerasaurus",
+        "index": 10,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1003,
+          "columnCount": 27
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 470330832,
+        "title": "Hypsilophodon",
+        "index": 11,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1001,
+          "columnCount": 26
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 735492157,
+        "title": "Kentrosaurus",
+        "index": 12,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1006,
+          "columnCount": 29
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1892851319,
+        "title": "Maiasaura",
+        "index": 13,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1003,
+          "columnCount": 40
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 222392364,
+        "title": "Omniraptor",
+        "index": 14,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1003,
+          "columnCount": 30
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1048221670,
+        "title": "Pachycephalosaurus",
+        "index": 15,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1000,
+          "columnCount": 26
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1919126853,
+        "title": "Pteranodon",
+        "index": 16,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1003,
+          "columnCount": 25
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 2125520837,
+        "title": "Stegosaurus",
+        "index": 17,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1006,
+          "columnCount": 29
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 746880505,
+        "title": "Tenontosaurus",
+        "index": 18,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1001,
+          "columnCount": 27
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1347030512,
+        "title": "Triceratops",
+        "index": 19,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1015,
+          "columnCount": 37
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 1928850717,
+        "title": "Troodon",
+        "index": 20,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 999,
+          "columnCount": 28
+        }
+      }
+    },
+    {
+      "properties": {
+        "sheetId": 526712661,
+        "title": "Tyrannosaurus",
+        "index": 21,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1010,
+          "columnCount": 34
+        }
+      }
+    }
+  ]
+}

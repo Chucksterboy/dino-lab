@@ -1,0 +1,50 @@
+.mutation-model{margin-top:22px;padding-top:20px;border-top:1px solid var(--border)}
+.mutation-model-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:15px}
+.mutation-model-heading h3{display:flex;align-items:center;gap:9px;color:var(--mint)}
+.mutation-model-heading>label{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.mutation-model-heading select{max-width:210px;font-size:13px}
+.mutation-model-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.combat-panel>.combat-results{position:sticky;top:10px;z-index:5;background:#263520;border-color:#5d7846;box-shadow:0 9px 24px #07100888;margin-top:18px;margin-bottom:20px}
+.combat-panel>.combat-results>div{background:#1b291e}
+.mutation-model :is(input,select,button){scroll-margin-top:190px}
+.mutation-loadout{min-width:0;border:1px solid #3c5043;background:linear-gradient(150deg,#1d2b24,#19231e);border-radius:11px;padding:16px}
+.mutation-loadout-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}
+.mutation-loadout-heading>div>span{display:block;color:var(--mint);font-size:11px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:5px}
+.mutation-loadout h4{font-family:'Manrope Variable';font-size:17px;color:#e1eddd;font-weight:600;margin:0}
+.mutation-strength{display:flex;align-items:center;justify-content:space-between;gap:12px;color:#b0c0af;font-size:13px;margin-bottom:14px}
+.mutation-strength select{min-width:140px;max-width:180px;font-size:13px}
+.combat-mutation-cards{display:flex;flex-direction:column;gap:8px}
+.combat-mutation-card{display:flex;align-items:flex-start;gap:10px;min-width:0;padding:12px 10px;border:1px solid #3a4a3d;border-radius:8px;background:#17231e;cursor:pointer;transition:border-color .15s,background .15s}
+.combat-mutation-card:hover{border-color:#7db980}
+.combat-mutation-card.selected{border-color:#85b95b;background:#253820}
+.combat-mutation-card input{width:16px;height:16px;accent-color:var(--lime);flex-shrink:0;margin:2px 0 0}
+.combat-mutation-copy{min-width:0;flex:1}
+.combat-mutation-copy strong{display:block;font-size:13px;line-height:1.4;color:#e0ecd9;font-weight:600}
+.combat-mutation-copy small{display:block;font-size:12px;line-height:1.55;color:#a5b99f;margin-top:5px}
+.mutation-slot-note{display:block;margin-top:5px;font-size:11px;color:#a4c391}
+.mutation-percent{font-size:15px;color:var(--lime);font-weight:600;white-space:nowrap;margin-top:1px}
+.mutation-percent.defense{color:var(--mint)}
+.combat-mutation-card.unavailable{background:#1b2420;border-color:#3b453e;cursor:not-allowed}
+.combat-mutation-card.unavailable .combat-mutation-copy strong{color:#abb8a7}
+.combat-mutation-card.unavailable .mutation-percent{color:#8c9b87}
+.mutation-eligibility-note{display:block;margin-top:7px;color:#ccb58f;font-size:11px;line-height:1.5}
+.mutation-disabled-note{font-size:13px;color:#b0b9ad;margin:0 0 12px}
+.hyper-scenario{border:1px solid #67784c;border-radius:8px;background:#333d253f;padding:12px;margin-top:12px}
+.hyper-scenario>label{display:block;font-size:12px;color:#c4d5b4}
+.hyper-scenario select{width:100%;font-size:12px;margin-top:8px;min-width:0}
+.mutation-conditions{border-top:1px solid #3d5040;margin-top:17px;padding-top:13px}
+.mutation-condition-title{display:flex;align-items:center;gap:7px;color:#b7cfa4;font-size:12px;margin-bottom:13px}
+.mutation-health{display:block;font-size:12px;color:#b1c2a6;margin-top:12px}
+.mutation-health>span{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.mutation-health strong{color:#d5e9c0;font-size:12px;font-weight:500}
+.mutation-health input[type=range]{width:100%;margin:12px 0 8px;accent-color:var(--lime)}
+.mutation-condition{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.6;color:#c1d0b6;margin:8px 0 0;cursor:pointer}
+.mutation-condition input{width:15px;height:15px;margin-top:3px;accent-color:var(--mint);flex-shrink:0}
+.mutation-condition small{display:block;color:#94ad8e;font-size:11px}
+.mutation-model-note{font-size:12px;line-height:1.65;color:#a5b69c;margin:13px 0 0}
+.combat-results .combat-mutation-reading{font-size:12px;font-family:inherit;color:#b7cfa4;line-height:1.5;text-align:center}
+.combat-results .combat-mutation-reading strong{font-size:12px;font-family:inherit}
+.combat-results .combat-baseline{font-size:11px;line-height:1.5;color:#9daf92;text-align:center}
+.combat-results strong{max-width:100%;overflow-wrap:anywhere}
+.combat-results .mutation-count-range{font-size:clamp(22px,2.3vw,30px)}
+@media(max-width:1250px){.mutation-loadout{padding:13px}.combat-mutation-card{padding:10px 8px;gap:8px}.combat-mutation-copy strong{font-size:12px}.mutation-percent{font-size:13px}.mutation-model-heading>label{font-size:11px}.mutation-health>span{flex-wrap:wrap;gap:5px}}

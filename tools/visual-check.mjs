@@ -1,0 +1,11 @@
+import { chromium } from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:960},deviceScaleFactor:1});
+await page.goto('http://127.0.0.1:1420');
+await page.getByRole('heading',{name:'Species library.'}).waitFor();
+await page.screenshot({path:'test-results/library.png'});
+await page.getByRole('button',{name:'Open Allosaurus',exact:true}).click();
+await page.getByRole('tab',{name:'Overview',exact:true}).waitFor();
+await page.screenshot({path:'test-results/allosaurus.png'});
+console.log(await page.title());
+await browser.close();

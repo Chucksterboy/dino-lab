@@ -1,0 +1,4476 @@
+{
+  "spreadsheetId": "15aOvzrA6Wf5SORil4CQdplKLr6wsSGTE7uGitZlSDGM",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/15aOvzrA6Wf5SORil4CQdplKLr6wsSGTE7uGitZlSDGM/edit",
+  "properties": {
+    "title": "Isle EVRIMA Species Stat Sheet",
+    "locale": "en_US",
+    "timeZone": "America/Mexico_City"
+  },
+  "sheets": [
+    {
+      "properties": {
+        "sheetId": 1919126853,
+        "title": "Pteranodon",
+        "index": 16,
+        "sheetType": "GRID",
+        "gridProperties": {
+          "rowCount": 1003,
+          "columnCount": 25
+        }
+      },
+      "data": [
+        {
+          "rowData": [
+            {
+              "values": [
+                {
+                  "formattedValue": "Stat ↓ / Growth Stage →",
+                  "userEnteredValue": {
+                    "stringValue": "Stat ↓ / Growth Stage →"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Stat ↓ / Growth Stage →"
+                  }
+                },
+                {
+                  "formattedValue": "Hatchling",
+                  "userEnteredValue": {
+                    "stringValue": "Hatchling"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Hatchling"
+                  }
+                },
+                {
+                  "formattedValue": "Juvenile",
+                  "userEnteredValue": {
+                    "stringValue": "Juvenile"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Juvenile"
+                  }
+                },
+                {
+                  "formattedValue": "Adolescent",
+                  "userEnteredValue": {
+                    "stringValue": "Adolescent"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Adolescent"
+                  }
+                },
+                {
+                  "formattedValue": "Subadult",
+                  "userEnteredValue": {
+                    "stringValue": "Subadult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Subadult"
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Fresh Adult",
+                  "userEnteredValue": {
+                    "stringValue": "Fresh Adult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Fresh Adult"
+                  }
+                },
+                {
+                  "formattedValue": "Full Adult",
+                  "userEnteredValue": {
+                    "stringValue": "Full Adult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Full Adult"
+                  }
+                },
+                {},
+                {},
+                {
+                  "formattedValue": "Prime Elder",
+                  "userEnteredValue": {
+                    "stringValue": "Prime Elder"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Prime Elder"
+                  }
+                },
+                {
+                  "formattedValue": "Frail Prime",
+                  "userEnteredValue": {
+                    "stringValue": "Frail Prime"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Frail Prime"
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Stat ↓ / Growth Stage →",
+                  "userEnteredValue": {
+                    "stringValue": "Stat ↓ / Growth Stage →"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Stat ↓ / Growth Stage →"
+                  }
+                },
+                {
+                  "formattedValue": "Hatchling",
+                  "userEnteredValue": {
+                    "stringValue": "Hatchling"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Hatchling"
+                  }
+                },
+                {
+                  "formattedValue": "Juvenile",
+                  "userEnteredValue": {
+                    "stringValue": "Juvenile"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Juvenile"
+                  }
+                },
+                {
+                  "formattedValue": "Adolescent",
+                  "userEnteredValue": {
+                    "stringValue": "Adolescent"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Adolescent"
+                  }
+                },
+                {
+                  "formattedValue": "Subadult",
+                  "userEnteredValue": {
+                    "stringValue": "Subadult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Subadult"
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Fresh Adult",
+                  "userEnteredValue": {
+                    "stringValue": "Fresh Adult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Fresh Adult"
+                  }
+                },
+                {
+                  "formattedValue": "Full Adult",
+                  "userEnteredValue": {
+                    "stringValue": "Full Adult"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Full Adult"
+                  }
+                },
+                {},
+                {},
+                {
+                  "formattedValue": "Frail Elder",
+                  "userEnteredValue": {
+                    "stringValue": "Frail Elder"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Frail Elder"
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Weight (kg)",
+                  "userEnteredValue": {
+                    "stringValue": "Weight (kg)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Weight (kg)"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "numberValue": 0.0879
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.22",
+                  "userEnteredValue": {
+                    "numberValue": 1.22
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.22
+                  }
+                },
+                {
+                  "formattedValue": "11.25",
+                  "userEnteredValue": {
+                    "numberValue": 11.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.25
+                  }
+                },
+                {
+                  "formattedValue": "35",
+                  "userEnteredValue": {
+                    "numberValue": 35
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35
+                  }
+                },
+                {
+                  "formattedValue": "57",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E2+(F$12-$E$12)*($H2-$E2)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 57
+                  }
+                },
+                {
+                  "formattedValue": "62.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E2+(G$12-$E$12)*($H2-$E2)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 62.5
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "116.495184",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H2+(I$12-$H$12)*($K2-$H2)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 116.495184
+                  }
+                },
+                {
+                  "formattedValue": "118.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H2+(J$12-$H$12)*($K2-$H2)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 118.8
+                  }
+                },
+                {
+                  "formattedValue": "120",
+                  "userEnteredValue": {
+                    "numberValue": 120
+                  },
+                  "effectiveValue": {
+                    "numberValue": 120
+                  }
+                },
+                {
+                  "formattedValue": "120",
+                  "userEnteredValue": {
+                    "numberValue": 120
+                  },
+                  "effectiveValue": {
+                    "numberValue": 120
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Weight (kg)",
+                  "userEnteredValue": {
+                    "stringValue": "Weight (kg)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Weight (kg)"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "numberValue": 0.0879
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.22",
+                  "userEnteredValue": {
+                    "numberValue": 1.22
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.22
+                  }
+                },
+                {
+                  "formattedValue": "11.25",
+                  "userEnteredValue": {
+                    "numberValue": 11.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.25
+                  }
+                },
+                {
+                  "formattedValue": "35",
+                  "userEnteredValue": {
+                    "numberValue": 35
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35
+                  }
+                },
+                {
+                  "formattedValue": "57",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R2+(S$12-$R$12)*($U2-$R2)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 57
+                  }
+                },
+                {
+                  "formattedValue": "62.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R2+(T$12-$R$12)*($U2-$R2)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 62.5
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "3.564",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*B$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5639999999999996
+                  }
+                },
+                {
+                  "formattedValue": "8.568",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*C$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.568
+                  }
+                },
+                {
+                  "formattedValue": "17.964",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*D$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 17.964
+                  }
+                },
+                {
+                  "formattedValue": "22.428",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*E$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.427999999999997
+                  }
+                },
+                {
+                  "formattedValue": "25.2504",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*F$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.250399999999996
+                  }
+                },
+                {
+                  "formattedValue": "25.956",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*G$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.956
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*H$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "39.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*I$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.599999999999994
+                  }
+                },
+                {
+                  "formattedValue": "39.29044235",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*J$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.2904423531232
+                  }
+                },
+                {
+                  "formattedValue": "39.12927149",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*K$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.12927149338769
+                  }
+                },
+                {
+                  "formattedValue": "35.1",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*L$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35.099999999999994
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "3.564",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*O$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5639999999999996
+                  }
+                },
+                {
+                  "formattedValue": "8.568",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*P$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.568
+                  }
+                },
+                {
+                  "formattedValue": "17.964",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*Q$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 17.964
+                  }
+                },
+                {
+                  "formattedValue": "22.428",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*R$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.427999999999997
+                  }
+                },
+                {
+                  "formattedValue": "25.2504",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*S$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.250399999999996
+                  }
+                },
+                {
+                  "formattedValue": "25.956",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*T$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.956
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*U$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*V$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "36.82316039",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*W$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 36.82316038721119
+                  }
+                },
+                {
+                  "formattedValue": "28.512",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*X$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 28.511999999999997
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Bite (LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Bite (LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Bite (LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.02",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*B$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.02
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*C$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "5.028571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*D$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 5.0285714285714285
+                  }
+                },
+                {
+                  "formattedValue": "9.457142857",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*E$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.457142857142857
+                  }
+                },
+                {
+                  "formattedValue": "13",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*F$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13
+                  }
+                },
+                {
+                  "formattedValue": "14.16666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*G$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.166666666666668
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*H$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "22.6495184",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*I$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.649518399999998
+                  }
+                },
+                {
+                  "formattedValue": "22.88",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*J$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.88
+                  }
+                },
+                {
+                  "formattedValue": "23",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*K$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 23
+                  }
+                },
+                {
+                  "formattedValue": "16",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*L$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Bite (LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Bite (LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Bite (LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.02",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*O$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.02
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*P$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "5.028571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*Q$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 5.0285714285714285
+                  }
+                },
+                {
+                  "formattedValue": "9.457142857",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*R$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.457142857142857
+                  }
+                },
+                {
+                  "formattedValue": "13",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*S$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13
+                  }
+                },
+                {
+                  "formattedValue": "14.16666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*T$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.166666666666668
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*U$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*V$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*W$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "12",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*X$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 12
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Beak Stab (Alt+LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Beak Stab (Alt+LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Beak Stab (Alt+LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.03",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*B$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.03
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*C$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.9
+                  }
+                },
+                {
+                  "formattedValue": "7.542857143",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*D$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.542857142857143
+                  }
+                },
+                {
+                  "formattedValue": "14.18571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*E$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.185714285714287
+                  }
+                },
+                {
+                  "formattedValue": "19.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*F$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 19.5
+                  }
+                },
+                {
+                  "formattedValue": "21.25",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*G$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 21.250000000000004
+                  }
+                },
+                {
+                  "formattedValue": "30",
+                  "userEnteredValue": {
+                    "numberValue": 30
+                  },
+                  "effectiveValue": {
+                    "numberValue": 30
+                  }
+                },
+                {
+                  "formattedValue": "33.9742776",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*I$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 33.9742776
+                  }
+                },
+                {
+                  "formattedValue": "34.32",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*J$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 34.32
+                  }
+                },
+                {
+                  "formattedValue": "34.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*K$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 34.5
+                  }
+                },
+                {
+                  "formattedValue": "24",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H5*L$4/$H$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 24
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Beak Stab (Alt+LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Beak Stab (Alt+LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Beak Stab (Alt+LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.03",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*O$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.03
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*P$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.9
+                  }
+                },
+                {
+                  "formattedValue": "7.542857143",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*Q$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.542857142857143
+                  }
+                },
+                {
+                  "formattedValue": "14.18571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*R$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.185714285714287
+                  }
+                },
+                {
+                  "formattedValue": "19.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*S$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 19.5
+                  }
+                },
+                {
+                  "formattedValue": "21.25",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*T$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 21.250000000000004
+                  }
+                },
+                {
+                  "formattedValue": "30",
+                  "userEnteredValue": {
+                    "numberValue": 30
+                  },
+                  "effectiveValue": {
+                    "numberValue": 30
+                  }
+                },
+                {
+                  "formattedValue": "30",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*V$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 30
+                  }
+                },
+                {
+                  "formattedValue": "30",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*W$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 30
+                  }
+                },
+                {
+                  "formattedValue": "18",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U5*X$4/$U$4"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 18
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Trot (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Trot (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trot (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*B$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8999999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*C$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5999999999999996
+                  }
+                },
+                {
+                  "formattedValue": "4.536",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*D$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 4.536
+                  }
+                },
+                {
+                  "formattedValue": "7.2",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*E$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "8.928",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*F$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.927999999999999
+                  }
+                },
+                {
+                  "formattedValue": "9.36",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*G$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.36
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*H$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*I$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*J$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*K$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*L$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Trot (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Trot (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trot (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*O$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8999999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*P$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5999999999999996
+                  }
+                },
+                {
+                  "formattedValue": "4.536",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*Q$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 4.536
+                  }
+                },
+                {
+                  "formattedValue": "7.2",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*R$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "8.928",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*S$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.927999999999999
+                  }
+                },
+                {
+                  "formattedValue": "9.36",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*T$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.36
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*U$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*V$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*W$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*X$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Swim Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "1.62",
+                  "userEnteredValue": {
+                    "formulaValue": "=B$20*B$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.6199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.888",
+                  "userEnteredValue": {
+                    "formulaValue": "=C$20*C$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.888
+                  }
+                },
+                {
+                  "formattedValue": "8.1648",
+                  "userEnteredValue": {
+                    "formulaValue": "=D$20*D$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.1648
+                  }
+                },
+                {
+                  "formattedValue": "11.66400052",
+                  "userEnteredValue": {
+                    "formulaValue": "=E$20*E$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.664000518399998
+                  }
+                },
+                {
+                  "formattedValue": "13.21920031",
+                  "userEnteredValue": {
+                    "formulaValue": "=F$20*F$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.21920031104
+                  }
+                },
+                {
+                  "formattedValue": "13.60800026",
+                  "userEnteredValue": {
+                    "formulaValue": "=G$20*G$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.608000259199997
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=H$20*H$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "16.74428328",
+                  "userEnteredValue": {
+                    "formulaValue": "=I$20*I$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.74428328
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=J$20*J$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=K$20*K$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=L$20*L$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Swim Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "1.62",
+                  "userEnteredValue": {
+                    "formulaValue": "=O$20*O$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.6199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.888",
+                  "userEnteredValue": {
+                    "formulaValue": "=P$20*P$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.888
+                  }
+                },
+                {
+                  "formattedValue": "8.1648",
+                  "userEnteredValue": {
+                    "formulaValue": "=Q$20*Q$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.1648
+                  }
+                },
+                {
+                  "formattedValue": "11.66400052",
+                  "userEnteredValue": {
+                    "formulaValue": "=R$20*R$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.664000518399998
+                  }
+                },
+                {
+                  "formattedValue": "13.21920031",
+                  "userEnteredValue": {
+                    "formulaValue": "=S$20*S$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.21920031104
+                  }
+                },
+                {
+                  "formattedValue": "13.60800026",
+                  "userEnteredValue": {
+                    "formulaValue": "=T$20*T$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.608000259199997
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=U$20*U$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=V$20*V$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=W$20*W$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=X$20*X$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "% of Growth",
+                  "userEnteredValue": {
+                    "stringValue": "% of Growth"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "% of Growth"
+                  }
+                },
+                {
+                  "formattedValue": "0.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=B12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0
+                  }
+                },
+                {
+                  "formattedValue": "25.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=C12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25
+                  }
+                },
+                {
+                  "formattedValue": "37.50%",
+                  "userEnteredValue": {
+                    "formulaValue": "=D12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.375
+                  }
+                },
+                {
+                  "formattedValue": "50.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=E12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.5
+                  }
+                },
+                {
+                  "formattedValue": "60.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=F12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "62.50%",
+                  "userEnteredValue": {
+                    "formulaValue": "=G12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.625
+                  }
+                },
+                {
+                  "formattedValue": "75.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=H12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.75
+                  }
+                },
+                {
+                  "formattedValue": "86.04%",
+                  "userEnteredValue": {
+                    "formulaValue": "=I12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8603966
+                  }
+                },
+                {
+                  "formattedValue": "87.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=J12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.87
+                  }
+                },
+                {
+                  "formattedValue": "87.50%",
+                  "userEnteredValue": {
+                    "formulaValue": "=K12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.875
+                  }
+                },
+                {
+                  "formattedValue": "100.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=L12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "% of Growth",
+                  "userEnteredValue": {
+                    "stringValue": "% of Growth"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "% of Growth"
+                  }
+                },
+                {
+                  "formattedValue": "0.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=O12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0
+                  }
+                },
+                {
+                  "formattedValue": "25.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=P12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25
+                  }
+                },
+                {
+                  "formattedValue": "37.50%",
+                  "userEnteredValue": {
+                    "formulaValue": "=Q12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.375
+                  }
+                },
+                {
+                  "formattedValue": "50.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=R12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.5
+                  }
+                },
+                {
+                  "formattedValue": "60.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=S12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "62.50%",
+                  "userEnteredValue": {
+                    "formulaValue": "=T12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.625
+                  }
+                },
+                {
+                  "formattedValue": "75.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=U12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.75
+                  }
+                },
+                {
+                  "formattedValue": "86.04%",
+                  "userEnteredValue": {
+                    "formulaValue": "=V12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8603966
+                  }
+                },
+                {
+                  "formattedValue": "87.51%",
+                  "userEnteredValue": {
+                    "formulaValue": "=W12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.875079
+                  }
+                },
+                {
+                  "formattedValue": "100.00%",
+                  "userEnteredValue": {
+                    "formulaValue": "=X12"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                }
+              ]
+            },
+            {},
+            {
+              "values": [
+                {
+                  "formattedValue": "Patch Last Updated",
+                  "userEnteredValue": {
+                    "stringValue": "Patch Last Updated"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Patch Last Updated"
+                  }
+                },
+                {
+                  "formattedValue": "0.21.748",
+                  "userEnteredValue": {
+                    "stringValue": "0.21.748"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "0.21.748"
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Asset",
+                  "userEnteredValue": {
+                    "stringValue": "Asset"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Asset"
+                  }
+                },
+                {
+                  "formattedValue": "Pteranodon",
+                  "userEnteredValue": {
+                    "stringValue": "Pteranodon"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Pteranodon"
+                  }
+                }
+              ]
+            },
+            {},
+            {
+              "values": [
+                {
+                  "formattedValue": "Stage",
+                  "userEnteredValue": {
+                    "stringValue": "Stage"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Stage"
+                  }
+                },
+                {
+                  "formattedValue": "0",
+                  "userEnteredValue": {
+                    "numberValue": 0
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0
+                  }
+                },
+                {
+                  "formattedValue": "0.25",
+                  "userEnteredValue": {
+                    "numberValue": 0.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25
+                  }
+                },
+                {
+                  "formattedValue": "0.375",
+                  "userEnteredValue": {
+                    "numberValue": 0.375
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.375
+                  }
+                },
+                {
+                  "formattedValue": "0.5",
+                  "userEnteredValue": {
+                    "numberValue": 0.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.5
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "numberValue": 0.6
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "0.625",
+                  "userEnteredValue": {
+                    "numberValue": 0.625
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.625
+                  }
+                },
+                {
+                  "formattedValue": "0.75",
+                  "userEnteredValue": {
+                    "numberValue": 0.75
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.75
+                  }
+                },
+                {
+                  "formattedValue": "0.8603966",
+                  "userEnteredValue": {
+                    "numberValue": 0.8603966
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8603966
+                  }
+                },
+                {
+                  "formattedValue": "0.87",
+                  "userEnteredValue": {
+                    "numberValue": 0.87
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.87
+                  }
+                },
+                {
+                  "formattedValue": "0.875",
+                  "userEnteredValue": {
+                    "numberValue": 0.875
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.875
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Stage",
+                  "userEnteredValue": {
+                    "stringValue": "Stage"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Stage"
+                  }
+                },
+                {
+                  "formattedValue": "0",
+                  "userEnteredValue": {
+                    "numberValue": 0
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0
+                  }
+                },
+                {
+                  "formattedValue": "0.25",
+                  "userEnteredValue": {
+                    "numberValue": 0.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25
+                  }
+                },
+                {
+                  "formattedValue": "0.375",
+                  "userEnteredValue": {
+                    "numberValue": 0.375
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.375
+                  }
+                },
+                {
+                  "formattedValue": "0.5",
+                  "userEnteredValue": {
+                    "numberValue": 0.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.5
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "numberValue": 0.6
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "0.625",
+                  "userEnteredValue": {
+                    "numberValue": 0.625
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.625
+                  }
+                },
+                {
+                  "formattedValue": "0.75",
+                  "userEnteredValue": {
+                    "numberValue": 0.75
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.75
+                  }
+                },
+                {
+                  "formattedValue": "0.8603966",
+                  "userEnteredValue": {
+                    "numberValue": 0.8603966
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8603966
+                  }
+                },
+                {
+                  "formattedValue": "0.875079",
+                  "userEnteredValue": {
+                    "numberValue": 0.875079
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.875079
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Attackpower",
+                  "userEnteredValue": {
+                    "stringValue": "Attackpower"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Attackpower"
+                  }
+                },
+                {
+                  "formattedValue": "0.001",
+                  "userEnteredValue": {
+                    "numberValue": 0.001
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.001
+                  }
+                },
+                {
+                  "formattedValue": "0.03",
+                  "userEnteredValue": {
+                    "numberValue": 0.03
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.03
+                  }
+                },
+                {
+                  "formattedValue": "0.2514285714",
+                  "userEnteredValue": {
+                    "formulaValue": "=$C13+(D$12-$C$12)*($F13-$C13)/($F$12-$C$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25142857142857145
+                  }
+                },
+                {
+                  "formattedValue": "0.4728571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=$C13+(E$12-$C$12)*($F13-$C13)/($F$12-$C$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.47285714285714286
+                  }
+                },
+                {
+                  "formattedValue": "0.65",
+                  "userEnteredValue": {
+                    "numberValue": 0.65
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.65
+                  }
+                },
+                {
+                  "formattedValue": "0.7083333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=$F13+(G$12-$F$12)*($H13-$F13)/($H$12-$F$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.7083333333333334
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "1.13247592",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H13+(I$12-$H$12)*($K13-$H13)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.1324759199999999
+                  }
+                },
+                {
+                  "formattedValue": "1.144",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H13+(J$12-$H$12)*($K13-$H13)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.144
+                  }
+                },
+                {
+                  "formattedValue": "1.15",
+                  "userEnteredValue": {
+                    "numberValue": 1.15
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.15
+                  }
+                },
+                {
+                  "formattedValue": "0.8",
+                  "userEnteredValue": {
+                    "numberValue": 0.8
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Attackpower",
+                  "userEnteredValue": {
+                    "stringValue": "Attackpower"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Attackpower"
+                  }
+                },
+                {
+                  "formattedValue": "0.001",
+                  "userEnteredValue": {
+                    "numberValue": 0.001
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.001
+                  }
+                },
+                {
+                  "formattedValue": "0.03",
+                  "userEnteredValue": {
+                    "numberValue": 0.03
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.03
+                  }
+                },
+                {
+                  "formattedValue": "0.2514285714",
+                  "userEnteredValue": {
+                    "formulaValue": "=$C13+(Q$12-$C$12)*($F13-$C13)/($F$12-$C$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.25142857142857145
+                  }
+                },
+                {
+                  "formattedValue": "0.4728571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=$C13+(R$12-$C$12)*($F13-$C13)/($F$12-$C$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.47285714285714286
+                  }
+                },
+                {
+                  "formattedValue": "0.65",
+                  "userEnteredValue": {
+                    "numberValue": 0.65
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.65
+                  }
+                },
+                {
+                  "formattedValue": "0.7083333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=$F13+(T$12-$F$12)*($H13-$F13)/($H$12-$F$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.7083333333333334
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "formulaValue": "=$U13+(V$12-$U$12)*($W13-$U13)/($W$12-$U$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "numberValue": 0.6
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Sprintspeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "Sprintspeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Sprintspeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "99",
+                  "userEnteredValue": {
+                    "numberValue": 99
+                  },
+                  "effectiveValue": {
+                    "numberValue": 99
+                  }
+                },
+                {
+                  "formattedValue": "238",
+                  "userEnteredValue": {
+                    "numberValue": 238
+                  },
+                  "effectiveValue": {
+                    "numberValue": 238
+                  }
+                },
+                {
+                  "formattedValue": "499",
+                  "userEnteredValue": {
+                    "numberValue": 499
+                  },
+                  "effectiveValue": {
+                    "numberValue": 499
+                  }
+                },
+                {
+                  "formattedValue": "623",
+                  "userEnteredValue": {
+                    "numberValue": 623
+                  },
+                  "effectiveValue": {
+                    "numberValue": 623
+                  }
+                },
+                {
+                  "formattedValue": "701.4",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E14+(F$12-$E$12)*($G14-$E14)/($G$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 701.4
+                  }
+                },
+                {
+                  "formattedValue": "721",
+                  "userEnteredValue": {
+                    "numberValue": 721
+                  },
+                  "effectiveValue": {
+                    "numberValue": 721
+                  }
+                },
+                {
+                  "formattedValue": "1050",
+                  "userEnteredValue": {
+                    "numberValue": 1050
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1050
+                  }
+                },
+                {
+                  "formattedValue": "1100",
+                  "userEnteredValue": {
+                    "numberValue": 1100
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1100
+                  }
+                },
+                {
+                  "formattedValue": "1091.401176",
+                  "userEnteredValue": {
+                    "formulaValue": "=$I14+(J$12-$I$12)*($L14-$I14)/($L$12-$I$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1091.4011764756444
+                  }
+                },
+                {
+                  "formattedValue": "1086.924208",
+                  "userEnteredValue": {
+                    "formulaValue": "=$I14+(K$12-$I$12)*($L14-$I14)/($L$12-$I$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1086.9242081496582
+                  }
+                },
+                {
+                  "formattedValue": "975",
+                  "userEnteredValue": {
+                    "numberValue": 975
+                  },
+                  "effectiveValue": {
+                    "numberValue": 975
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Sprintspeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "Sprintspeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Sprintspeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "99",
+                  "userEnteredValue": {
+                    "numberValue": 99
+                  },
+                  "effectiveValue": {
+                    "numberValue": 99
+                  }
+                },
+                {
+                  "formattedValue": "238",
+                  "userEnteredValue": {
+                    "numberValue": 238
+                  },
+                  "effectiveValue": {
+                    "numberValue": 238
+                  }
+                },
+                {
+                  "formattedValue": "499",
+                  "userEnteredValue": {
+                    "numberValue": 499
+                  },
+                  "effectiveValue": {
+                    "numberValue": 499
+                  }
+                },
+                {
+                  "formattedValue": "623",
+                  "userEnteredValue": {
+                    "numberValue": 623
+                  },
+                  "effectiveValue": {
+                    "numberValue": 623
+                  }
+                },
+                {
+                  "formattedValue": "701.4",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R14+(S$12-$R$12)*($T14-$R14)/($T$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 701.4
+                  }
+                },
+                {
+                  "formattedValue": "721",
+                  "userEnteredValue": {
+                    "numberValue": 721
+                  },
+                  "effectiveValue": {
+                    "numberValue": 721
+                  }
+                },
+                {
+                  "formattedValue": "1050",
+                  "userEnteredValue": {
+                    "numberValue": 1050
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1050
+                  }
+                },
+                {
+                  "formattedValue": "1050",
+                  "userEnteredValue": {
+                    "numberValue": 1050
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1050
+                  }
+                },
+                {
+                  "formattedValue": "1022.865566",
+                  "userEnteredValue": {
+                    "formulaValue": "=$V14+(W$12-$V$12)*($X14-$V14)/($X$12-$V$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1022.8655663114221
+                  }
+                },
+                {
+                  "formattedValue": "792",
+                  "userEnteredValue": {
+                    "numberValue": 792
+                  },
+                  "effectiveValue": {
+                    "numberValue": 792
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Weight (kg)",
+                  "userEnteredValue": {
+                    "stringValue": "Weight (kg)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Weight (kg)"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "numberValue": 0.0879
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.22",
+                  "userEnteredValue": {
+                    "numberValue": 1.22
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.22
+                  }
+                },
+                {
+                  "formattedValue": "11.25",
+                  "userEnteredValue": {
+                    "numberValue": 11.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.25
+                  }
+                },
+                {
+                  "formattedValue": "35",
+                  "userEnteredValue": {
+                    "numberValue": 35
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35
+                  }
+                },
+                {
+                  "formattedValue": "57",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E15+(F$12-$E$12)*($H15-$E15)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 57
+                  }
+                },
+                {
+                  "formattedValue": "62.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E15+(G$12-$E$12)*($H15-$E15)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 62.5
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "116.495184",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H15+(I$12-$H$12)*($K15-$H15)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 116.495184
+                  }
+                },
+                {
+                  "formattedValue": "118.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H15+(J$12-$H$12)*($K15-$H15)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 118.8
+                  }
+                },
+                {
+                  "formattedValue": "120",
+                  "userEnteredValue": {
+                    "numberValue": 120
+                  },
+                  "effectiveValue": {
+                    "numberValue": 120
+                  }
+                },
+                {
+                  "formattedValue": "120",
+                  "userEnteredValue": {
+                    "numberValue": 120
+                  },
+                  "effectiveValue": {
+                    "numberValue": 120
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Weight (kg)",
+                  "userEnteredValue": {
+                    "stringValue": "Weight (kg)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Weight (kg)"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "numberValue": 0.0879
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.22",
+                  "userEnteredValue": {
+                    "numberValue": 1.22
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.22
+                  }
+                },
+                {
+                  "formattedValue": "11.25",
+                  "userEnteredValue": {
+                    "numberValue": 11.25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.25
+                  }
+                },
+                {
+                  "formattedValue": "35",
+                  "userEnteredValue": {
+                    "numberValue": 35
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35
+                  }
+                },
+                {
+                  "formattedValue": "57",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R15+(S$12-$R$12)*($U15-$R15)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 57
+                  }
+                },
+                {
+                  "formattedValue": "62.5",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R15+(T$12-$R$12)*($U15-$R15)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 62.5
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                },
+                {
+                  "formattedValue": "90",
+                  "userEnteredValue": {
+                    "numberValue": 90
+                  },
+                  "effectiveValue": {
+                    "numberValue": 90
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "3.564",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*B$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5639999999999996
+                  }
+                },
+                {
+                  "formattedValue": "8.568",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*C$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.568
+                  }
+                },
+                {
+                  "formattedValue": "17.964",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*D$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 17.964
+                  }
+                },
+                {
+                  "formattedValue": "22.428",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*E$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.427999999999997
+                  }
+                },
+                {
+                  "formattedValue": "25.2504",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*F$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.250399999999996
+                  }
+                },
+                {
+                  "formattedValue": "25.956",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*G$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.956
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*H$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "39.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*I$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.599999999999994
+                  }
+                },
+                {
+                  "formattedValue": "39.29044235",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*J$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.2904423531232
+                  }
+                },
+                {
+                  "formattedValue": "39.12927149",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*K$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 39.12927149338769
+                  }
+                },
+                {
+                  "formattedValue": "35.1",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*L$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 35.099999999999994
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "3.564",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*O$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5639999999999996
+                  }
+                },
+                {
+                  "formattedValue": "8.568",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*P$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.568
+                  }
+                },
+                {
+                  "formattedValue": "17.964",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*Q$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 17.964
+                  }
+                },
+                {
+                  "formattedValue": "22.428",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*R$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.427999999999997
+                  }
+                },
+                {
+                  "formattedValue": "25.2504",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*S$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.250399999999996
+                  }
+                },
+                {
+                  "formattedValue": "25.956",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*T$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25.956
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*U$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "37.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*V$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 37.8
+                  }
+                },
+                {
+                  "formattedValue": "36.82316039",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*W$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 36.82316038721119
+                  }
+                },
+                {
+                  "formattedValue": "28.512",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*X$14"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 28.511999999999997
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Bite (LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Bite (LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Bite (LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.02",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*B$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.02
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*C$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "5.028571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*D$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 5.0285714285714285
+                  }
+                },
+                {
+                  "formattedValue": "9.457142857",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*E$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.457142857142857
+                  }
+                },
+                {
+                  "formattedValue": "13",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*F$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13
+                  }
+                },
+                {
+                  "formattedValue": "14.16666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*G$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.166666666666668
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*H$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "22.6495184",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*I$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.649518399999998
+                  }
+                },
+                {
+                  "formattedValue": "22.88",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*J$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 22.88
+                  }
+                },
+                {
+                  "formattedValue": "23",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*K$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 23
+                  }
+                },
+                {
+                  "formattedValue": "16",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*L$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Bite (LMB)",
+                  "userEnteredValue": {
+                    "stringValue": "Bite (LMB)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Bite (LMB)"
+                  }
+                },
+                {
+                  "formattedValue": "0.02",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*O$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.02
+                  }
+                },
+                {
+                  "formattedValue": "0.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*P$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.6
+                  }
+                },
+                {
+                  "formattedValue": "5.028571429",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*Q$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 5.0285714285714285
+                  }
+                },
+                {
+                  "formattedValue": "9.457142857",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*R$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.457142857142857
+                  }
+                },
+                {
+                  "formattedValue": "13",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*S$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13
+                  }
+                },
+                {
+                  "formattedValue": "14.16666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*T$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.166666666666668
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*U$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*V$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "20",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*W$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 20
+                  }
+                },
+                {
+                  "formattedValue": "12",
+                  "userEnteredValue": {
+                    "formulaValue": "=20*X$13"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 12
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Trotspeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "Trotspeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trotspeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "25",
+                  "userEnteredValue": {
+                    "numberValue": 25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25
+                  }
+                },
+                {
+                  "formattedValue": "100",
+                  "userEnteredValue": {
+                    "numberValue": 100
+                  },
+                  "effectiveValue": {
+                    "numberValue": 100
+                  }
+                },
+                {
+                  "formattedValue": "126",
+                  "userEnteredValue": {
+                    "numberValue": 126
+                  },
+                  "effectiveValue": {
+                    "numberValue": 126
+                  }
+                },
+                {
+                  "formattedValue": "200",
+                  "userEnteredValue": {
+                    "numberValue": 200
+                  },
+                  "effectiveValue": {
+                    "numberValue": 200
+                  }
+                },
+                {
+                  "formattedValue": "248",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E18+(F$12-$E$12)*($H18-$E18)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 248
+                  }
+                },
+                {
+                  "formattedValue": "260",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E18+(G$12-$E$12)*($H18-$E18)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 260
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Trotspeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "Trotspeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trotspeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "25",
+                  "userEnteredValue": {
+                    "numberValue": 25
+                  },
+                  "effectiveValue": {
+                    "numberValue": 25
+                  }
+                },
+                {
+                  "formattedValue": "100",
+                  "userEnteredValue": {
+                    "numberValue": 100
+                  },
+                  "effectiveValue": {
+                    "numberValue": 100
+                  }
+                },
+                {
+                  "formattedValue": "126",
+                  "userEnteredValue": {
+                    "numberValue": 126
+                  },
+                  "effectiveValue": {
+                    "numberValue": 126
+                  }
+                },
+                {
+                  "formattedValue": "200",
+                  "userEnteredValue": {
+                    "numberValue": 200
+                  },
+                  "effectiveValue": {
+                    "numberValue": 200
+                  }
+                },
+                {
+                  "formattedValue": "248",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R18+(S$12-$R$12)*($U18-$R18)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 248
+                  }
+                },
+                {
+                  "formattedValue": "260",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R18+(T$12-$R$12)*($U18-$R18)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 260
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                },
+                {
+                  "formattedValue": "320",
+                  "userEnteredValue": {
+                    "numberValue": 320
+                  },
+                  "effectiveValue": {
+                    "numberValue": 320
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Trot (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Trot (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trot (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*B$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8999999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*C$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5999999999999996
+                  }
+                },
+                {
+                  "formattedValue": "4.536",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*D$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 4.536
+                  }
+                },
+                {
+                  "formattedValue": "7.2",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*E$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "8.928",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*F$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.927999999999999
+                  }
+                },
+                {
+                  "formattedValue": "9.36",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*G$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.36
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*H$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*I$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*J$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*K$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*L$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Trot (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Trot (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Trot (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "0.9",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*O$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.8999999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.6",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*P$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.5999999999999996
+                  }
+                },
+                {
+                  "formattedValue": "4.536",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*Q$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 4.536
+                  }
+                },
+                {
+                  "formattedValue": "7.2",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*R$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 7.199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "8.928",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*S$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.927999999999999
+                  }
+                },
+                {
+                  "formattedValue": "9.36",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*T$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 9.36
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*U$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*V$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*W$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                },
+                {
+                  "formattedValue": "11.52",
+                  "userEnteredValue": {
+                    "formulaValue": "=0.036*X$18"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.52
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Scale",
+                  "userEnteredValue": {
+                    "stringValue": "Scale"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Scale"
+                  }
+                },
+                {
+                  "formattedValue": "0.125",
+                  "userEnteredValue": {
+                    "numberValue": 0.125
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.125
+                  }
+                },
+                {
+                  "formattedValue": "0.3",
+                  "userEnteredValue": {
+                    "numberValue": 0.3
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.3
+                  }
+                },
+                {
+                  "formattedValue": "0.63",
+                  "userEnteredValue": {
+                    "numberValue": 0.63
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.63
+                  }
+                },
+                {
+                  "formattedValue": "0.90000004",
+                  "userEnteredValue": {
+                    "numberValue": 0.90000004
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.90000004
+                  }
+                },
+                {
+                  "formattedValue": "1.020000024",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E20+(F$12-$E$12)*($H20-$E20)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.020000024
+                  }
+                },
+                {
+                  "formattedValue": "1.05000002",
+                  "userEnteredValue": {
+                    "formulaValue": "=$E20+(G$12-$E$12)*($H20-$E20)/($H$12-$E$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.05000002
+                  }
+                },
+                {
+                  "formattedValue": "1.2",
+                  "userEnteredValue": {
+                    "numberValue": 1.2
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2
+                  }
+                },
+                {
+                  "formattedValue": "1.291997167",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H20+(I$12-$H$12)*($J20-$H20)/($J$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2919971666666668
+                  }
+                },
+                {
+                  "formattedValue": "1.3",
+                  "userEnteredValue": {
+                    "numberValue": 1.3
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.3
+                  }
+                },
+                {
+                  "formattedValue": "1.3",
+                  "userEnteredValue": {
+                    "numberValue": 1.3
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.3
+                  }
+                },
+                {
+                  "formattedValue": "1.3",
+                  "userEnteredValue": {
+                    "numberValue": 1.3
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.3
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Scale",
+                  "userEnteredValue": {
+                    "stringValue": "Scale"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Scale"
+                  }
+                },
+                {
+                  "formattedValue": "0.125",
+                  "userEnteredValue": {
+                    "numberValue": 0.125
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.125
+                  }
+                },
+                {
+                  "formattedValue": "0.3",
+                  "userEnteredValue": {
+                    "numberValue": 0.3
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.3
+                  }
+                },
+                {
+                  "formattedValue": "0.63",
+                  "userEnteredValue": {
+                    "numberValue": 0.63
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.63
+                  }
+                },
+                {
+                  "formattedValue": "0.90000004",
+                  "userEnteredValue": {
+                    "numberValue": 0.90000004
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.90000004
+                  }
+                },
+                {
+                  "formattedValue": "1.020000024",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R20+(S$12-$R$12)*($U20-$R20)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.020000024
+                  }
+                },
+                {
+                  "formattedValue": "1.05000002",
+                  "userEnteredValue": {
+                    "formulaValue": "=$R20+(T$12-$R$12)*($U20-$R20)/($U$12-$R$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.05000002
+                  }
+                },
+                {
+                  "formattedValue": "1.2",
+                  "userEnteredValue": {
+                    "numberValue": 1.2
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2
+                  }
+                },
+                {
+                  "formattedValue": "1.2",
+                  "userEnteredValue": {
+                    "numberValue": 1.2
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2
+                  }
+                },
+                {
+                  "formattedValue": "1.2",
+                  "userEnteredValue": {
+                    "numberValue": 1.2
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2
+                  }
+                },
+                {
+                  "formattedValue": "1.2",
+                  "userEnteredValue": {
+                    "numberValue": 1.2
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.2
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "FastSwimSpeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "FastSwimSpeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "FastSwimSpeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "FastSwimSpeed (cm/s)",
+                  "userEnteredValue": {
+                    "stringValue": "FastSwimSpeed (cm/s)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "FastSwimSpeed (cm/s)"
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                },
+                {
+                  "formattedValue": "360",
+                  "userEnteredValue": {
+                    "numberValue": 360
+                  },
+                  "effectiveValue": {
+                    "numberValue": 360
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Swim Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "1.62",
+                  "userEnteredValue": {
+                    "formulaValue": "=B$20*B$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.6199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.888",
+                  "userEnteredValue": {
+                    "formulaValue": "=C$20*C$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.888
+                  }
+                },
+                {
+                  "formattedValue": "8.1648",
+                  "userEnteredValue": {
+                    "formulaValue": "=D$20*D$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.1648
+                  }
+                },
+                {
+                  "formattedValue": "11.66400052",
+                  "userEnteredValue": {
+                    "formulaValue": "=E$20*E$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.664000518399998
+                  }
+                },
+                {
+                  "formattedValue": "13.21920031",
+                  "userEnteredValue": {
+                    "formulaValue": "=F$20*F$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.21920031104
+                  }
+                },
+                {
+                  "formattedValue": "13.60800026",
+                  "userEnteredValue": {
+                    "formulaValue": "=G$20*G$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.608000259199997
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=H$20*H$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "16.74428328",
+                  "userEnteredValue": {
+                    "formulaValue": "=I$20*I$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.74428328
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=J$20*J$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=K$20*K$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {
+                  "formattedValue": "16.848",
+                  "userEnteredValue": {
+                    "formulaValue": "=L$20*L$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 16.848
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Swim Speed (km/h)",
+                  "userEnteredValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Swim Speed (km/h)"
+                  }
+                },
+                {
+                  "formattedValue": "1.62",
+                  "userEnteredValue": {
+                    "formulaValue": "=O$20*O$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.6199999999999999
+                  }
+                },
+                {
+                  "formattedValue": "3.888",
+                  "userEnteredValue": {
+                    "formulaValue": "=P$20*P$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 3.888
+                  }
+                },
+                {
+                  "formattedValue": "8.1648",
+                  "userEnteredValue": {
+                    "formulaValue": "=Q$20*Q$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 8.1648
+                  }
+                },
+                {
+                  "formattedValue": "11.66400052",
+                  "userEnteredValue": {
+                    "formulaValue": "=R$20*R$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 11.664000518399998
+                  }
+                },
+                {
+                  "formattedValue": "13.21920031",
+                  "userEnteredValue": {
+                    "formulaValue": "=S$20*S$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.21920031104
+                  }
+                },
+                {
+                  "formattedValue": "13.60800026",
+                  "userEnteredValue": {
+                    "formulaValue": "=T$20*T$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 13.608000259199997
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=U$20*U$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=V$20*V$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=W$20*W$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                },
+                {
+                  "formattedValue": "15.552",
+                  "userEnteredValue": {
+                    "formulaValue": "=X$20*X$21*0.036"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 15.552
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "LatchCarryMultiplier",
+                  "userEnteredValue": {
+                    "stringValue": "LatchCarryMultiplier"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "LatchCarryMultiplier"
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "1.166666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=$B23+(C$12-$B$12)*($H23-$B23)/($H$12-$B$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.1666666666666667
+                  }
+                },
+                {
+                  "formattedValue": "1.25",
+                  "userEnteredValue": {
+                    "formulaValue": "=$B23+(D$12-$B$12)*($H23-$B23)/($H$12-$B$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.25
+                  }
+                },
+                {
+                  "formattedValue": "1.333333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=$B23+(E$12-$B$12)*($H23-$B23)/($H$12-$B$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.3333333333333333
+                  }
+                },
+                {
+                  "formattedValue": "1.4",
+                  "userEnteredValue": {
+                    "formulaValue": "=$B23+(F$12-$B$12)*($H23-$B23)/($H$12-$B$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4
+                  }
+                },
+                {
+                  "formattedValue": "1.416666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=$B23+(G$12-$B$12)*($H23-$B23)/($H$12-$B$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4166666666666667
+                  }
+                },
+                {
+                  "formattedValue": "1.5",
+                  "userEnteredValue": {
+                    "numberValue": 1.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.5
+                  }
+                },
+                {
+                  "formattedValue": "1.54415864",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H23+(I$12-$H$12)*($K23-$H23)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.54415864
+                  }
+                },
+                {
+                  "formattedValue": "1.548",
+                  "userEnteredValue": {
+                    "formulaValue": "=$H23+(J$12-$H$12)*($K23-$H23)/($K$12-$H$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.548
+                  }
+                },
+                {
+                  "formattedValue": "1.55",
+                  "userEnteredValue": {
+                    "numberValue": 1.55
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.55
+                  }
+                },
+                {
+                  "formattedValue": "1.55",
+                  "userEnteredValue": {
+                    "numberValue": 1.55
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.55
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "LatchCarryMultiplier",
+                  "userEnteredValue": {
+                    "stringValue": "LatchCarryMultiplier"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "LatchCarryMultiplier"
+                  }
+                },
+                {
+                  "formattedValue": "1",
+                  "userEnteredValue": {
+                    "numberValue": 1
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1
+                  }
+                },
+                {
+                  "formattedValue": "1.166666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=$O23+(P$12-$O$12)*($U23-$O23)/($U$12-$O$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.1666666666666667
+                  }
+                },
+                {
+                  "formattedValue": "1.25",
+                  "userEnteredValue": {
+                    "formulaValue": "=$O23+(Q$12-$O$12)*($U23-$O23)/($U$12-$O$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.25
+                  }
+                },
+                {
+                  "formattedValue": "1.333333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=$O23+(R$12-$O$12)*($U23-$O23)/($U$12-$O$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.3333333333333333
+                  }
+                },
+                {
+                  "formattedValue": "1.4",
+                  "userEnteredValue": {
+                    "formulaValue": "=$O23+(S$12-$O$12)*($U23-$O23)/($U$12-$O$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4
+                  }
+                },
+                {
+                  "formattedValue": "1.416666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=$O23+(T$12-$O$12)*($U23-$O23)/($U$12-$O$12)"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4166666666666667
+                  }
+                },
+                {
+                  "formattedValue": "1.5",
+                  "userEnteredValue": {
+                    "numberValue": 1.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.5
+                  }
+                },
+                {
+                  "formattedValue": "1.5",
+                  "userEnteredValue": {
+                    "numberValue": 1.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.5
+                  }
+                },
+                {
+                  "formattedValue": "1.5",
+                  "userEnteredValue": {
+                    "numberValue": 1.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.5
+                  }
+                },
+                {
+                  "formattedValue": "1.5",
+                  "userEnteredValue": {
+                    "numberValue": 1.5
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.5
+                  }
+                }
+              ]
+            },
+            {
+              "values": [
+                {
+                  "formattedValue": "Theoretical Pounce Capacity",
+                  "userEnteredValue": {
+                    "stringValue": "Theoretical Pounce Capacity"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Theoretical Pounce Capacity"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "formulaValue": "=B$23*B$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.423333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=C$23*C$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4233333333333333
+                  }
+                },
+                {
+                  "formattedValue": "14.0625",
+                  "userEnteredValue": {
+                    "formulaValue": "=D$23*D$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.0625
+                  }
+                },
+                {
+                  "formattedValue": "46.66666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=E$23*E$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 46.666666666666664
+                  }
+                },
+                {
+                  "formattedValue": "79.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=F$23*F$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 79.8
+                  }
+                },
+                {
+                  "formattedValue": "88.54166667",
+                  "userEnteredValue": {
+                    "formulaValue": "=G$23*G$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 88.54166666666667
+                  }
+                },
+                {
+                  "formattedValue": "135",
+                  "userEnteredValue": {
+                    "formulaValue": "=H$23*H$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 135
+                  }
+                },
+                {
+                  "formattedValue": "179.8870449",
+                  "userEnteredValue": {
+                    "formulaValue": "=I$23*I$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 179.88704489198975
+                  }
+                },
+                {
+                  "formattedValue": "183.9024",
+                  "userEnteredValue": {
+                    "formulaValue": "=J$23*J$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 183.9024
+                  }
+                },
+                {
+                  "formattedValue": "186",
+                  "userEnteredValue": {
+                    "formulaValue": "=K$23*K$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 186
+                  }
+                },
+                {
+                  "formattedValue": "186",
+                  "userEnteredValue": {
+                    "formulaValue": "=L$23*L$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 186
+                  }
+                },
+                {},
+                {
+                  "formattedValue": "Theoretical Pounce Capacity",
+                  "userEnteredValue": {
+                    "stringValue": "Theoretical Pounce Capacity"
+                  },
+                  "effectiveValue": {
+                    "stringValue": "Theoretical Pounce Capacity"
+                  }
+                },
+                {
+                  "formattedValue": "0.0879",
+                  "userEnteredValue": {
+                    "formulaValue": "=O$23*O$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 0.0879
+                  }
+                },
+                {
+                  "formattedValue": "1.423333333",
+                  "userEnteredValue": {
+                    "formulaValue": "=P$23*P$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 1.4233333333333333
+                  }
+                },
+                {
+                  "formattedValue": "14.0625",
+                  "userEnteredValue": {
+                    "formulaValue": "=Q$23*Q$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 14.0625
+                  }
+                },
+                {
+                  "formattedValue": "46.66666667",
+                  "userEnteredValue": {
+                    "formulaValue": "=R$23*R$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 46.666666666666664
+                  }
+                },
+                {
+                  "formattedValue": "79.8",
+                  "userEnteredValue": {
+                    "formulaValue": "=S$23*S$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 79.8
+                  }
+                },
+                {
+                  "formattedValue": "88.54166667",
+                  "userEnteredValue": {
+                    "formulaValue": "=T$23*T$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 88.54166666666667
+                  }
+                },
+                {
+                  "formattedValue": "135",
+                  "userEnteredValue": {
+                    "formulaValue": "=U$23*U$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 135
+                  }
+                },
+                {
+                  "formattedValue": "135",
+                  "userEnteredValue": {
+                    "formulaValue": "=V$23*V$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 135
+                  }
+                },
+                {
+                  "formattedValue": "135",
+                  "userEnteredValue": {
+                    "formulaValue": "=W$23*W$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 135
+                  }
+                },
+                {
+                  "formattedValue": "135",
+                  "userEnteredValue": {
+                    "formulaValue": "=X$23*X$15"
+                  },
+                  "effectiveValue": {
+                    "numberValue": 135
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

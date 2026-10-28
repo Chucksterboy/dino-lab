@@ -1,0 +1,32 @@
+import { chromium, expect } from '@playwright/test';
+const browser=await chromium.launch({channel:'msedge',headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:960}});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+try {
+ await page.goto('http://127.0.0.1:1420');
+ await page.getByRole('button',{name:'Compare species',exact:true}).click();
+ await expect(page.getByLabel('Species in comparison slot 1')).toBeVisible();
+ await page.getByLabel('Allosaurus growth percentage',{exact:true}).fill('100');await page.getByLabel('Allosaurus growth percentage',{exact:true}).press('Tab');
+ await expect(page.getByLabel('Allosaurus growth',{exact:true})).toHaveValue('100');
+ await page.getByLabel('Allosaurus data source',{exact:true}).selectOption('sheet');
+ await page.getByLabel('Allosaurus exact keyframe',{exact:true}).selectOption({label:'0% · B · Hatchling'});
+ await page.getByLabel('Species to add').selectOption('allosaurus');await page.getByRole('button',{name:'Add specimen',exact:true}).click();
+ await expect(page.getByLabel('Species in comparison slot 4')).toHaveValue('allosaurus');
+ await page.waitForTimeout(300);await page.screenshot({path:'test-results/compare.png'});
+ await expect(page.getByRole('button',{name:/export|import|download|copy image|save file|configuration/i})).toHaveCount(0);
+ console.log('Compare: independent sources, typing100, workbook0%, repeatedspecies and no transfer controls passed');
+ await page.getByRole('button',{name:'Data table',exact:true}).click();
+ await expect(page.locator('.species-data-table tbody tr')).toHaveCount(22);
+ await page.getByLabel('Allosaurus table condition',{exact:true}).selectOption('Frail');
+ await page.getByLabel('Allosaurus table source',{exact:true}).selectOption('sheet');
+ await page.getByLabel('Allosaurus table keyframe',{exact:true}).selectOption({index:0});
+ await page.getByRole('button',{name:'Wildlife',exact:true}).click();
+ await expect(page.locator('.species-data-table tbody tr')).toHaveCount(8);
+ await page.getByRole('button',{name:'Explore scatter plot',exact:true}).click();
+ await expect(page.getByRole('img',{name:/scatter/i})).toBeVisible();
+ await expect(page.getByRole('button',{name:/export|import|download|copy image|save file|configuration/i})).toHaveCount(0);
+ await page.waitForTimeout(250);await page.screenshot({path:'test-results/table.png'});
+ console.log('Table:22playable,8wildlife, independent state/source/keyframe, scatter and no transfer controls passed');
+ if(errors.length)throw new Error(errors.join('\n'));
+ console.log('No browser runtime errors');
+} finally{await browser.close();}

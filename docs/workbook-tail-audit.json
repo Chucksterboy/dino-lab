@@ -1,0 +1,118 @@
+{
+  "source": "https://docs.google.com/spreadsheets/d/15aOvzrA6Wf5SORil4CQdplKLr6wsSGTE7uGitZlSDGM/edit",
+  "checkedAt": "2026-10-28T00:46:10.135Z",
+  "fields": "formattedValue,effectiveValue,userEnteredValue,note,hyperlink",
+  "result": "All 22 tail ranges returned no cell values, formulas, notes or hyperlinks. The first 60 rows cover all observed cell information across each tab's complete metadata-reported grid width.",
+  "ranges": [
+    {
+      "range": "'Allosaurus'!A61:AB1004",
+      "sheet": "Allosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Austroraptor'!A61:AB999",
+      "sheet": "Austroraptor",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Beipiaosaurus'!A61:AC999",
+      "sheet": "Beipiaosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Carnotaurus'!A61:AD998",
+      "sheet": "Carnotaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Ceratosaurus'!A61:AC998",
+      "sheet": "Ceratosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Deinosuchus'!A61:AB1002",
+      "sheet": "Deinosuchus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Diabloceratops'!A61:AB1006",
+      "sheet": "Diabloceratops",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Dilophosaurus'!A61:Y999",
+      "sheet": "Dilophosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Dryosaurus'!A61:AA1000",
+      "sheet": "Dryosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Gallimimus'!A61:AH1000",
+      "sheet": "Gallimimus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Herrerasaurus'!A61:AA1003",
+      "sheet": "Herrerasaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Hypsilophodon'!A61:Z1001",
+      "sheet": "Hypsilophodon",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Kentrosaurus'!A61:AC1006",
+      "sheet": "Kentrosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Maiasaura'!A61:AN1003",
+      "sheet": "Maiasaura",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Omniraptor'!A61:AD1003",
+      "sheet": "Omniraptor",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Pachycephalosaurus'!A61:Z1000",
+      "sheet": "Pachycephalosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Pteranodon'!A61:Y1003",
+      "sheet": "Pteranodon",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Stegosaurus'!A61:AC1006",
+      "sheet": "Stegosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Tenontosaurus'!A61:AA1001",
+      "sheet": "Tenontosaurus",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Triceratops'!A61:AK1015",
+      "sheet": "Triceratops",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Troodon'!A61:AB999",
+      "sheet": "Troodon",
+      "returnedRowData": 0
+    },
+    {
+      "range": "'Tyrannosaurus'!A61:AH1010",
+      "sheet": "Tyrannosaurus",
+      "returnedRowData": 0
+    }
+  ]
+}
