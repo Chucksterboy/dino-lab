@@ -1,12 +1,16 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 mod sources;
+mod update_installer;
 mod updates;
 mod window_lifecycle;
 
 use sha2::{Digest, Sha256};
 
 fn main() {
+    if let Some(code) = update_installer::run_handoff_if_requested() {
+        std::process::exit(code);
+    }
     let context = tauri::generate_context!();
     // Launch this exact executable with --verify-assets <report.json> to
     // inspect its embedded assets without relying on a dev server or UI.
@@ -65,6 +69,7 @@ fn main() {
             sources::open_source,
             updates::check_for_updates,
             updates::open_update_release,
+            update_installer::install_update,
             window_lifecycle::get_close_to_tray,
             window_lifecycle::set_close_to_tray
         ])

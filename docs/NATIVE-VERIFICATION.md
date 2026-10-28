@@ -1,6 +1,22 @@
 # Windows build verification
 
-## Current version 0.1.10
+## Current version 0.1.11
+
+Built on 29 October 2026 with the explicit Update now installer workflow. Available-update notices and the bottom-left panel offer download/verification progress, retry on preparation errors, full process exit and a cached helper that waits for exit before opening normal Windows setup. Launch-time checks remain read-only. Gallimimus data is unchanged.
+
+- Portable: `release/Dino Lab.exe`, **7,591,424 bytes**, ProductVersion **0.1.11**, SHA-256 `BE3D0F3DC06FFB926959272F4B04863C52660A66A49D9B689EA497E20F87A7A6`.
+- Installer: `release/Dino Lab Setup.exe`, **3,973,365 bytes**, ProductVersion **0.1.11**, SHA-256 `CFCFF926192056721CEF760F6860E567E78B799DABB398CE3C2283E3F5243582`.
+- Identical versioned preview copies and the diagnostic report are retained under ignored `preview/`.
+- Sequential production packaging passed TypeScript, Vite, isolated desktop staging, Rust and NSIS. Rust release compilation reported 1m 28s. Staging contained **33 files / 10,075,175 bytes**.
+- The exact packaged executable passed hidden `--verify-assets`: index.html present, version 0.1.11, all 33 files, no missing files or hash mismatches. The report was copied to `release/embedded-assets-report.json`.
+- **117/117 JavaScript tests** and **28 native unit tests** passed. Coverage includes explicit-install-only behavior, deduplication, progress subscription/cleanup, retry, installer selection, repository/version/digest/size/header validation, Windows writer denial while the installer is read-locked, parent-handle/ready ordering and injected post-exit failure notification. Independent code review found no remaining high-priority blocker.
+- The opt-in read-only native network check passed separately after the 0.1.11 bump. It read the real stable 0.1.10 feed and correctly returned current for installed 0.1.11, without downloading or installing anything.
+
+Under the user’s explicit standing authorization to close and restart Dino Lab, root stopped only the canonical 0.1.10 app (PID **73464**) after the new artifacts were verified, promoted the byte-identical portable/installer/report, and launched the canonical 0.1.11 app. Read-only observations confirmed PID **40468**, title **Dino Lab**, main-window handle **535169666**, `Responding: true` and the canonical release path. This was a local file-copy restart, not an execution of the new installer handoff.
+
+No visual/browser/headless QA, actual Windows setup, update-helper launch or native error dialog was executed during verification. End-to-end installation was not exercised on the user’s machine. Older app versions through 0.1.10 require one manual installer upgrade to gain the new button; future newer releases can then use it.
+
+## Historical version 0.1.10
 
 Built on 29 October 2026 after removing the species-library count callout and changing both combat mutation selectors to Default, Entombed 1 and Entombed 2. The fourth repeated maximum is not offered. Existing percentages, raw references, mutation catalog data and all Gallimimus speeds remain unchanged; the Galli investigation is paused at the user’s request.
 

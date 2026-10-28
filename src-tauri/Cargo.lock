@@ -725,7 +725,7 @@ dependencies = [
 
 [[package]]
 name = "dino-lab"
-version = "0.1.10"
+version = "0.1.11"
 dependencies = [
  "httpdate",
  "open",
@@ -739,6 +739,7 @@ dependencies = [
  "tauri-plugin-single-instance",
  "tokio",
  "url",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

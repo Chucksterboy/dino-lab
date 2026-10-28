@@ -78,6 +78,7 @@ pub struct UpdateCheck {
     published_at: Option<String>,
     message: Option<String>,
     checked_at_unix: u64,
+    installer_available: bool,
 }
 
 impl UpdateCheck {
@@ -90,6 +91,7 @@ impl UpdateCheck {
             release_name: None,
             published_at: None,
             message: Some(message.into()),
+            installer_available: false,
             checked_at_unix: SystemTime::now()
                 .duration_since(UNIX_EPOCH)
                 .unwrap_or_default()
@@ -305,6 +307,8 @@ struct GithubAsset {
     state: String,
     size: u64,
     browser_download_url: String,
+    #[serde(default)]
+    digest: Option<String>,
 }
 
 fn usable_windows_asset(asset: &GithubAsset, config: &UpdateConfig) -> bool {
@@ -419,12 +423,132 @@ fn release_result(body: &[u8], config: &UpdateConfig, current: &str) -> UpdateCh
     result.current_version = current.into();
     result.latest_version = Some(latest.to_string());
     result.release_url = Some(url.into());
+    result.installer_available =
+        ordering == Ordering::Greater && select_installer(&release, config).is_some();
     result.release_name = release
         .name
         .filter(|value| !value.trim().is_empty())
         .map(|value| value.chars().take(200).collect());
     result.published_at = release.published_at;
     result
+}
+
+/// Only this native metadata path supplies an executable URL to the downloader.
+#[derive(Clone, Debug)]
+pub(crate) struct InstallerPlan {
+    pub version: String,
+    pub url: String,
+    pub sha256: String,
+    pub size: u64,
+}
+
+pub(crate) const MAX_INSTALLER_BYTES: u64 = 512 * 1024 * 1024;
+
+fn digest_hex(value: &str) -> Option<String> {
+    let (algorithm, hex) = value.split_once(':')?;
+    (algorithm.eq_ignore_ascii_case("sha256")
+        && hex.len() == 64
+        && hex.bytes().all(|byte| byte.is_ascii_hexdigit()))
+    .then(|| hex.to_ascii_lowercase())
+}
+
+fn select_installer(release: &GithubRelease, config: &UpdateConfig) -> Option<InstallerPlan> {
+    let version = parse_version(&release.tag_name).ok()?;
+    if !version.pre.is_empty() || release.draft || release.prerelease {
+        return None;
+    }
+    release.assets.iter().find_map(|asset| {
+        let name = asset.name.to_ascii_lowercase();
+        let tokens: Vec<_> = name.split(|c: char| !c.is_ascii_alphanumeric()).collect();
+        if !usable_windows_asset(asset, config)
+            || !name.ends_with(".exe")
+            || !tokens
+                .iter()
+                .any(|token| matches!(*token, "setup" | "installer"))
+            || tokens.iter().any(|token| {
+                matches!(
+                    *token,
+                    "portable" | "arm64" | "aarch64" | "x86" | "i686" | "win32"
+                )
+            })
+            || asset.size < 64
+            || asset.size > MAX_INSTALLER_BYTES
+        {
+            return None;
+        }
+        let mut expected_url = url::Url::parse("https://github.com/").ok()?;
+        expected_url.path_segments_mut().ok()?.clear().extend([
+            config.owner.as_str(),
+            config.repo.as_str(),
+            "releases",
+            "download",
+            release.tag_name.as_str(),
+            asset.name.as_str(),
+        ]);
+        if asset.browser_download_url != expected_url.as_str() {
+            return None;
+        }
+        Some(InstallerPlan {
+            version: version.to_string(),
+            url: asset.browser_download_url.clone(),
+            sha256: digest_hex(asset.digest.as_deref()?)?,
+            size: asset.size,
+        })
+    })
+}
+
+fn installer_plan(
+    body: &[u8],
+    config: &UpdateConfig,
+    current: &str,
+    expected: &str,
+) -> Result<InstallerPlan, String> {
+    let status = release_result(body, config, current);
+    if status.status != UpdateStatus::Available {
+        return Err(
+            "A newer stable update is no longer available. Check for updates again.".into(),
+        );
+    }
+    let release: GithubRelease = serde_json::from_slice(body)
+        .map_err(|_| "GitHub returned an unreadable update response.")?;
+    let expected =
+        parse_version(expected).map_err(|_| "The selected update version is invalid.")?;
+    let plan = select_installer(&release, config)
+        .ok_or("This release has no verified Windows installer. Open its release page instead.")?;
+    if plan.version != expected.to_string() {
+        return Err(
+            "The latest version changed. Check for updates again before installing.".into(),
+        );
+    }
+    Ok(plan)
+}
+
+pub(crate) async fn latest_installer(expected: &str) -> Result<InstallerPlan, String> {
+    if expected.len() > 128 || parse_version(expected).is_err() {
+        return Err("The selected update version is invalid.".into());
+    }
+    if NEXT_CHECK_UNIX.load(AtomicOrdering::Relaxed) > unix_now() {
+        return Err("GitHub is limiting update requests. Please try again later.".into());
+    }
+    let config = config().map_err(str::to_string)?;
+    let client = client().map_err(|_| "Could not connect to GitHub.")?;
+    let response = fetch(&client, config.api_url("/releases/latest"))
+        .await
+        .map_err(|result| {
+            result
+                .message
+                .unwrap_or_else(|| "Could not check GitHub for the installer.".into())
+        })?;
+    if let Some(result) = rate_limit(&response) {
+        remember_rate_limit(&response.headers);
+        return Err(result
+            .message
+            .unwrap_or_else(|| "GitHub is limiting update requests.".into()));
+    }
+    if response.status != StatusCode::OK {
+        return Err("The latest installer could not be checked. Please try again.".into());
+    }
+    installer_plan(&response.body, &config, CURRENT_VERSION, expected)
 }
 
 async fn check(client: Client, config: UpdateConfig) -> UpdateCheck {
@@ -517,6 +641,116 @@ mod tests {
     }
     fn release(tag: &str) -> Vec<u8> {
         serde_json::to_vec(&serde_json::json!({"tag_name":tag,"html_url":format!("https://github.com/Chucksterboy/dino-lab/releases/tag/{tag}"),"draft":false,"prerelease":false,"name":"Release","published_at":"2026-10-28T00:00:00Z","assets":[{"name":"Dino Lab Setup.exe","state":"uploaded","size":4096,"browser_download_url":format!("https://github.com/Chucksterboy/dino-lab/releases/download/{tag}/Dino.Lab.Setup.exe")}]})).unwrap()
+    }
+
+    fn installer_release(tag: &str) -> serde_json::Value {
+        let mut value: serde_json::Value = serde_json::from_slice(&release(tag)).unwrap();
+        let asset = |kind: &str| {
+            serde_json::json!({
+                "name": format!("Dino-Lab-{}-Windows-{kind}.exe", tag.trim_start_matches('v')),
+                "state": "uploaded", "size": 4096, "digest": format!("sha256:{}", "ab".repeat(32)),
+                "browser_download_url": format!("https://github.com/Chucksterboy/dino-lab/releases/download/{tag}/Dino-Lab-{}-Windows-{kind}.exe", tag.trim_start_matches('v'))
+            })
+        };
+        value["assets"] = serde_json::json!([asset("Portable"), asset("Setup")]);
+        value
+    }
+
+    #[test]
+    fn clicked_install_selects_only_a_verified_setup_for_the_expected_newer_release() {
+        let value = installer_release("v9.0.0");
+        let body = serde_json::to_vec(&value).unwrap();
+        let plan = installer_plan(&body, &test_config(), "1.0.0", "9.0.0").unwrap();
+        assert!(plan.url.ends_with("Windows-Setup.exe"));
+        assert_eq!(plan.sha256, "ab".repeat(32));
+        assert_eq!(plan.size, 4096);
+        assert_eq!(plan.version, "9.0.0");
+        assert!(release_result(&body, &test_config(), "1.0.0").installer_available);
+        for (current, expected) in [
+            ("9.0.0", "9.0.0"),
+            ("10.0.0", "9.0.0"),
+            ("1.0.0", "8.0.0"),
+            ("1.0.0", "invalid"),
+        ] {
+            assert!(installer_plan(&body, &test_config(), current, expected).is_err());
+        }
+        assert!(!release_result(&body, &test_config(), "9.0.0").installer_available);
+    }
+
+    #[test]
+    fn install_capability_requires_digest_correct_tag_and_real_setup_asset() {
+        let original = installer_release("v9.0.0");
+        let wrong = [
+            ("digest", serde_json::Value::Null),
+            ("digest", serde_json::json!("sha256:short")),
+            (
+                "digest",
+                serde_json::json!(format!("sha512:{}", "ab".repeat(32))),
+            ),
+            ("size", serde_json::json!(0)),
+            ("size", serde_json::json!(MAX_INSTALLER_BYTES + 1)),
+            ("state", serde_json::json!("new")),
+            ("name", serde_json::json!("Dino-Lab-Windows-Portable.exe")),
+            ("name", serde_json::json!("Dino-Lab-arm64-Setup.exe")),
+            (
+                "browser_download_url",
+                serde_json::json!("https://evil.example/Setup.exe"),
+            ),
+            (
+                "browser_download_url",
+                serde_json::json!(
+                    "https://github.com/Chucksterboy/dino-lab/releases/download/v8.0.0/Setup.exe"
+                ),
+            ),
+            (
+                "browser_download_url",
+                serde_json::json!(
+                    "https://github.com/Chucksterboy/other/releases/download/v9.0.0/Setup.exe"
+                ),
+            ),
+        ];
+        for (field, invalid) in wrong {
+            let mut value = original.clone();
+            value["assets"][1][field] = invalid;
+            assert!(
+                select_installer(
+                    &serde_json::from_value(value.clone()).unwrap(),
+                    &test_config()
+                )
+                .is_none(),
+                "{field}: {value}"
+            );
+            assert!(installer_plan(
+                &serde_json::to_vec(&value).unwrap(),
+                &test_config(),
+                "1.0.0",
+                "9.0.0"
+            )
+            .is_err());
+        }
+        for field in ["draft", "prerelease"] {
+            let mut value = original.clone();
+            value[field] = serde_json::json!(true);
+            assert!(installer_plan(
+                &serde_json::to_vec(&value).unwrap(),
+                &test_config(),
+                "1.0.0",
+                "9.0.0"
+            )
+            .is_err());
+        }
+        let mut portable_only = original;
+        portable_only["assets"].as_array_mut().unwrap().pop();
+        let result = release_result(
+            &serde_json::to_vec(&portable_only).unwrap(),
+            &test_config(),
+            "1.0.0",
+        );
+        assert_eq!(result.status, UpdateStatus::Available);
+        assert!(
+            !result.installer_available,
+            "a release-page fallback remains possible without executing the portable asset"
+        );
     }
 
     #[test]

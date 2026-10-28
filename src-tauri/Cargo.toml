@@ -1,6 +1,6 @@
 [package]
 name = "dino-lab"
-version = "0.1.10"
+version = "0.1.11"
 description = "Dino Lab — The Isle species research workbench"
 authors = ["Dino Lab"]
 edition = "2021"
@@ -24,6 +24,9 @@ semver = "1"
 reqwest = { version = "0.13", default-features = false, features = ["native-tls"] }
 tokio = { version = "1", features = ["time"] }
 httpdate = "1"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Threading", "Win32_Storage_FileSystem", "Win32_UI_WindowsAndMessaging"] }
 
 [profile.release]
 codegen-units = 1
