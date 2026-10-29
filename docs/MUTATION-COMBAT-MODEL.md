@@ -1,14 +1,20 @@
 # Combat mutation scenarios
 
-The Attacks screen keeps the captured Source 1 attack/body-hit model as its baseline. Selecting no mutations and leaving starting health at 100% reproduces the existing result. Source 2 attack rows remain unchanged reference values.
+The standalone **Combat Arena** keeps the captured Source 1 attack/body-hit model as its baseline. Selecting no mutations and leaving starting health at 100% reproduces the existing Source 1 result. A species with no Source 1 samples uses its Source 2 primary bite and weight/HP together; existing Source 1 profiles never borrow missing individual fields. The detailed source attack panels are removed, and original captured values remain unchanged.
 
 The mutation percentages come from the [requested community guide](https://www.evrimaquickguide.com/gameplay/health-statuses/mutations), cross-checked with `src/data/mutations.ts`. The guide warns that some information may be outdated. Historical official configuration supports several base percentages but does not establish the current stacking, hunger curve or every attack-type interaction. `MUTATIONS-SOURCES.md` records those qualifications.
 
 ## Separate combatants and conditions
 
+Combat Arena replaces the Attacks tab in species profiles and has its own main navigation entry. Each side has the same animated artwork used by the library, a species selector, independent growth and Prime/Frail controls, then a health bar connected to that actor's mutation scenario. Changing species updates the portrait and values, resets that side's attack and mutation/health loadout, and clears the other side's larger-species assumption. The opposite side's remaining settings persist. Saved mechanics overrides are resolved independently for both species. All 22 playable dinosaurs and eight adult wildlife entries remain selectable; wildlife uses a fixed reference and an icon/name fallback because the bundled artwork catalog contains playable dinosaurs only.
+
+The general stacking explanation and calculation/HP-assumption paragraphs at the bottom of Combat Arena are removed from the interface. The model below, its controls and numeric results remain unchanged; attack-specific tick and unverified-venom notices still appear when those event types are selected.
+
+Source 1 actors use recorded growth from 25–100%. Hypsilophodon's whole-profile Source 2 fallback supports 0–100% and fractional growth entry; values still use the nearest captured keyframe without interpolation. Number entry commits on blur or Enter so partially typed percentages are not clamped per keystroke. Each side has exactly one health slider beneath growth; mutation controls do not duplicate it.
+
 Each combatant has its own mutation level, selections, starting health, bleeding state and larger-species condition. Outgoing damage uses your bonuses and the recipient's defense; reverse damage exchanges those roles. Both panes show every supported active HP damage/defense control. Wildlife controls are disabled. The three documented damage boosters are carnivore-only in the supplied source, so herbivore/omnivore controls remain visible with an explicit disabled eligibility reason; they are not silently hidden or incorrectly made universal.
 
-Congenital Hypoalgesia requires an explicit statement that the opponent is a larger **species**. Current growth/weight does not infer it. The same species cannot satisfy that condition, only one side of a pair can be marked as the smaller species, and changing opponent clears the prior size assumption. Starting health affects remaining HP, independently of mutation selection.
+Congenital Hypoalgesia requires an explicit statement that the opponent is a larger **species**. Current growth/weight does not infer it. The same species cannot satisfy that condition, only one side of a pair can be marked as the smaller species, and changing opponent clears the prior size assumption. Starting health affects remaining HP and the dinosaur's own outgoing damage, independently of mutation selection. The user-recorded health curve gives full damage at 50% HP and above, interpolates down to half damage at 10% HP, and stays at half below 10%. See [the empirical model and measurements](HEALTH-DAMAGE-MODEL.md).
 
 The calculator offers **Default**, **Entombed 1** and **Entombed 2**, following the requested product labels. These select the first three listed percentages. The source's fourth repeated maximum is retained internally for reference but is not a selectable calculator level. Slot restrictions are shown where supplied; this is a combat scenario, not an unlock/inheritance/slot validator.
 
@@ -21,7 +27,7 @@ The calculator offers **Default**, **Entombed 1** and **Entombed 2**, following 
 | Hypermetabolic Inanition | 15%, 20%, 25% | Carnivore attacker; unknown curve gives a 0–listed-value scenario range, or a manually entered effective bonus |
 | Congenital Hypoalgesia | 15%, 20%, 25% | Recipient selected it and the attacking species is explicitly larger |
 
-For outgoing bonuses `b`, the default scenario adds them: `base damage × (1 + sum(b))`. The alternate scenario multiplies them: `base damage × product(1 + b)`. Both are labeled **stacking assumptions**. Conditional Congenital reduction is applied afterward, multiplying by `1 − reduction`. Neither choice is presented as a verified game stacking law.
+For outgoing bonuses `b`, the default scenario adds them: `health-adjusted base damage × (1 + sum(b))`. The alternate scenario multiplies them: `health-adjusted base damage × product(1 + b)`. Both are labeled **stacking assumptions**. Conditional Congenital reduction is applied afterward, multiplying by `1 − reduction`. Neither choice is presented as a verified game stacking law. The selected attacker health remains fixed throughout its event-count sequence. “Without mutations” counts keep the same health penalty.
 
 Hypermetabolic does not turn a hunger percentage into a fabricated linear bonus. Its default result is a range between zero and the listed reference bonus. An informed user may switch to a manual effective percentage within that range. The smaller required-event bound uses higher damage and vice versa. These are bounds within the chosen scenario, not validated engine caps.
 

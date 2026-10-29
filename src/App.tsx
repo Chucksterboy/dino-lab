@@ -14,9 +14,10 @@ import { UpdateStatus } from './components/UpdateStatus';
 import { APP_VERSION } from './lib/updates';
 import { WindowPreferences } from './components/WindowPreferences';
 import { MutationsView } from './components/MutationsView';
-import { SpeciesLibraryIcon, CompareSpeciesIcon, SpeciesTableIcon, MutationsIcon, AnimatedFlaskIcon } from './components/NavIcons';
+import { CombatArena } from './components/CombatArena';
+import { SpeciesLibraryIcon, CompareSpeciesIcon, CombatArenaIcon, SpeciesTableIcon, MutationsIcon, AnimatedFlaskIcon } from './components/NavIcons';
 
-type View='library'|'species'|'compare'|'table'|'mutations';
+type View='library'|'species'|'compare'|'combat'|'table'|'mutations';
 function stored<T>(key:string,fallback:T):T{try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw) as T:fallback;}catch{return fallback;}}
 export default function App({introVisible=false}:{introVisible?:boolean}={}){
  const [view,setView]=useState<View>('library'),[selected,setSelected]=useState<Species>(playableSpecies[0]);
@@ -35,7 +36,7 @@ export default function App({introVisible=false}:{introVisible?:boolean}={}){
  useEffect(()=>{localStorage.setItem('dinolab-reduce-motion',JSON.stringify(reduceMotion));},[reduceMotion]);
  useEffect(()=>{const onKey=(e:KeyboardEvent)=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();setView('library');setTimeout(()=>queryRef.current?.focus(),0);}if(e.key==='Escape'){setSettings(false);setQuery('');}};window.addEventListener('keydown',onKey);return()=>window.removeEventListener('keydown',onKey);},[]);
  const windowAction=async(action:'minimize'|'toggleMaximize'|'close')=>{if('__TAURI_INTERNALS__' in window)await getCurrentWindow()[action]();};
- const nav=[{id:'library',label:'Species library',icon:SpeciesLibraryIcon},{id:'compare',label:'Compare species',icon:CompareSpeciesIcon},{id:'table',label:'Data table',icon:SpeciesTableIcon},{id:'mutations',label:'Mutations',icon:MutationsIcon}] as const;
+ const nav=[{id:'library',label:'Species library',icon:SpeciesLibraryIcon},{id:'compare',label:'Compare species',icon:CompareSpeciesIcon},{id:'combat',label:'Combat Arena',icon:CombatArenaIcon},{id:'table',label:'Data table',icon:SpeciesTableIcon},{id:'mutations',label:'Mutations',icon:MutationsIcon}] as const;
  const visible=playableSpecies.filter(s=>(s.name+' '+s.aliases.join(' ')).toLowerCase().includes(query.toLowerCase())&&(filter==='All species'||filter==='Favorites'&&favorites.includes(s.id)||dietOf(s)===filter));
  return <MotionConfig reducedMotion={reduceMotion?'always':'user'} transition={{duration:.2,ease:[.22,.61,.36,1]}}>
   <div className={`desktop-shell ${reduceMotion?'reduce-motion':''} ${motionSuspended||introVisible?'motion-suspended':''}`}>
@@ -51,6 +52,7 @@ export default function App({introVisible=false}:{introVisible?:boolean}={}){
     </div>}
     {view==='species'&&<SpeciesPage specimen={selected} onBack={()=>setView('library')} onSelect={open} favorite={favorites.includes(selected.id)} onFavorite={()=>toggleFavorite(selected.id)} mechanics={overrides[selected.id]??selected.mechanics} onCompare={()=>{localStorage.setItem('dinolab-compare-add',selected.id);setView('compare');}}/>}
     {view==='compare'&&<CompareView onSelect={open} notify={notify}/>}
+    {view==='combat'&&<CombatArena mechanicsOverrides={overrides}/>}
     {view==='table'&&<TableView onSelect={open} notify={notify}/>}
     {view==='mutations'&&<MutationsView/>}
    </motion.div></AnimatePresence></main></div></div>

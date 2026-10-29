@@ -40,6 +40,20 @@
 @keyframes nav-compare-forward{0%{transform:translateX(0);opacity:0}12%,74%{opacity:1}94%,100%{transform:translateX(11px);opacity:0}}
 @keyframes nav-compare-return{0%{transform:translateX(0);opacity:0}12%,74%{opacity:1}94%,100%{transform:translateX(-11px);opacity:0}}
 
+/* Combat: cyan and coral blades visibly draw back, clash, then recoil. */
+.nav-combat-sword-left{--blade-colour:#7bfff0;--blade-glow:#43e8db88;transform-origin:5.2px 22.4px;animation:nav-combat-strike-left 3.2s cubic-bezier(.5,0,.25,1) infinite}
+.nav-combat-sword-right{--blade-colour:#ffaaa5;--blade-glow:#ff786b88;transform-origin:20.8px 22.4px;animation:nav-combat-strike-right 3.2s cubic-bezier(.5,0,.25,1) infinite}
+.nav-combat-blade{fill:var(--blade-colour);fill-opacity:.18;stroke:var(--blade-colour);stroke-width:1.2;filter:drop-shadow(0 0 1px var(--blade-glow))}
+.nav-combat-edge{stroke:#e4fff8;stroke-width:.65;stroke-opacity:.85}
+.nav-combat-guard,.nav-combat-pommel{stroke:#ffd880;stroke-width:1.8;filter:drop-shadow(0 0 .6px #ffc86b66)}
+.nav-combat-grip{stroke:var(--blade-colour);stroke-width:2.25}
+.nav-combat-impact{stroke:#ffe6a8;fill:#ffd880;fill-opacity:.1;transform-origin:13px 11.7px;opacity:0;animation:nav-combat-impact 3.2s ease-out infinite}
+.nav-combat-sparks{stroke:#ffe6a8;fill:#fff1c7;stroke-width:1.15;transform-origin:13px 11.7px;opacity:0;filter:drop-shadow(0 0 1.4px #ffc96a);animation:nav-combat-sparks 3.2s ease-out infinite}
+@keyframes nav-combat-strike-left{0%,12%,100%{transform:rotate(-17deg)}34%{transform:rotate(2deg)}40%{transform:rotate(-4deg)}48%,60%{transform:rotate(0deg)}80%{transform:rotate(-17deg)}}
+@keyframes nav-combat-strike-right{0%,12%,100%{transform:rotate(17deg)}34%{transform:rotate(-2deg)}40%{transform:rotate(4deg)}48%,60%{transform:rotate(0deg)}80%{transform:rotate(17deg)}}
+@keyframes nav-combat-impact{0%,29%,100%{opacity:0;transform:scale(.3)}34%{opacity:.95;transform:scale(.75)}47%{opacity:0;transform:scale(1.7)}}
+@keyframes nav-combat-sparks{0%,29%,100%{opacity:0;transform:scale(.45)}34%{opacity:1;transform:scale(.8)}48%{opacity:0;transform:scale(1.6)}}
+
 /* Table: the grid stays crisp while each value bar continuously changes. */
 .nav-table-frame{fill:#5ef1da;fill-opacity:.05;stroke:#a5d8cc}
 .nav-table-header{fill:#a6f3d4;fill-opacity:.15}
@@ -141,11 +155,11 @@
 /* A bright, complete still icon remains when either reduction preference is on. */
 @media(prefers-reduced-motion:reduce){
  .nav-glyph *{animation:none!important;transition:none!important}
- .nav-guide-leaf,.nav-compare-packet,.nav-table-sweep,.nav-flask-halo{display:none}
+ .nav-guide-leaf,.nav-compare-packet,.nav-combat-impact,.nav-combat-sparks,.nav-table-sweep,.nav-flask-halo{display:none}
  .nav-guide-cover,.nav-compare-panel,.nav-compare-values,.nav-table-value,.nav-flask-liquid{transform:none}
  .nav-guide-print,.nav-table-status{opacity:1}.nav-flask-bubble{opacity:.75}
 }
 .reduce-motion .nav-glyph *{animation:none!important;transition:none!important}
-.reduce-motion .nav-guide-leaf,.reduce-motion .nav-compare-packet,.reduce-motion .nav-table-sweep,.reduce-motion .nav-flask-halo{display:none}
+.reduce-motion .nav-guide-leaf,.reduce-motion .nav-compare-packet,.reduce-motion .nav-combat-impact,.reduce-motion .nav-combat-sparks,.reduce-motion .nav-table-sweep,.reduce-motion .nav-flask-halo{display:none}
 .reduce-motion .nav-guide-cover,.reduce-motion .nav-compare-panel,.reduce-motion .nav-compare-values,.reduce-motion .nav-table-value,.reduce-motion .nav-flask-liquid{transform:none}
 .reduce-motion .nav-guide-print,.reduce-motion .nav-table-status{opacity:1}.reduce-motion .nav-flask-bubble{opacity:.75}

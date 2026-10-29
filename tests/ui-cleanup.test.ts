@@ -15,7 +15,8 @@ test('both source paths omit the removed growth captions, footer strips, surviva
   assert.ok(!/patch (?:unspecified|unlabeled|0\.)/i.test(html));
   assert.ok(html.includes('Growth stage'));
   assert.ok(html.includes('Data source'));
-  assert.equal((html.match(/role="tab"/g)??[]).length,4);
+  assert.equal((html.match(/role="tab"/g)??[]).length,3,'combat has moved to its own main navigation tab');
+  assert.doesNotMatch(html,/<button\b[^>]*role="tab"[^>]*>Attacks<\/button>/);
   assert.ok(html.includes('8 wildlife entries'));
  }
 });

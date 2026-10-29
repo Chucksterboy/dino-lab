@@ -2,27 +2,29 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Attacks } from '../src/components/Attacks.tsx';
+import { CombatArena as Attacks } from '../src/components/CombatArena.tsx';
 import { Survival } from '../src/components/Survival.tsx';
-import { getSpecies, playableSpecies } from '../src/data/index.ts';
+import { getSpecies, getSheetValue, playableSpecies } from '../src/data/index.ts';
 
-test('all 22 species can render survival and attack reference without inventing missing records', () => {
+test('all 22 species render survival and combat while removed attack panels stay absent and workbook records remain intact', () => {
   for (const specimen of playableSpecies) {
     const props = { specimen, growth: 75, state: 'Prime' as const };
     const survival = renderToStaticMarkup(createElement(Survival, props));
     const attacks = renderToStaticMarkup(createElement(Attacks, { ...props, mechanics: specimen.mechanics }));
     assert.ok(survival.includes('Hunger percentage'), specimen.name);
     assert.ok(survival.includes('Thirst percentage'), specimen.name);
-    assert.ok(attacks.includes('Source 2 attack reference'), specimen.name);
+    assert.ok(attacks.includes('Attack analysis'), specimen.name);
+    assert.doesNotMatch(attacks,/Source 1 attack modifiers|Source 2 attack reference|Primary damage at this growth/,specimen.name);
     if (!specimen.samples.length) {
       assert.ok(survival.includes('Survival figures are unavailable'), specimen.name);
-      assert.ok(attacks.includes('Source 1 has no matchup records'), specimen.name);
+      assert.ok(attacks.includes('Primary attack · 2 damage'), specimen.name+' uses its existing workbook primary');
+      assert.ok(!attacks.includes('Source 1 has no matchup records'), specimen.name);
     }
     for (const sourceRow of specimen.sheet!.attacks) {
-      // React escapes labels, so compare the stable source cell address in
-      // markup rather than assuming raw '<' or '&' survives HTML rendering.
+      // The reference panels are intentionally removed, while their original
+      // authored cells remain accessible through the unchanged data API.
       const source = sourceRow.values.find(value => value.state === 'Prime' && value.growth === 75);
-      if (source) assert.ok(attacks.includes(`cell ${source.cell}`), `${specimen.name}: ${sourceRow.label}`);
+      if (source) assert.deepEqual(getSheetValue(sourceRow,75,'Prime'),source,`${specimen.name}: ${sourceRow.label}`);
     }
   }
 });
@@ -44,6 +46,6 @@ test('hatchling workbook selection keeps the matchup model without the removed s
   assert.ok(!markup.includes('nearest available record at 25% growth'));
   assert.ok(!markup.includes('These remain separate from the Source 1 matchup model'));
   assert.ok(!markup.includes('Patch 0.'));
-  assert.ok(markup.includes('ceiling(remaining HP'));
+  assert.ok(!markup.includes('ceiling(remaining HP'));
   assert.ok(markup.includes('Their selected hits to defeat you'));
 });

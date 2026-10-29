@@ -1,6 +1,56 @@
 # Windows build verification
 
-## Current version 0.1.19
+## Current version 0.1.22
+
+Built on 30 October 2026 with the two general explanation paragraphs removed from the bottom of Combat Arena: the stacking/condition explanation (including its optional Hypermetabolic suffix) and the constant-damage formula/HP/assumptions footnote. Controls, calculations, attack-specific tick/venom notices and source records are unchanged by this copy cleanup. This release also includes the previously local 0.1.20 health model and 0.1.21 standalone Combat Arena described below.
+
+- Portable: `release/Dino Lab.exe`, **11,488,768 bytes**, ProductVersion **0.1.22**, SHA-256 `24AB81BF0DCABA0C943677F209A55C24D467F9801C2C8CA1ED9630D21103B72C`.
+- Installer: `release/Dino Lab Setup.exe`, **7,918,454 bytes**, ProductVersion **0.1.22**, SHA-256 `83A305B01E590B338B9B00DA691781708B220E6CC2B128DB707ACE291DE400A8`.
+- Versioned previews, the asset report and the local promotion record are retained under ignored `preview/`; canonical and release-download aliases match the verified artifacts.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 13s**; staging contains **35 files / 14,332,189 bytes**. All six package/native version fields match.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.22, index present, all 35 assets, no missing files or hash mismatches.
+- **163/163 nonvisual tests passed**, with existing copy assertions updated for the two removed paragraphs. Combat numeric, two-sided controls, all-species, mutation, source-isolation, updater and motion coverage remain intact. Source data and artwork have no changes.
+
+Under the user's standing authorization, only previous canonical app PID **27312** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **20160**, title **Dino Lab**, window handle **975438636**, Responding **true**, ProductVersion **0.1.22**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. Release publication follows these artifact checks using the public repository's stable-release helper.
+
+## Historical version 0.1.21
+
+Built on 30 October 2026 with a standalone **Combat Arena** main navigation entry and a continuously animated clashing-swords icon. Species profiles now contain Overview, Movement and Survival only. The Arena has two animated library portraits, independent species/growth/Prime-Frail selection, then one health bar per actor. Changing a species updates its portrait and calculation profile together; changing one actor preserves the other actor's independent selections. Exact growth entry commits on blur or Enter, with the whole-profile Hypsi fallback retaining fractional Source 2 values such as 87.51%.
+
+All prior attack, mutation, stacking, bleeding, conditional defense, Hypermetabolic range/manual, two-way hit-count and health-penalty features remain. Saved mechanics overrides resolve independently for both actors. All 22 playable species and eight adult wildlife remain selectable; wildlife uses a fixed reference and an icon/name fallback. Original source-data files and artwork are unchanged. The 0.1.20 health model and attack-reference cleanup are included.
+
+- Portable: `release/Dino Lab.exe`, **11,489,280 bytes**, ProductVersion **0.1.21**, SHA-256 `9614CEC96231DBB07575906136144B0DE69C5B8272007F6352EE295F3B4B5894`.
+- Installer: `release/Dino Lab Setup.exe`, **7,920,762 bytes**, ProductVersion **0.1.21**, SHA-256 `7078A8DD517D297E946DFDD871E188516B66FC1843C6719F97ED5E77A457C59C`.
+- Versioned preview files/report are retained under ignored `preview/`; canonical hashes match.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 19s**; staging contains **35 files / 14,333,081 bytes**. All six package/native version fields match.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.21, index present, all 35 assets, no missing files or hash mismatches.
+- **163/163 nonvisual tests passed**. Six new actual React-handler cases cover independent actors and shared artwork, both HP controls and unrounded calculation outcomes, source-specific growth bounds and fractional/blank/out-of-range number entry, wildlife, reset/size-condition isolation, independent special attacks and saved overrides in both directions. The existing all-species, mutation, source-isolation, updater, motion and **1,807,936-case** full-health checks also passed. Profile checks confirm the Attacks tab is removed. A read-only integration audit found and resolved per-keystroke numeric clamping before packaging; no blockers remained.
+
+Under the user's standing authorization, only previous canonical app PID **70432** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **27312**, title **Dino Lab**, window handle **1996818664**, Responding **true**, ProductVersion **0.1.21**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. GitHub publication is performed separately when requested.
+
+## Historical version 0.1.20
+
+Built on 30 October 2026 with the user-recorded health penalty connected to both combat health sliders. Playable dinosaurs retain full outgoing damage at 50% HP and above, lose 1.25% of healthy damage per health percentage point below 50%, and retain half damage at 10% HP and below. The model applies the factor once to unrounded base damage before mutation bonuses and defense, in both directions. Remaining HP and Prey Drive still use the recipient's health; each one-sided estimate holds the attacker's selected health fixed. The no-mutations comparison retains the health penalty. Both controls display health-adjusted primary bite and percentage reduction.
+
+All 22 playable species are supported. A whole-profile fallback uses Source 2 primary bite and weight/HP only for a playable with zero Source 1 samples, currently Hypsilophodon; it is selectable as either combatant. Existing Source 1 null fields stay unknown. The Source 1 attack-modifier panel, Source 2 attack-reference panel and bottom primary-damage notice are removed as requested. Original source data is unchanged. See [the empirical model, observations and scope](HEALTH-DAMAGE-MODEL.md).
+
+- Portable: `release/Dino Lab.exe`, **11,486,208 bytes**, ProductVersion **0.1.20**, SHA-256 `2DF0F9890D0C7BD7F8219353AC6FCDFB2F6F562BCC04FECF11C6FABEFC35EEE4`.
+- Installer: `release/Dino Lab Setup.exe`, **7,916,493 bytes**, ProductVersion **0.1.20**, SHA-256 `EC776F0925F728CDCE016E703E7E825BCD372A1BFECF0FFD206D8447E239BCBF`.
+- Versioned preview files/report are retained under ignored `preview/`; canonical hashes match.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 34s**; staging contains **35 files / 14,317,772 bytes**. Original artwork hashes match and species-data files are unchanged.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.20, index present, all 35 assets, no missing files or hash mismatches. All six package/native version fields match.
+- **157/157 nonvisual tests passed**. New model and actual React-handler checks cover recorded checkpoints, the lower cap, both directions, all 22 species in Prime/Frail, selected absolute attacks, mutation/defense/Prey Drive combinations, HP and hit counts, reference-panel removal, unknown fields, no double scaling and unchanged wildlife damage. The existing **1,807,936-case** full-health baseline also passed. Five summary assertions initially failed after adding a descriptive tooltip; the helper was corrected to permit additional attributes without weakening numeric expectations, and the full suite then passed.
+- Independent source review confirmed the two-sided calculation and Hypsi bite/weight keyframe alignment in both conditions across growth 0–100%. Its 100% Frail baseline is 1.4 bite and 20 HP, giving 0.7 bite and 2 remaining HP at 10% health. No new engine-level game validation is claimed.
+
+Under the user's standing authorization, only previous canonical app PID **24936** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **70432**, title **Dino Lab**, window handle **1390216412**, Responding **true**, ProductVersion **0.1.20**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. GitHub publication is performed separately after these artifact checks.
+
+## Historical version 0.1.19
 
 Built on 29 October 2026 with mutation category colours matching the library: Carnivore red #ff9898, Herbivore green #b8ee75 and Universal purple #caa7ff. Filters, counts, group headings, card family labels and accents share the same category palette. Filter/category text is larger and retains its colour through selection, hover and keyboard focus. All 41 active entries and their effects/unlocks are unchanged.
 

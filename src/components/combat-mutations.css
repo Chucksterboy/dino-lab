@@ -38,10 +38,14 @@
 .mutation-health>span{display:flex;justify-content:space-between;gap:12px;align-items:center}
 .mutation-health strong{color:#d5e9c0;font-size:12px;font-weight:500}
 .mutation-health input[type=range]{width:100%;margin:12px 0 8px;accent-color:var(--lime)}
+.health-damage-summary{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:3px 0 13px;padding:10px 12px;background:#101d1580;border:1px solid #b8ee7524;border-radius:7px;font-variant-numeric:tabular-nums}
+.health-damage-summary>span{display:flex;flex-direction:column;gap:4px;min-width:0}
+.health-damage-summary>span:last-child{text-align:right}
+.health-damage-summary small{font-size:12px;color:#aabd9f}
+.health-damage-summary strong{font-size:16px;font-weight:600;color:var(--lime);overflow-wrap:anywhere}
 .mutation-condition{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.6;color:#c1d0b6;margin:8px 0 0;cursor:pointer}
 .mutation-condition input{width:15px;height:15px;margin-top:3px;accent-color:var(--mint);flex-shrink:0}
 .mutation-condition small{display:block;color:#94ad8e;font-size:11px}
-.mutation-model-note{font-size:12px;line-height:1.65;color:#a5b69c;margin:13px 0 0}
 .combat-results .combat-mutation-reading{font-size:12px;font-family:inherit;color:#b7cfa4;line-height:1.5;text-align:center}
 .combat-results .combat-mutation-reading strong{font-size:12px;font-family:inherit}
 .combat-results .combat-baseline{font-size:11px;line-height:1.5;color:#9daf92;text-align:center}

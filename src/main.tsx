@@ -10,6 +10,7 @@ import './emerald-background.css';
 import './updates.css';
 import './mutations.css';
 import './components/combat-mutations.css';
+import './components/combat-arena.css';
 import './nav-motion.css';
 import { StartupScreen } from './components/StartupScreen';
 

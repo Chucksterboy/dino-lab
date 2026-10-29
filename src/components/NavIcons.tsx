@@ -40,6 +40,28 @@ export function CompareSpeciesIcon({ size }: NavIconProps) {
   </NavIconFrame>;
 }
 
+/** Two independently pivoted blades strike together and release a brief spark. */
+export function CombatArenaIcon({ size }: NavIconProps) {
+  return <NavIconFrame size={size} className="nav-combat">
+    <g className="nav-combat-sword nav-combat-sword-left">
+      <path className="nav-combat-blade" d="m8.2 16.3 10-11.8 3.2-1.1-.6 3.4L10 18Z" />
+      <path className="nav-combat-edge" d="m9.2 17.1 10.2-12" />
+      <path className="nav-combat-guard" d="m5.9 15.1 6.2 5.3" />
+      <path className="nav-combat-grip" d="m8.7 18.3-3.5 4.1" />
+      <path className="nav-combat-pommel" d="m3.9 21.4 2.2 1.8" />
+    </g>
+    <g className="nav-combat-sword nav-combat-sword-right">
+      <path className="nav-combat-blade" d="m17.8 16.3-10-11.8-3.2-1.1.6 3.4L16 18Z" />
+      <path className="nav-combat-edge" d="m16.8 17.1-10.2-12" />
+      <path className="nav-combat-guard" d="m20.1 15.1-6.2 5.3" />
+      <path className="nav-combat-grip" d="m17.3 18.3 3.5 4.1" />
+      <path className="nav-combat-pommel" d="m22.1 21.4-2.2 1.8" />
+    </g>
+    <circle className="nav-combat-impact" cx="13" cy="11.7" r="2.8" strokeWidth=".8" />
+    <g className="nav-combat-sparks"><path d="M13 7.3V5.5m-3.8 3-1.3-1.1m8.9 1.1 1.3-1.1M9 12.7l-1.7.6m9.7-.6 1.7.6" /><circle cx="13" cy="11.7" r=".85" stroke="none" /></g>
+  </NavIconFrame>;
+}
+
 /** The table silhouette stays fixed while its bars grow and rows are scanned. */
 export function SpeciesTableIcon({ size }: NavIconProps) {
   const clip = 'nav-table-' + useId().replaceAll(':', '');

@@ -4,7 +4,7 @@ import { Children, createElement, isValidElement } from 'react';
 import type { ChangeEvent, MouseEvent, ReactElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getSample, getSpecies, species } from '../src/data/index.ts';
-import { Attacks, attackEventKind, wildlifePrimaryDamage } from '../src/components/Attacks.tsx';
+import { CombatArena as Attacks, attackEventKind, wildlifePrimaryDamage } from '../src/components/CombatArena.tsx';
 import { GrowthChart } from '../src/components/Chart.tsx';
 
 test('known wildlife Bite defaults to flat source damage; absent attacks remain unknown', () => {
@@ -16,7 +16,8 @@ test('known wildlife Bite defaults to flat source damage; absent attacks remain 
     const markup=renderToStaticMarkup(createElement(Attacks,{specimen,growth:100,state:'Prime',mechanics:specimen.mechanics}));
     if(expected!=null) {
       assert.ok(markup.includes(`Bite · ${expected} damage`));
-      assert.ok(markup.includes(`Primary damage at this growth: ${expected}.`));
+      assert.match(markup,new RegExp(`Your damage \/ hit<\/span><strong[^>]*>${expected}<\/strong>`),'the actual result retains the known flat primary');
+      assert.ok(!markup.includes('Primary damage at this growth:'),'the requested bottom notice is absent');
       assert.equal((markup.match(new RegExp(`>Bite · ${expected} damage<`,'g'))??[]).length,1,'no duplicate known primary option');
     } else assert.ok(markup.includes('Primary attack · — damage'));
   }
@@ -45,7 +46,7 @@ test('source event classification distinguishes tick loops and unverified venom 
   assert.ok(markup.includes('Venom stage 1 · unverified model'));
   assert.ok(markup.includes('Pin loop · per tick'));
   assert.ok(!markup.includes('excluding bleed, venom,'),'selectable source venom is not silently excluded');
-  assert.ok(markup.includes('Displayed damage is rounded'));
+  assert.ok(!markup.includes('Displayed damage is rounded'));
 });
 
 test('selecting source tick and venom attacks updates actual matchup labels and caveats', () => {

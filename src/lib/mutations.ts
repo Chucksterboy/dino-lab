@@ -32,6 +32,7 @@ export interface Combatant {kind:'playable'|'wildlife';diet:CombatDiet;loadout:C
 export interface NumericRange {min:number;max:number}
 export interface SteppedHits {hits:number|null;normalHits:number|null;lowHealthHits:number|null}
 export interface MutationCombatResult {
+ healthMultiplier:number|null;
  firstDamage:NumericRange|null;
  lowHealthDamage:NumericRange|null;
  hits:NumericRange|null;
@@ -61,6 +62,14 @@ export function mutationBonus(id:CombatMutationId,strength:ListedStrength):numbe
 const finite=(value:unknown):value is number=>typeof value==='number'&&Number.isFinite(value);
 const positive=(value:unknown):value is number=>finite(value)&&value>0;
 const clamp=(value:number,low:number,high:number)=>Math.max(low,Math.min(high,value));
+
+/** User-measured health penalty: full damage at 50% HP, half at 10% HP,
+ * with a linear interval and a 50% floor. H is a percentage from 0 to 100.
+ * Missing health cannot establish a damage modifier. */
+export function healthDamageMultiplier(healthPercent:number|null|undefined):number|null {
+ if(!finite(healthPercent))return null;
+ return clamp(.375+.0125*clamp(healthPercent,0,100),.5,1);
+}
 
 /** This model checks APD against remaining HP BEFORE each event, strictly below35%.
  * Count the ordinary events required to cross that boundary, then finish with
@@ -102,7 +111,9 @@ function combineBonuses(bonuses:number[],stacking:MutationStacking):number {
 export function mutationCombat(baseDamage:number|null|undefined,maxHp:number|null|undefined,attacker:Combatant,recipient:Combatant,stacking:MutationStacking='additive'):MutationCombatResult {
  const health=recipient.loadout.healthPercent;
  const startingHp=positive(maxHp)&&finite(health)?maxHp*(clamp(health,0,100)/100):null;
- const baselineHits=startingHp===0?0:hitsToKill(startingHp,baseDamage);
+ const healthMultiplier=attacker.kind==='playable'?healthDamageMultiplier(attacker.loadout.healthPercent):1;
+ const healthAdjustedBase=positive(baseDamage)&&healthMultiplier!=null?baseDamage*healthMultiplier:null;
+ const baselineHits=startingHp===0?0:hitsToKill(startingHp,healthAdjustedBase);
  const apd=mutationSelected('accelerated-prey-drive',attacker)?mutationBonus('accelerated-prey-drive',attacker.loadout.strength):0;
  const hemo=mutationSelected('hemomania',attacker)&&recipient.loadout.bleeding?mutationBonus('hemomania',attacker.loadout.strength):0;
  const hyperSelected=mutationSelected('hypermetabolic-inanition',attacker);
@@ -113,13 +124,14 @@ export function mutationCombat(baseDamage:number|null|undefined,maxHp:number|nul
  const reduction=mutationSelected('congenital-hypoalgesia',recipient)&&recipient.loadout.largerSpeciesOpponent&&!sameSpecies?mutationBonus('congenital-hypoalgesia',recipient.loadout.strength):0;
  const percentage=(bonus:number)=>Number((bonus*100).toFixed(4));
  const applied:string[]=[];
+ if(healthMultiplier!=null&&healthMultiplier<1)applied.push(`Health penalty −${percentage(1-healthMultiplier)}% damage`);
  if(hemo)applied.push(`Hemomania +${percentage(hemo)}%`);
  if(apd)applied.push(`Prey Drive +${percentage(apd)}% below 35% HP`);
  if(hyperSelected)applied.push(manualHyper?`Hypermetabolic +${percentage(hyper.max)}% scenario`:`Hypermetabolic 0–${percentage(hyper.max)}% range`);
  if(reduction)applied.push(`Hypoalgesia −${percentage(reduction)}%`);
- const unknown:MutationCombatResult={firstDamage:null,lowHealthDamage:null,hits:null,baselineHits,startingHp,preyDriveActive:apd>0,unresolvedHyper:hyperSelected&&!manualHyper,applied};
- if(!positive(baseDamage))return unknown;
- const damage=(bonus:number,low:boolean)=>baseDamage*combineBonuses([hemo,bonus,...(low?[apd]:[])],stacking)*(1-reduction);
+ const unknown:MutationCombatResult={healthMultiplier,firstDamage:null,lowHealthDamage:null,hits:null,baselineHits,startingHp,preyDriveActive:apd>0,unresolvedHyper:hyperSelected&&!manualHyper,applied};
+ if(!positive(healthAdjustedBase))return unknown;
+ const damage=(bonus:number,low:boolean)=>healthAdjustedBase*combineBonuses([hemo,bonus,...(low?[apd]:[])],stacking)*(1-reduction);
  const normal:NumericRange={min:damage(hyper.min,false),max:damage(hyper.max,false)};
  const low:NumericRange={min:damage(hyper.min,true),max:damage(hyper.max,true)};
  if(![normal.min,normal.max,low.min,low.max].every(Number.isFinite))return unknown;

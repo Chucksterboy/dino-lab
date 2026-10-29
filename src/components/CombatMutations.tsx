@@ -2,10 +2,24 @@ import { Dna, RotateCcw } from 'lucide-react';
 import type { Species } from '../data';
 import { byIdMap } from '../data/mutations';
 import { dietOf, num } from '../lib/ui';
-import { combatMutationRules, createCombatLoadout, mutationBonus, mutationEligible } from '../lib/mutations';
+import { combatMutationRules, createCombatLoadout, healthDamageMultiplier, mutationBonus, mutationEligible } from '../lib/mutations';
 import type { CombatDiet, CombatMutationLoadout, ListedStrength } from '../lib/mutations';
 
-export function CombatMutations({specimen,label,prefix,value,onChange,maxHp,opponentId}:{specimen:Species;label:string;prefix:string;value:CombatMutationLoadout;onChange:(loadout:CombatMutationLoadout)=>void;maxHp:number|null|undefined;opponentId?:string}){
+type CombatControlProps={specimen:Species;label:string;prefix:string;value:CombatMutationLoadout;onChange:(loadout:CombatMutationLoadout)=>void};
+
+/** One health control per actor, shared with the arena's portrait panel. */
+export function CombatHealth({specimen,label,prefix,value,onChange,maxHp,baseBite}:{specimen:Species;label:string;prefix:string;value:CombatMutationLoadout;onChange:(loadout:CombatMutationLoadout)=>void;maxHp:number|null|undefined;baseBite?:number|null}){
+ const wildlife=specimen.kind==='wildlife';
+ const healthMultiplier=healthDamageMultiplier(value.healthPercent);
+ const healthBite=baseBite!=null&&healthMultiplier!=null?baseBite*healthMultiplier:null;
+ const healthReduction=healthMultiplier==null?null:(1-healthMultiplier)*100;
+ return <div className="arena-health">
+  <label className="mutation-health" htmlFor={`${prefix}-health`}><span>Starting health <strong>{num(value.healthPercent)}%{maxHp!=null?` · ${num(maxHp*value.healthPercent/100,5)} HP`:''}</strong></span><input type="range" id={`${prefix}-health`} aria-label={`${label} starting health percentage`} min="1" max="100" step="1" value={value.healthPercent} style={{'--health-fill':`${value.healthPercent}%`} as React.CSSProperties} onChange={e=>onChange({...value,healthPercent:+e.target.value})}/></label>
+  {!wildlife&&<div className="health-damage-summary"><span><small>Bite force</small><strong aria-label={`${label} health-adjusted bite force`} title="After health reduction, before mutation modifiers">{num(healthBite,2)}</strong></span><span><small>Damage reduction</small><strong aria-label={`${label} health damage reduction`}>{healthReduction==null?'—':`${healthReduction>0?'−':''}${num(healthReduction,2)}%`}</strong></span></div>}
+ </div>;
+}
+
+export function CombatMutations({specimen,label,prefix,value,onChange,opponentId}:CombatControlProps&{opponentId?:string}){
  const diet=dietOf(specimen).toLowerCase() as CombatDiet;
  const actor={kind:specimen.kind,diet};
  const wildlife=specimen.kind==='wildlife';
@@ -28,6 +42,6 @@ export function CombatMutations({specimen,label,prefix,value,onChange,maxHp,oppo
    </label>;
   })}</div>
   {hyper&&<div className="hyper-scenario"><label htmlFor={`${prefix}-hyper-mode`}>Hypermetabolic effect<select id={`${prefix}-hyper-mode`} aria-label={`${label} Hypermetabolic effect`} value={value.hyperMode} onChange={e=>patch({hyperMode:e.target.value as 'range'|'manual'})}><option value="range">Unknown hunger curve · 0–{num(maxHyper)}%</option><option value="manual">Manual effective bonus</option></select></label>{value.hyperMode==='manual'&&<label className="mutation-health" htmlFor={`${prefix}-hyper-bonus`}><span>Known bonus <strong>{num(value.hyperBonusPercent)}%</strong></span><input id={`${prefix}-hyper-bonus`} aria-label={`${label} Hypermetabolic effective bonus`} type="range" min="0" max={maxHyper} step="0.1" value={value.hyperBonusPercent} onChange={e=>patch({hyperBonusPercent:+e.target.value})}/></label>}</div>}
-  <div className="mutation-conditions"><div className="mutation-condition-title"><Dna size={15}/><span>Combat conditions</span></div><label className="mutation-health" htmlFor={`${prefix}-health`}><span>Starting health <strong>{num(value.healthPercent)}%{maxHp!=null?` · ${num(maxHp*value.healthPercent/100,5)} HP`:''}</strong></span><input type="range" id={`${prefix}-health`} aria-label={`${label} starting health percentage`} min="1" max="100" step="1" value={value.healthPercent} onChange={e=>patch({healthPercent:+e.target.value})}/></label><label className="mutation-condition"><input type="checkbox" aria-label={`${label} bleeding`} checked={value.bleeding} onChange={e=>patch({bleeding:e.target.checked})}/><span>Bleeding throughout these events</span></label>{congenital&&<label className="mutation-condition"><input type="checkbox" aria-label={`${label} opponent is a larger species`} checked={opponentId!==specimen.id&&value.largerSpeciesOpponent} disabled={opponentId===specimen.id} onChange={e=>patch({largerSpeciesOpponent:e.target.checked})}/><span>Opponent is a larger species <small>{opponentId===specimen.id?'Same species; this condition cannot apply.':'Set this condition explicitly; growth weight is not used.'}</small></span></label>}</div>
+  <div className="mutation-conditions"><div className="mutation-condition-title"><Dna size={15}/><span>Combat conditions</span></div><label className="mutation-condition"><input type="checkbox" aria-label={`${label} bleeding`} checked={value.bleeding} onChange={e=>patch({bleeding:e.target.checked})}/><span>Bleeding throughout these events</span></label>{congenital&&<label className="mutation-condition"><input type="checkbox" aria-label={`${label} opponent is a larger species`} checked={opponentId!==specimen.id&&value.largerSpeciesOpponent} disabled={opponentId===specimen.id} onChange={e=>patch({largerSpeciesOpponent:e.target.checked})}/><span>Opponent is a larger species <small>{opponentId===specimen.id?'Same species; this condition cannot apply.':'Set this condition explicitly; growth weight is not used.'}</small></span></label>}</div>
  </section>;
 }

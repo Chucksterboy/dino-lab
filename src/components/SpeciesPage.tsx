@@ -9,10 +9,9 @@ import { WildlifeEncounters } from './WildlifeEncounters';
 import type { SourceMode } from '../lib/ui';
 import { GrowthChart } from './Chart';
 import { Survival } from './Survival';
-import { Attacks } from './Attacks';
 import { SpeciesArtwork } from './SpeciesArtwork';
 
-const tabs=['Overview','Movement','Survival','Attacks'];
+const tabs=['Overview','Movement','Survival'];
 function GrowthNumber({value,min,onCommit}:{value:number,min:number,onCommit:(n:number)=>void}){
  const [text,setText]=useState(String(value));const [editing,setEditing]=useState(false);
  useEffect(()=>{if(!editing)setText(String(value));},[value,editing]);
@@ -55,7 +54,6 @@ export function SpeciesPage({specimen,onBack,onSelect,favorite,onFavorite,mechan
    </div>}
    {tab==='Movement'&&<div className="panel-stack"><div className="section-heading"><div><h2>Movement profile</h2><p>Every gait available in the source, at the selected growth.</p></div><Footprints size={21} className="mint-text"/></div><div className="movement-grid">{metrics.filter(m=>m.group==='movement').map(m=><section className="panel movement-card" key={m.key}><span>{m.label}</span><strong>{formatMetric(source==='dashboard'?sample?.values[m.key]:m.key==='sprint'?value('speed'):m.key==='trot'?value('trot'):m.key==='fastSwim'?value('fastSwim'):null,m.key)}</strong><small>{source==='dashboard'?'Source 1 record':'Source 2 reference'}</small></section>)}</div><section className="panel"><div className="panel-heading"><h3>Movement across growth</h3><select aria-label="Chart movement gait" value={metric==='weight'||metric==='bite'?'speed':metric} onChange={e=>setMetric(e.target.value)}><option value="speed">Sprint speed</option>{metrics.filter(m=>m.group==='movement').map(m=><option value={m.key} key={m.key}>{m.label}</option>)}</select></div><GrowthChart specimen={chartSpecimen} metric={metric==='weight'||metric==='bite'?'speed':metric} growth={actualGrowth} state={state} source={source} onGrowth={setGrowth}/></section>{source==='sheet'&&<section className="panel"><h3>Source 2 movement variants</h3>{specimen.sheet?.rows.filter(r=>r.category==='movement').map(r=>{const cell=getSheetValue(r,actualGrowth,state);return <div className="data-line" key={r.id}><span>{r.label}</span><strong>{cell?.text??'—'}</strong></div>;})}</section>}</div>}
    {tab==='Survival'&&<Survival specimen={specimen} growth={source==='sheet'?Math.max(25,actualGrowth):growth} state={state}/>}
-   {tab==='Attacks'&&<Attacks specimen={specimen} growth={actualGrowth} state={state} mechanics={mechanics}/>}
   </motion.div>
  </div>;
 }

@@ -3,22 +3,26 @@ import assert from 'node:assert/strict';
 import { Children, createElement, isValidElement } from 'react';
 import type { ChangeEvent, ReactElement, ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Attacks } from '../src/components/Attacks.tsx';
-import { CombatMutations } from '../src/components/CombatMutations.tsx';
-import { getSample, getSpecies } from '../src/data/index.ts';
+import { CombatArena as Attacks, CombatantCard } from '../src/components/CombatArena.tsx';
+import { CombatHealth, CombatMutations } from '../src/components/CombatMutations.tsx';
+import { getSample, getSpecies, species } from '../src/data/index.ts';
+import type { Mechanic, Species, State } from '../src/data/index.ts';
+import { readValue } from '../src/lib/ui.ts';
 
 type Action={aria?:string;id?:string;value?:string;checked?:boolean;click?:boolean};
-function renderScenario(actions:Action[]=[],name='Allosaurus',growth=75){
- const specimen=getSpecies(name)!;let step=0;
+function renderScenario(actions:Action[]=[],name='Allosaurus',growth=75,state:State='Prime',mechanics?:Mechanic[],specimenOverride?:Species){
+ const specimen=specimenOverride??getSpecies(name)!;let step=0;
  function find(element:ReactElement,action:Action):ReactElement<Record<string,unknown>>|undefined{
   const props=element.props as Record<string,unknown>;
   if(action.aria&&props['aria-label']===action.aria||action.id&&props.id===action.id)return element as ReactElement<Record<string,unknown>>;
   if(element.type===CombatMutations){const nested=CombatMutations(element.props as Parameters<typeof CombatMutations>[0]);const found=find(nested,action);if(found)return found;}
+  if(element.type===CombatantCard){const nested=CombatantCard(element.props as Parameters<typeof CombatantCard>[0]);const found=find(nested,action);if(found)return found;}
+  if(element.type===CombatHealth){const nested=CombatHealth(element.props as Parameters<typeof CombatHealth>[0]);const found=find(nested,action);if(found)return found;}
   for(const child of Children.toArray(props.children as ReactNode))if(isValidElement(child)){const found=find(child,action);if(found)return found;}
   return undefined;
  }
  function Probe(){
-  const tree=Attacks({specimen,growth,state:'Prime',mechanics:specimen.mechanics});
+  const tree=Attacks({specimen,growth,state,mechanics:mechanics??specimen.mechanics});
   if(step<actions.length){
    const action=actions[step++],control=find(tree,action);
    assert.ok(control,`Actual combat control exists: ${JSON.stringify(action)}`);
@@ -31,8 +35,12 @@ function renderScenario(actions:Action[]=[],name='Allosaurus',growth=75){
  assert.equal(step,actions.length,'every requested actual handler executed');
  return markup;
 }
-const yourDamage=(markup:string)=>markup.match(/Your damage \/ hit<\/span><strong[^>]*>([^<]+)<\/strong>/)?.[1];
+const yourDamage=(markup:string)=>markup.match(/Your damage \/ (?:hit|tick|modeled event)<\/span><strong[^>]*>([^<]+)<\/strong>/)?.[1];
 const incomingHits=(markup:string)=>markup.match(/Their selected hits to defeat you<\/span><strong[^>]*>([^<]+)<\/strong>/)?.[1];
+const incomingDamage=(markup:string)=>markup.match(/First damage: ([\d.,]+)/)?.[1];
+const outgoingHits=(markup:string)=>markup.match(/Hits to defeat [^<]+<\/span><strong[^>]*>([^<]+)<\/strong>/)?.[1];
+const displayedNumber=(reading:string|undefined)=>Number(reading?.replaceAll(',',''));
+const summaryReading=(markup:string,label:string)=>markup.match(new RegExp(`<strong\\b[^>]*aria-label="${label}"[^>]*>([^<]+)<\\/strong>`))?.[1];
 
 test('actual outgoing selectors apply Hemomania only after the target bleeding condition is set',()=>{
  assert.equal(yourDamage(renderScenario()),'175');
@@ -82,7 +90,7 @@ test('Prey Drive first damage follows target health while its count models both 
  assert.equal(yourDamage(renderScenario([...selected,{aria:'Target starting health percentage',value:'34'}])),'210');
  const markup=renderScenario(selected);
  assert.ok(markup.includes('Below 35% HP: 210'));
- assert.ok(markup.includes('Prey Drive counts the two health stages separately.'));
+ assert.ok(!markup.includes('Prey Drive counts the two health stages separately.'));
 });
 
 test('unknown Hypermetabolic curve renders a range and manual effective bonus gives a single scenario',()=>{
@@ -122,7 +130,7 @@ test('both panes expose every active damage control, enabled only for eligible c
 
 test('target Prey Drive and Hypermetabolic selectors update reverse damage and hit counts',()=>{
  const prey=renderScenario([{id:'target',value:'allosaurus'},{aria:'Target Accelerated Prey Drive',checked:true},{aria:'Your starting health percentage',value:'34'}]);
- assert.equal(yourDamage(prey),'175','target offensive selection does not boost your attacks');
+ assert.equal(yourDamage(prey),'140','target offensive selection does not boost your attacks; your 34% health scales your own bite');
  assert.ok(prey.includes('First damage: 192.5'));
  assert.equal(incomingHits(prey),'5');
  const hyper=renderScenario([{id:'target',value:'allosaurus'},{aria:'Target Hypermetabolic Inanition',checked:true}]);
@@ -142,7 +150,9 @@ test('reset clears only its combatant and the specified attack explanations and 
  assert.ok(!belowSource.includes('Exact source keyframes and controls. These remain separate'));
  assert.ok(!belowSource.includes('Patch 0.21.748'));
  const hypsi=renderScenario([],'Hypsilophodon');
- assert.ok(hypsi.includes('Source 1 has no matchup records for this species.'));
+ assert.equal(yourDamage(hypsi),'2','the workbook-only playable now has a known primary matchup');
+ assert.doesNotMatch(hypsi,/Source 1 has no matchup records|Source 1 attack modifiers|Source 2 attack reference|Primary damage at this growth/);
+ assert.doesNotMatch(hypsi,/Stacking is a scenario assumption|conditional defense is applied after outgoing bonuses|Ranges reflect Hypermetabolic/);
  assert.equal(getSample('Allosaurus',75,'Prime')?.values.bite,175);
 });
 
@@ -155,4 +165,84 @@ test('results precede controls once, and contradictory size conditions or a new 
  assert.match(both,/<input[^>]*aria-label="Target opponent is a larger species"(?![^>]*checked)/);
  const changed=renderScenario([{aria:'Your Congenital Hypoalgesia',checked:true},{aria:'Your opponent is a larger species',checked:true},{id:'target',value:'carnotaurus'}]);
  assert.match(changed,/<input[^>]*aria-label="Your opponent is a larger species"(?![^>]*checked)/);
+});
+
+test('your actual health slider scales outgoing damage at every recorded checkpoint and preserves the lower cap',()=>{
+ const ourHp=getSample('allosaurus',75,'Prime')!.values.weight!;
+ for(const [health,multiplier] of [[100,1],[50,1],[49,.9875],[40,.875],[30,.75],[20,.625],[10,.5],[5,.5],[1,.5]]){
+  const markup=renderScenario([{aria:'Your starting health percentage',value:String(health)}]);
+  assert.ok(Math.abs(displayedNumber(yourDamage(markup))-175*multiplier)<=.00501,`${health}% health changes your displayed damage`);
+  assert.ok(Math.abs(displayedNumber(summaryReading(markup,'Your health-adjusted bite force'))-175*multiplier)<=.00501,'the value beside the actual health slider also updates');
+  assert.ok(Math.abs(Number(summaryReading(markup,'Your health damage reduction')?.replace('−','-').replace('%',''))+(1-multiplier)*100)<=.00501,'the displayed reduction follows the selected health');
+  assert.equal(displayedNumber(outgoingHits(markup)),Math.ceil(9500/(175*multiplier)),`${health}% changes the outgoing hit count with unrounded damage`);
+  assert.equal(displayedNumber(incomingDamage(markup)),900,'your health cannot lower the healthy target’s outgoing attack');
+  assert.equal(displayedNumber(incomingHits(markup)),Math.ceil((ourHp*health/100)/900),'remaining HP still changes independently');
+ }
+});
+
+test('target health slider scales reverse damage and hit count without reducing your healthy attack',()=>{
+ const fullHp=getSample('allosaurus',75,'Prime')!.values.weight!;
+ for(const [health,multiplier] of [[50,1],[49,.9875],[40,.875],[30,.75],[20,.625],[10,.5],[5,.5]]){
+  const markup=renderScenario([{id:'target',value:'allosaurus'},{aria:'Target starting health percentage',value:String(health)}]);
+  assert.equal(yourDamage(markup),'175','recipient health is independent of the healthy attacker’s damage');
+  assert.ok(Math.abs(displayedNumber(incomingDamage(markup))-175*multiplier)<=.00501,`${health}% changes their outgoing damage`);
+  assert.ok(Math.abs(displayedNumber(summaryReading(markup,'Target health-adjusted bite force'))-175*multiplier)<=.00501,'target slider feedback follows its own bite force');
+  assert.equal(displayedNumber(incomingHits(markup)),Math.ceil(fullHp/(175*multiplier)),'reverse count uses health-adjusted damage');
+  assert.equal(displayedNumber(outgoingHits(markup)),Math.ceil((fullHp*health/100)/175),'target remaining HP still changes the forward count');
+ }
+});
+
+test('the health slider scales all 22 playable primaries in Prime and Frail using the available source profile',()=>{
+ const known=species.filter(item=>item.kind==='playable');
+ assert.equal(known.length,22);
+ for(const specimen of known)for(const state of ['Prime','Frail'] as const){
+  const base=specimen.samples.length?getSample(specimen,100,state)?.values.bite:readValue(specimen,100,state,'bite','sheet');
+  assert.ok(base!=null,`${specimen.name} ${state} has a source primary`);
+  const markup=renderScenario([{aria:'Your starting health percentage',value:'40'}],specimen.id,100,state);
+  assert.ok(Math.abs(displayedNumber(yourDamage(markup))-base*.875)<=.00501,`${specimen.name} ${state} shares the empirical multiplier`);
+  assert.ok(Math.abs(displayedNumber(summaryReading(markup,'Your health-adjusted bite force'))-base*.875)<=.00501,`${specimen.name} ${state} shows the same bite beside its health slider`);
+ }
+});
+
+test('workbook-only Hypsi supports health-scaled damage and HP in either combatant position',()=>{
+ const baseline=renderScenario([],'Hypsilophodon',100,'Frail');
+ assert.equal(yourDamage(baseline),'1.4');
+ const hypsi=renderScenario([{aria:'Your starting health percentage',value:'10'}],'Hypsilophodon',100,'Frail');
+ assert.equal(yourDamage(hypsi),'0.7','the measured Frail elder primary uses its existing workbook value');
+ assert.equal(summaryReading(hypsi,'Your health-adjusted bite force'),'0.7');
+ assert.ok(hypsi.includes('10% · 2 HP'),'the same Frail workbook profile supplies the 20 HP baseline');
+ assert.equal(displayedNumber(outgoingHits(hypsi)),Math.ceil(9500/.7));
+ const target=renderScenario([{id:'target',value:'hypsilophodon'},{id:'target-state',value:'Frail'},{id:'target-growth',value:'100'},{aria:'Target starting health percentage',value:'10'}]);
+ assert.ok(target.includes('>Hypsilophodon</option>'),'the workbook-only dinosaur is selectable as a target');
+ assert.ok(target.includes('10% · 2 HP'),'the target uses the same workbook HP baseline');
+ assert.equal(displayedNumber(incomingDamage(target)),.7);
+ assert.equal(summaryReading(target,'Target health-adjusted bite force'),'0.7');
+ assert.equal(displayedNumber(outgoingHits(target)),1,'target remaining HP uses the same workbook profile');
+ assert.equal(displayedNumber(incomingHits(target)),Math.ceil(getSample('allosaurus',75,'Prime')!.values.weight!/.7));
+});
+
+test('an existing Source 1 profile with missing bite does not silently borrow a Source 2 field',()=>{
+ const original=getSpecies('allosaurus')!;
+ const missing:Species={...original,samples:original.samples.map(sample=>({...sample,values:{...sample.values,bite:null}}))};
+ assert.equal(readValue(original,75,'Prime','bite','sheet'),175,'a tempting workbook fallback is present');
+ const markup=renderScenario([{aria:'Your starting health percentage',value:'10'}],original.id,75,'Prime',undefined,missing);
+ assert.equal(yourDamage(markup),'—','only a whole missing profile can select the workbook path');
+});
+
+test('selected absolute attack damage and mutation comparisons use the same health-adjusted baseline',()=>{
+ const specimen=getSpecies('allosaurus')!;
+ const flat:Mechanic={...specimen.mechanics[0],id:'test-flat-attack',name:'Constant test attack',mode:'absolute',chart:'bite',value:200,minGrowth:0};
+ const absolute=renderScenario([{id:'attack',value:flat.id},{aria:'Your starting health percentage',value:'10'}],specimen.id,75,'Prime',[flat]);
+ assert.equal(yourDamage(absolute),'100','constant source attacks share the health rule rather than falling back to primary bite');
+ const mutated=renderScenario([{aria:'Your starting health percentage',value:'30'},{aria:'Your Hemomania',checked:true},{aria:'Target bleeding',checked:true}]);
+ assert.equal(yourDamage(mutated),'137.81','the health-adjusted bite combines with eligible mutation bonuses');
+ assert.equal(summaryReading(mutated,'Your health-adjusted bite force'),'131.25','the base-bite feedback does not apply mutation bonuses a second time');
+ assert.ok(mutated.includes('Without mutations: 73'),'the comparison keeps the chosen health penalty while removing mutation bonuses');
+});
+
+test('wildlife health changes preserve known AI attack damage without inventing a dinosaur wounded penalty',()=>{
+ const yourBoar=renderScenario([{aria:'Your starting health percentage',value:'10'}],'Boar');
+ assert.equal(yourDamage(yourBoar),'40');
+ const targetBoar=renderScenario([{id:'target',value:'boar'},{aria:'Target starting health percentage',value:'10'}]);
+ assert.equal(displayedNumber(incomingDamage(targetBoar)),40);
 });

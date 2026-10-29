@@ -1,15 +1,79 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { byIdMap, mutationCatalog } from '../src/data/mutations.ts';
-import { sourceDataset } from '../src/data/index.ts';
+import { playableSpecies, sourceDataset } from '../src/data/index.ts';
 import { attackDamage, hitsToKill } from '../src/lib/calculations.ts';
-import { combatMutationRules, createCombatLoadout, mutationCombat, mutationEligible, steppedHits } from '../src/lib/mutations.ts';
+import { combatMutationRules, createCombatLoadout, healthDamageMultiplier, mutationCombat, mutationEligible, steppedHits } from '../src/lib/mutations.ts';
+import { dietOf } from '../src/lib/ui.ts';
 import type { Combatant, CombatDiet, CombatMutationId, CombatMutationLoadout, ListedStrength } from '../src/lib/mutations.ts';
 
 function actor(diet:CombatDiet='carnivore',selected:CombatMutationId[]=[],patch:Partial<CombatMutationLoadout>={}):Combatant{
  return {kind:diet==='wildlife'?'wildlife':'playable',diet,loadout:{...createCombatLoadout(),selected,...patch}};
 }
 const near=(actual:number|undefined,expected:number)=>assert.ok(actual!=null&&Math.abs(actual-expected)<1e-9,`${actual} ≠ ${expected}`);
+
+test('health damage uses the measured checkpoints and caps at full and half damage',()=>{
+ for(const [health,multiplier] of [[100,1],[75,1],[50,1],[49,.9875],[40,.875],[30,.75],[20,.625],[10,.5],[5,.5],[1,.5],[0,.5],[-20,.5],[120,1]]){
+  near(healthDamageMultiplier(health)??undefined,multiplier);
+ }
+ near(healthDamageMultiplier(49.5)??undefined,.99375);
+ for(const unknown of [null,undefined,NaN,Infinity,-Infinity])assert.equal(healthDamageMultiplier(unknown),null);
+});
+
+test('every playable dinosaur gets the health penalty without a mutation or diet requirement',()=>{
+ assert.equal(playableSpecies.length,22);
+ for(const specimen of playableSpecies){
+  const attacker={...actor(dietOf(specimen).toLowerCase() as CombatDiet,[],{healthPercent:40}),speciesId:specimen.id};
+  const result=mutationCombat(160,1000,attacker,actor());
+  assert.equal(result.healthMultiplier,.875,specimen.name);
+  assert.deepEqual(result.firstDamage,{min:140,max:140},specimen.name);
+  assert.deepEqual(result.hits,{min:8,max:8},specimen.name);
+  assert.equal(result.baselineHits,8,'without mutations still includes the selected health penalty');
+ }
+});
+
+test('both directions use their own health and independently reduce the recipient HP',()=>{
+ const yours=actor('carnivore',[],{healthPercent:40});
+ const theirs=actor('herbivore',[],{healthPercent:20});
+ const outgoing=mutationCombat(160,1000,yours,theirs);
+ assert.deepEqual(outgoing.firstDamage,{min:140,max:140});
+ assert.equal(outgoing.startingHp,200);assert.deepEqual(outgoing.hits,{min:2,max:2});
+ const incoming=mutationCombat(160,1000,theirs,yours);
+ assert.deepEqual(incoming.firstDamage,{min:100,max:100});
+ assert.equal(incoming.startingHp,400);assert.deepEqual(incoming.hits,{min:4,max:4});
+});
+
+test('health scales known absolute damage without rounding and keeps wildlife attacks unchanged',()=>{
+ const injured=actor('herbivore',[],{healthPercent:49});
+ const absolute=mutationCombat(950,10000,injured,actor());
+ near(absolute.firstDamage?.min,938.125);
+ assert.equal(absolute.baselineHits,11);
+ const wildlife=mutationCombat(35,1000,actor('wildlife',[],{healthPercent:1}),actor());
+ assert.equal(wildlife.healthMultiplier,1);assert.deepEqual(wildlife.firstDamage,{min:35,max:35});
+ for(const damage of [null,undefined,0,-1,NaN,Infinity]){
+  const result=mutationCombat(damage,1000,injured,actor());
+  assert.equal(result.firstDamage,null);assert.equal(result.hits,null);assert.equal(result.baselineHits,null);
+ }
+ for(const healthPercent of [NaN,Infinity,-Infinity,null,undefined]){
+  const invalid=actor('carnivore',[],{healthPercent:healthPercent as number});
+  const result=mutationCombat(100,1000,invalid,actor());
+  assert.equal(result.healthMultiplier,null);assert.equal(result.firstDamage,null);assert.equal(result.hits,null);assert.equal(result.baselineHits,null);
+ }
+});
+
+test('health penalty precedes mutation stacking and defense while the attacker condition remains fixed',()=>{
+ const attacker=actor('carnivore',['hemomania','accelerated-prey-drive','hypermetabolic-inanition'],{healthPercent:20,strength:2,hyperMode:'manual',hyperBonusPercent:25});
+ const defender=actor('herbivore',['congenital-hypoalgesia'],{strength:2,bleeding:true,largerSpeciesOpponent:true,healthPercent:30});
+ near(mutationCombat(100,1000,attacker,defender,'additive').firstDamage?.min,72.65625);
+ near(mutationCombat(100,1000,attacker,defender,'multiplicative').firstDamage?.min,77.34375);
+ const ranged=mutationCombat(100,1000,actor('carnivore',['hypermetabolic-inanition'],{healthPercent:40,strength:2}),actor());
+ assert.deepEqual(ranged.firstDamage,{min:87.5,max:109.375});
+ assert.deepEqual(ranged.hits,{min:10,max:12});assert.equal(ranged.baselineHits,12);
+ const apd=mutationCombat(9.6,100,actor('carnivore',['accelerated-prey-drive'],{healthPercent:20,strength:2}),actor());
+ near(apd.firstDamage?.min,6);near(apd.lowHealthDamage?.min,7.2);
+ assert.deepEqual(apd.hits,{min:16,max:16});assert.equal(apd.baselineHits,17);
+ assert.equal(apd.healthMultiplier,.625,'attacker starting HP stays fixed through this one-direction series');
+});
 
 test('combat tier percentages agree with the independent source catalogue and species diets',()=>{
  for(const rule of combatMutationRules){
@@ -108,7 +172,7 @@ test('combined bonus assumption is explicit and defense applies after outgoing b
  near(additive.firstDamage?.min,116.25);near(product.firstDamage?.min,123.75);
  assert.deepEqual(additive.hits,{min:3,max:3});assert.deepEqual(product.hits,{min:3,max:3});
  const reverse=mutationCombat(100,1000,defender,attacker,'additive');
- assert.deepEqual(reverse.firstDamage,{min:100,max:100},'the same loadouts reverse roles correctly');
+ assert.deepEqual(reverse.firstDamage,{min:75,max:75},'the same loadouts reverse roles with the new attacker health penalty');
 });
 
 test('disabled diet/wildlife selections cannot change HP damage; invalid source values stay unknown',()=>{

@@ -1,0 +1,90 @@
+.combat-arena{max-width:1500px;padding-bottom:38px}
+.arena-header{margin-top:8px;margin-bottom:25px}
+.arena-header h1{font-size:clamp(31px,3.2vw,43px);letter-spacing:-1.5px}
+.arena-header p{color:#a9bbad}
+.arena-header-mark{display:grid;place-items:center;width:62px;height:62px;border:1px solid #83d2ab40;border-radius:18px;background:linear-gradient(135deg,#223c2bd9,#142b22e6);color:#9ee7c8;box-shadow:inset 0 0 22px #72e6b00b}
+.arena-combatants{display:grid;grid-template-columns:minmax(0,1fr) 66px minmax(0,1fr);align-items:stretch;margin-bottom:27px}
+.arena-combatant{--arena-accent:#86e6c3;min-width:0;overflow:hidden;border:1px solid #639c844d;border-radius:15px;background:linear-gradient(155deg,#1e3028f5,#13231df5);box-shadow:0 10px 28px #00000020}
+.arena-combatant--target{--arena-accent:#ffa88f;border-color:#b47e604d;background:linear-gradient(205deg,#302b24f5,#1e241bf5)}
+.arena-portrait-heading{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 21px 0}
+.arena-corner-label{font-size:11px;letter-spacing:1.6px;font-weight:600;color:var(--arena-accent)}
+.arena-diet{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.arena-portrait{position:relative;isolation:isolate;display:grid;place-items:center;height:clamp(165px,16vw,230px);padding:7px 25px 0;overflow:hidden;background:radial-gradient(ellipse at 50% 78%,color-mix(in srgb,var(--arena-accent) 9%,transparent),transparent 68%)}
+.arena-portrait .dino-art-motion{width:100%;height:100%;min-height:0;max-width:580px;z-index:2}
+.arena-portrait img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 13px 9px #0008)}
+.arena-portrait-grid{position:absolute;inset:0;background-image:linear-gradient(#a2cfb40b 1px,transparent 1px),linear-gradient(90deg,#a2cfb40b 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse,#000,transparent 72%);z-index:0}
+.arena-portrait-orbit{position:absolute;left:50%;top:50%;width:230px;height:230px;transform:translate(-50%,-50%);border:1px solid color-mix(in srgb,var(--arena-accent) 12%,transparent);border-radius:50%;z-index:0}
+.arena-portrait-orbit::after{content:'';position:absolute;inset:13px;border:1px dashed color-mix(in srgb,var(--arena-accent) 9%,transparent);border-radius:50%}
+.arena-portrait-floor{position:absolute;left:25%;right:25%;bottom:10px;height:7px;border-radius:50%;box-shadow:0 0 22px 8px #0004;z-index:1}
+.arena-portrait .wildlife-art{position:relative;z-index:2;color:#abc3b0;font-size:16px}
+.arena-combatant-controls{padding:3px 21px 18px}
+.arena-species-select{display:block;color:#a4bbaa;font-size:12px;letter-spacing:.2px}
+.arena-species-select select{display:block;width:100%;margin-top:7px;font-family:'Manrope Variable',sans-serif;font-size:18px;font-weight:600;color:#e5f0e3;padding:10px 13px;background:#111c17;border-color:color-mix(in srgb,var(--arena-accent) 30%,#304133)}
+.arena-species-select select:focus-visible{outline-color:var(--arena-accent)}
+.arena-growth{margin-top:18px;padding-bottom:15px;border-bottom:1px solid #a8c89924}
+.arena-growth-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:10px}
+.arena-growth-heading>label:first-child{font-size:14px;font-weight:500;color:#d7e7d5}
+.arena-growth-heading>label:first-child>span{display:block;font-size:12px;font-weight:400;color:#9eb498;margin-top:3px}
+.arena-condition{display:flex;align-items:center;gap:8px;font-size:12px;color:#a6bba7}
+.arena-condition select{font-size:13px;padding:6px 9px;min-width:92px;background:#142019}
+.arena-growth-inputs{display:flex;align-items:center;gap:16px}
+.arena-growth-inputs>input{flex:1;width:100%;min-width:0;accent-color:var(--arena-accent)}
+.arena-growth-number{display:flex;align-items:center;gap:3px;flex-shrink:0;color:var(--arena-accent);border:1px solid #779c6b45;border-radius:6px;padding:6px 8px;background:#101d17;font-size:13px}
+.arena-growth-number input{width:60px;padding:0;border:0;border-radius:0;background:transparent;text-align:right;color:inherit;font-size:14px;font-weight:600;appearance:textfield}
+.arena-growth-number input::-webkit-inner-spin-button,.arena-growth-number input::-webkit-outer-spin-button{appearance:none;margin:0}
+.arena-growth-number input:focus-visible{outline:1px solid var(--arena-accent);outline-offset:3px}
+.arena-fixed-growth{font-size:13px;min-height:33px;display:flex;align-items:center;color:#9ab09d}
+.arena-health .mutation-health{margin-top:15px;font-size:14px;color:#d1e1ca}
+.arena-health .mutation-health strong{font-size:14px;font-weight:600;color:#def4cf;font-variant-numeric:tabular-nums}
+.arena-health input[type=range]{appearance:none;background:transparent;height:24px;margin:11px 0 6px;cursor:pointer}
+.arena-health input[type=range]::-webkit-slider-runnable-track{height:10px;border-radius:8px;background:linear-gradient(90deg,#a8e76f var(--health-fill),#0e1b14 var(--health-fill));border:1px solid #b8ee7545}
+.arena-health input[type=range]::-webkit-slider-thumb{appearance:none;margin-top:-5px;width:18px;height:18px;border-radius:50%;border:2px solid #dcf8b3;background:#b8ee75;box-shadow:0 0 9px #b8ee752f}
+.arena-health input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:#0e1b14;border:1px solid #b8ee7545}
+.arena-health input[type=range]::-moz-range-progress{height:8px;background:#a8e76f;border-radius:8px}
+.arena-health input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;border:2px solid #dcf8b3;background:#b8ee75}
+.arena-health .health-damage-summary{margin-bottom:0;background:#0d19145c;border-color:#8abb7730;padding:10px 12px}
+.arena-health .health-damage-summary strong{font-size:18px}
+.arena-versus{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;padding:30px 0;color:#d0e5c2}
+.arena-versus>span{width:1px;flex:1;max-height:100px;background:linear-gradient(transparent,#9eb78550,transparent)}
+.arena-versus>div{display:flex;flex-direction:column;align-items:center;gap:7px;width:48px;padding:14px 0;background:#14231bcc;border:1px solid #c4dfaa30;border-radius:28px;box-shadow:0 0 25px #b8ee7509}
+.arena-versus strong{font-size:13px;letter-spacing:2px;font-weight:600;padding-left:2px}
+.arena-analysis-heading{margin:0 0 16px}
+.arena-analysis-heading h2{font-size:22px}
+.arena-attack-selectors{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.arena-attack-selectors>div{min-width:0}
+.arena-attack-selectors label{display:block;margin-bottom:8px;font-size:13px;color:#afc7a4}
+.arena-attack-selectors select{width:100%;font-size:14px}
+.combat-arena .notice{margin-bottom:16px}
+.combat-arena .combat-panel{background:#1b2520f5}
+.combat-arena .combat-results{font-variant-numeric:tabular-nums}
+.combat-arena .combat-results>div>span{font-size:13px;line-height:1.5}
+.combat-arena .combat-results>div>strong{font-size:clamp(27px,3vw,39px)}
+.combat-arena .combat-results>div>.mutation-count-range{font-size:clamp(23px,2.3vw,31px)}
+@media(max-width:1100px){
+ .combat-arena{padding:25px 25px 30px}
+ .arena-combatants{grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr)}
+ .arena-combatant-controls{padding:3px 16px 16px}
+ .arena-portrait-heading{padding:16px 16px 0;gap:6px}
+ .arena-corner-label{font-size:10px;letter-spacing:1px}
+ .arena-diet{font-size:12px}
+ .arena-versus>div{width:40px}
+ .arena-condition>span{display:none}
+ .arena-species-select select{font-size:16px}
+ .arena-portrait{padding-left:12px;padding-right:12px}
+}
+@media(max-width:740px){
+ .combat-arena{padding:21px 17px 30px}
+ .arena-combatants{grid-template-columns:minmax(0,1fr);gap:14px}
+ .arena-versus{display:none}
+ .arena-portrait{height:190px}
+ .arena-combatant-controls{padding-left:18px;padding-right:18px}
+ .arena-portrait-heading{padding-left:18px;padding-right:18px}
+ .arena-corner-label{font-size:11px}
+ .arena-diet{font-size:13px}
+ .arena-condition>span{display:inline}
+ .arena-attack-selectors,.combat-arena .mutation-model-grid{grid-template-columns:minmax(0,1fr)}
+ .combat-arena .combat-results{position:static;grid-template-columns:minmax(0,1fr)}
+ .combat-arena .combat-results>div{border-right:0;border-bottom:1px solid #536c3c}
+ .combat-arena .combat-results>div:last-child{border-bottom:0}
+ .combat-arena .mutation-model-heading{align-items:flex-start;flex-direction:column}
+}
