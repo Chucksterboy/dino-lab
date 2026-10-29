@@ -10,8 +10,10 @@
 .arena-corner-label{font-size:11px;letter-spacing:1.6px;font-weight:600;color:var(--arena-accent)}
 .arena-diet{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
 .arena-portrait{position:relative;isolation:isolate;display:grid;place-items:center;height:clamp(165px,16vw,230px);padding:7px 25px 0;overflow:hidden;background:radial-gradient(ellipse at 50% 78%,color-mix(in srgb,var(--arena-accent) 9%,transparent),transparent 68%)}
-.arena-portrait .dino-art-motion{width:100%;height:100%;min-height:0;max-width:580px;z-index:2}
-.arena-portrait img{display:block;width:100%;height:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 13px 9px #0008)}
+/* Explicit bounds keep intrinsic image dimensions out of the grid track.
+   The inset also leaves room for every species' idle motion and feet. */
+.arena-portrait .dino-art-motion{position:absolute;inset:14px 34px 24px;display:block;width:auto;height:auto;min-width:0;min-height:0;max-width:none;z-index:2}
+.arena-portrait .dino-art-motion>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 9px 7px #0008)}
 .arena-portrait-grid{position:absolute;inset:0;background-image:linear-gradient(#a2cfb40b 1px,transparent 1px),linear-gradient(90deg,#a2cfb40b 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(ellipse,#000,transparent 72%);z-index:0}
 .arena-portrait-orbit{position:absolute;left:50%;top:50%;width:230px;height:230px;transform:translate(-50%,-50%);border:1px solid color-mix(in srgb,var(--arena-accent) 12%,transparent);border-radius:50%;z-index:0}
 .arena-portrait-orbit::after{content:'';position:absolute;inset:13px;border:1px dashed color-mix(in srgb,var(--arena-accent) 9%,transparent);border-radius:50%}

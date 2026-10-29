@@ -1,6 +1,21 @@
 # Windows build verification
 
-## Current version 0.1.22
+## Current version 0.1.23
+
+Built on 30 October 2026 with smaller full-body portraits in both Combat Arena panels. The shared Arena-specific artwork wrapper now uses definite opposing insets, and its absolutely positioned image uses `object-fit:contain`. This removes the intrinsic image/grid sizing dependency that allowed the artwork to extend below the fixed portrait frame. A 14px top and 24px bottom inset leaves room for feet and existing idle motion. The same rule applies to all 22 playable dinosaurs without per-species exceptions. Library/profile artwork, animations, data and combat calculations are unchanged.
+
+- Portable: `release/Dino Lab.exe`, **11,488,768 bytes**, ProductVersion **0.1.23**, SHA-256 `67AC348F7C70C2BDFE2C8E2EEAA4771BA39C05D9C664F4B723482483312DDCD5`.
+- Installer: `release/Dino Lab Setup.exe`, **7,918,532 bytes**, ProductVersion **0.1.23**, SHA-256 `B697412795951C24346FA04C816CCF9A08FCC199A5AFE95470136EB50FB1BF84`.
+- Versioned previews, the asset report and local promotion record are retained under ignored `preview/`; canonical hashes match the verified artifacts.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 19s**; staging contains **35 files / 14,332,302 bytes**. All six package/native version fields match.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.23, index present, all 35 assets, no missing files or hash mismatches.
+- **163/163 nonvisual tests passed**. No new implementation-mirroring tests were added for this small CSS fix. An independent read-only layout review confirmed the sizing approach and valid dimensions for all 22 artwork files (aspect ratios 1.5–2.238). Motion padding, both shared panels, reduced-motion behavior and unchanged library/profile scope were checked from source. Source data, original artwork and the shared SpeciesArtwork component have no changes.
+
+Under the user's standing authorization, only previous canonical app PID **14364** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **77800**, title **Dino Lab**, window handle **1390937308**, Responding **true**, ProductVersion **0.1.23**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. Release publication follows these artifact checks using the public repository's stable-release helper.
+
+## Historical version 0.1.22
 
 Built on 30 October 2026 with the two general explanation paragraphs removed from the bottom of Combat Arena: the stacking/condition explanation (including its optional Hypermetabolic suffix) and the constant-damage formula/HP/assumptions footnote. Controls, calculations, attack-specific tick/venom notices and source records are unchanged by this copy cleanup. This release also includes the previously local 0.1.20 health model and 0.1.21 standalone Combat Arena described below.
 
