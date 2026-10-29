@@ -57,11 +57,17 @@ export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',so
  const nearest=(value:number)=>points.reduce((a,b)=>Math.abs(a.growth-value)<=Math.abs(b.growth-value)?a:b);
  const selected=nearest(hover??growth);
  const current=source==='sheet'&&row?getSheetValue(row,growth,state)?.value:nearest(growth).value;
- // Sanctuary uses Prime flags, preserving the last FALSE / first TRUE window.
- const sanctuarySamples=specimen.samples.filter(sample=>sample.state==='Prime'&&/^(TRUE|FALSE)$/i.test((sample.raw['Evicted?']??'').trim())).slice().sort((a,b)=>a.growth-b.growth);
+ // Sanctuary is species-level reference data from Source 1 Prime flags.
+ // Source 2 has no eviction flags: reuse only this annotation, never its stats.
+ const sanctuarySamples=specimen.samples.filter(sample=>sample.state==='Prime'&&Number.isFinite(sample.growth)&&/^(TRUE|FALSE)$/i.test((sample.raw['Evicted?']??'').trim())).slice().sort((a,b)=>a.growth-b.growth);
  const firstEvicted=sanctuarySamples.findIndex(sample=>sample.evicted);
- const sanctuaryNever=source==='dashboard'&&showSanctuary&&firstEvicted===0;
- const sanctuaryWindow=source==='dashboard'&&showSanctuary&&firstEvicted>0?{from:sanctuarySamples[firstEvicted-1].growth,to:sanctuarySamples[firstEvicted].growth}:null;
+ const sanctuaryNever=showSanctuary&&firstEvicted===0;
+ const sanctuaryWindow=showSanctuary&&firstEvicted>0?{observedStart:sanctuarySamples[0].growth,from:sanctuarySamples[firstEvicted-1].growth,to:sanctuarySamples[firstEvicted].growth}:null;
+ const sanctuaryReference=source==='sheet'?'Source 1 sanctuary reference':'Source Prime rows';
+ const sanctuaryClip=(value:number)=>Math.max(minG,Math.min(maxG,value));
+ const sanctuaryStart=sanctuaryWindow?sanctuaryClip(sanctuaryWindow.observedStart):minG;
+ const sanctuaryEnd=sanctuaryWindow?sanctuaryClip(sanctuaryWindow.to):minG;
+ const sanctuaryTransition=sanctuaryWindow?sanctuaryClip(sanctuaryWindow.from):minG;
  const peak=source==='dashboard'&&showPeak?getPeakSample(specimen):undefined;
  const sourceFlaggedPeak=specimen.samples.some(sample=>sample.state==='Prime'&&sample.peak);
  const peakExplanation=sourceFlaggedPeak?'Source-flagged Prime peak growth. This is not a universal best growth.':'Prime growth with the highest equally weighted normalized weight, bite and speed score, matching the Source 1 fallback. This is not a universal best growth.';
@@ -71,8 +77,8 @@ export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',so
   <div className="chart-legend">
    <span className="chart-legend-item"><i style={{backgroundColor:'#b8ee75'}}/>{state}</span>
    {showOther&&otherSeries.some(point=>valid(point.value))&&<span className="chart-legend-item"><i style={{backgroundColor:'#79ded0'}}/>{otherState}</span>}
-   {sanctuaryWindow&&<span className="chart-legend-item" title="Source Prime rows: sanctuary exit lies between the last Evicted? FALSE and first TRUE growth samples."><i style={{backgroundColor:'#7b8ec2'}}/>Sanctuary exit {num(sanctuaryWindow.from)}–{num(sanctuaryWindow.to)}%</span>}
-   {sanctuaryNever&&<span className="chart-legend-item" title="The first recorded Prime growth sample is Evicted? TRUE; Source 1 labels this species never allowed in sanctuary.">Never allowed in sanctuary (source)</span>}
+   {sanctuaryWindow&&<span className="chart-legend-item" title={`${sanctuaryReference}: sanctuary exit lies between the last Evicted? FALSE and first TRUE growth samples.`}><i style={{backgroundColor:'#7b8ec2'}}/>Sanctuary exit {num(sanctuaryWindow.from)}–{num(sanctuaryWindow.to)}%</span>}
+   {sanctuaryNever&&<span className="chart-legend-item" title={`${source==='sheet'?'Source 1 sanctuary reference: ':''}The first recorded Prime growth sample is Evicted? TRUE; Source 1 labels this species never allowed in sanctuary.`}>Never allowed in sanctuary (source)</span>}
    {peak&&<span className="chart-legend-item" title={peakExplanation}><i style={{backgroundColor:'#edc77b'}}/>{sourceFlaggedPeak?'Prime peak':'Composite peak'} {num(peak.growth)}%</span>}
   </div>
   <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${specimen.name} ${metricByKey[metric]?.label??metric} by growth${log?', logarithmic scale':''}`} onMouseMove={event=>{const bounds=event.currentTarget.getBoundingClientRect();setHover(minG+Math.max(0,Math.min(1,((event.clientX-bounds.left)/bounds.width*W-L)/(W-L-R)))*(maxG-minG));}} onClick={()=>hover!=null&&onGrowth?.(selected.growth)}>
@@ -80,7 +86,11 @@ export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',so
     <linearGradient id={id} x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#b8ee75" stopOpacity=".21"/><stop offset="100%" stopColor="#b8ee75" stopOpacity="0"/></linearGradient>
     <clipPath id={`${id}-plot`}><rect x={L} y={T} width={W-L-R} height={H-T-B}/></clipPath>
    </defs>
-   {sanctuaryWindow&&<g><rect x={L} y={T} width={Math.max(0,x(sanctuaryWindow.to)-L)} height={H-T-B} fill="#7b8ec2" opacity=".07"/><rect x={x(sanctuaryWindow.from)} y={T} width={Math.max(0,x(sanctuaryWindow.to)-x(sanctuaryWindow.from))} height={H-T-B} fill="#7b8ec2" opacity=".18"/>{[sanctuaryWindow.from,sanctuaryWindow.to].map(value=><line key={value} x1={x(value)} x2={x(value)} y1={T} y2={H-B} stroke="#7b8ec2" strokeDasharray="2 5" opacity=".5"><title>{`Source sanctuary exit window: after ${num(sanctuaryWindow.from)}% and by ${num(sanctuaryWindow.to)}% growth, based on Prime flags.`}</title></line>)}</g>}
+   {sanctuaryWindow&&<g data-sanctuary-overlay="true" clipPath={`url(#${id}-plot)`}>
+    {sanctuaryEnd>sanctuaryStart&&<rect x={x(sanctuaryStart)} y={T} width={Math.max(0,x(sanctuaryEnd)-x(sanctuaryStart))} height={H-T-B} fill="#7b8ec2" opacity=".07"/>}
+    {sanctuaryEnd>sanctuaryTransition&&<rect x={x(sanctuaryTransition)} y={T} width={Math.max(0,x(sanctuaryEnd)-x(sanctuaryTransition))} height={H-T-B} fill="#7b8ec2" opacity=".18"/>}
+    {[sanctuaryWindow.from,sanctuaryWindow.to].filter(value=>value>=minG&&value<=maxG).map(value=><line key={value} x1={x(value)} x2={x(value)} y1={T} y2={H-B} stroke="#7b8ec2" strokeDasharray="2 5" opacity=".5"><title>{`${source==='sheet'?'Source 1 sanctuary reference':'Source sanctuary exit window'}: after ${num(sanctuaryWindow.from)}% and by ${num(sanctuaryWindow.to)}% growth, based on Prime flags.`}</title></line>)}
+   </g>}
    {[0,.25,.5,.75,1].map(fraction=><g key={fraction}><line className="chart-gridline" x1={L} x2={W-R} y1={T+fraction*(H-T-B)} y2={T+fraction*(H-T-B)}/><text x={L-10} y={T+fraction*(H-T-B)+4} textAnchor="end">{axisLabel(log?10**(hi-fraction*(hi-low)):hi-fraction*(hi-low))}</text></g>)}
    {[minG,50,75,maxG].filter((value,index,all)=>value>=minG&&value<=maxG&&all.indexOf(value)===index).map(value=><text key={value} x={x(value)} y={H-7} textAnchor="middle">{num(value)}%</text>)}
    <g clipPath={`url(#${id}-plot)`}>

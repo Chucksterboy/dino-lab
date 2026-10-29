@@ -1,0 +1,62 @@
+/* One persistent scene behind the scrollable workspace on every page. */
+.research-stage{
+ position:relative;
+ display:flex;
+ flex:1;
+ min-width:0;
+ overflow:hidden;
+ isolation:isolate;
+ container:research-scene / inline-size;
+ background:#0b1510;
+}
+.research-stage>.main-content{position:relative;z-index:1}
+.emerald-background{
+ position:absolute;
+ inset:0;
+ overflow:hidden;
+ z-index:0;
+ pointer-events:none;
+ user-select:none;
+ background:radial-gradient(ellipse at 8% 29%,#18392a9c,transparent 42%),radial-gradient(ellipse at 91% 57%,#15362785,transparent 43%),radial-gradient(ellipse at 55% -12%,#24463359,transparent 54%),#09130e;
+}
+.emerald-background-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.94;pointer-events:none}
+.emerald-background-skull{
+ position:absolute;
+ top:28%;
+ right:-72px;
+ width:clamp(260px,30%,460px);
+ height:auto;
+ max-width:none;
+ z-index:0;
+ --emerald-skull-alpha:.24;
+ opacity:var(--emerald-skull-alpha);
+ mix-blend-mode:screen;
+ transform-origin:75% 50%;
+ animation:emerald-specimen-drift 24s ease-in-out infinite;
+ animation-play-state:paused;
+}
+.emerald-background-canvas[data-motion-active=true]~.emerald-background-skull{animation-play-state:running}
+.emerald-background::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:2;
+ pointer-events:none;
+ background:radial-gradient(ellipse at 48% 8%,#09130ed9,transparent 64%),linear-gradient(90deg,transparent 3%,#0b15102b 14%,#0b15108f 28%,#0b1510a3 52%,#0b151070 73%,transparent 96%);
+}
+@keyframes emerald-specimen-drift{
+ 0%,100%{transform:translate3d(0,0,0) rotate(-.5deg);opacity:calc(var(--emerald-skull-alpha) * .87)}
+ 50%{transform:translate3d(-5px,-7px,0) rotate(.5deg);opacity:calc(var(--emerald-skull-alpha) * 1.2)}
+}
+@container research-scene (max-width:1280px){
+ .emerald-background-canvas{opacity:.54}
+ .emerald-background::after{background:linear-gradient(90deg,#0b151047,#0b1510b5 20%,#0b1510b5 79%,#0b15105c)}
+ .emerald-background-skull{--emerald-skull-alpha:.13}
+}
+@container research-scene (max-width:900px){
+ .emerald-background-canvas{opacity:.37}
+ .emerald-background::after{background:#0b151087}
+ .emerald-background-skull{display:none}
+}
+.reduce-motion .emerald-background-skull{animation:none;transform:none}
+@media(prefers-reduced-motion:reduce){.emerald-background-skull{animation:none;transform:none}}

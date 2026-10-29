@@ -5,6 +5,8 @@ import '@fontsource-variable/dm-sans';
 import '@fontsource-variable/manrope';
 import './styles.css';
 import './readability.css';
+import './art-motion.css';
+import './emerald-background.css';
 import './updates.css';
 import './mutations.css';
 import './components/combat-mutations.css';

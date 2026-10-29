@@ -725,7 +725,7 @@ dependencies = [
 
 [[package]]
 name = "dino-lab"
-version = "0.1.11"
+version = "0.1.15"
 dependencies = [
  "httpdate",
  "open",

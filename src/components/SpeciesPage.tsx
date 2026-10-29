@@ -3,13 +3,14 @@ import { motion } from 'motion/react';
 import { ArrowLeft, ArrowUpRight, Star, Weight, Crosshair, Zap, Footprints, Droplets, Wind, ChevronRight, Plus, Shield } from 'lucide-react';
 import { dataset, getSample, getSheetValue, metrics, formatMetric, formatDuration, wildlifeSpecies } from '../data';
 import type { Species, State, Mechanic } from '../data';
-import { accentOf, artFor, dietOf, num, readValue, weightReferenceAt } from '../lib/ui';
+import { accentOf, dietOf, num, readValue, weightReferenceAt } from '../lib/ui';
 import { weightDifferencePercent } from '../lib/calculations';
 import { WildlifeEncounters } from './WildlifeEncounters';
 import type { SourceMode } from '../lib/ui';
 import { GrowthChart } from './Chart';
 import { Survival } from './Survival';
 import { Attacks } from './Attacks';
+import { SpeciesArtwork } from './SpeciesArtwork';
 
 const tabs=['Overview','Movement','Survival','Attacks'];
 function GrowthNumber({value,min,onCommit}:{value:number,min:number,onCommit:(n:number)=>void}){
@@ -39,7 +40,7 @@ export function SpeciesPage({specimen,onBack,onSelect,favorite,onFavorite,mechan
   <section className="specimen-hero" style={{'--species-accent':accentOf(specimen)} as React.CSSProperties}>
    <div className="hero-grid"/><div className="hero-orbit orbit-one"/><div className="hero-orbit orbit-two"/>
    <div className="hero-copy"><div className="button-row"><span className="specimen-index">SPECIMEN {String(dataset.species.findIndex(s=>s.id===specimen.id)+1).padStart(2,'0')}</span><span className="diet-pill"><span className="dot"/>{dietOf(specimen)}</span></div><h1>{specimen.name}</h1><div className="hero-subtitle"><span>The Isle · EVRIMA</span><span className="separator-dot"/><span>{specimen.kind==='wildlife'?'Wildlife reference':'Species research profile'}</span></div><div className="hero-tags"><span className="tag"><span className="dot lime"/> {state} condition</span><span className="tag">{stage||'Growth reference'}</span></div></div>
-   <div className="hero-art"><span className="art-coordinate">DL / {specimen.id.slice(0,3).toUpperCase()} — {state.toUpperCase()}</span>{specimen.sheet?<motion.img key={specimen.id} src={artFor(specimen)} alt={`${specimen.name} species artwork`} initial={{opacity:0,scale:.98}} animate={{opacity:1,scale:1}} transition={{duration:.35}}/>:<div className="wildlife-art"><Footprints size={100}/><span>{specimen.name}</span></div>}<span className="art-caption">SPECIES REFERENCE / NOT TO SCALE</span></div>
+   <div className="hero-art"><span className="art-coordinate">DL / {specimen.id.slice(0,3).toUpperCase()} — {state.toUpperCase()}</span>{specimen.sheet?<SpeciesArtwork key={specimen.id} specimen={specimen} variant="hero" eager/>:<div className="wildlife-art"><Footprints size={100}/><span>{specimen.name}</span></div>}<span className="art-caption">SPECIES REFERENCE / NOT TO SCALE</span></div>
   </section>
   <section className="growth-control panel"><div className="growth-heading"><div className="growth-title"><span className="control-icon"><ArrowUpRight size={18}/></span><div><h3>{specimen.kind==='wildlife'?'Reference state':'Growth stage'}</h3></div></div><div className="growth-actions"><div className="segmented source-segment" aria-label="Data source"><button className={source==='dashboard'?'active':''} disabled={!specimen.samples.length} onClick={()=>selectSource('dashboard')}>Source 1</button><button className={source==='sheet'?'active':''} disabled={!specimen.sheet} onClick={()=>selectSource('sheet')}>Source 2</button></div><div className="segmented state-segment" aria-label="Elder condition"><button className={state==='Prime'?'active':''} onClick={()=>setState('Prime')}>Prime</button><button className={state==='Frail'?'active':''} onClick={()=>setState('Frail')}>Frail</button></div>{specimen.kind==='playable'&&<GrowthNumber value={source==='sheet'?actualGrowth:growth} min={source==='sheet'?0:25} onCommit={setGrowth}/>}</div></div>
    {specimen.kind==='playable'?<><input className="growth-slider" aria-label={`${specimen.name} growth`} type="range" min={source==='sheet'?0:25} max={source==='sheet'?Math.max(0,columns.length-1):100} step="1" value={source==='sheet'?sheetIndex:growth} onChange={e=>setGrowth(source==='sheet'?columns[+e.target.value].growth:+e.target.value)}/><div className="slider-stages"><span>{source==='sheet'?'Hatchling · 0%':'Juvenile · 25%'}</span><span>Subadult · 50%</span><span>Adult · 75%</span><span>Elder · 100%</span></div></>:<p className="footnote">Wildlife has fixed reference stats and no growing stages.</p>}

@@ -101,3 +101,7 @@ Display rounding must not turn a positive sub-unit value into zero: preserve hat
 ## Validation evidence
 
 Automated checks should compare normalized records to original CSV fields, not only compare output against a second implementation of the same adapter. Validate cardinalities, unique species/growth/state keys, all integer dashboard slider points, every mechanics row, all 22 workbook tabs, formulas preserved, and source null/zero distinctions. Add source checkpoint values and several calculation boundaries. UI checks must separately verify control binding, transitions, blank states, exact numeric entry and correct source labels.
+
+## Sanctuary reference on both graph sources
+
+The Source 2 workbook contains no sanctuary/eviction flags. Its graph can display the existing Source 1 Prime sanctuary reference as an annotation, explicitly attributed in tooltips. The Source 2 statistic curves and keyframes remain independent. Shading starts only at the first observed Source 1 growth flag (currently 25%), never invents hatchling admission, and clips to the current graph domain. Unknown flags remain unknown; no Source 2 threshold or weight conversion is inferred.

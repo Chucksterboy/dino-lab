@@ -1,6 +1,64 @@
 # Windows build verification
 
-## Current version 0.1.11
+## Current version 0.1.15
+
+Built on 29 October 2026 with the Source 1 sanctuary reference also available on Source 2 graphs, without changing Source 2 keyframes or statistics. Reference bands begin at observed coverage and clip to the plot; missing flags remain unknown. Visible unfocused windows now continue animating; native minimized/hidden state suspends the canvas and CSS loops, and saved/system reduced-motion preferences remain effective. The library footer and requested table/scatter explanation paragraphs are removed. Emerald Lab and both dinosaur artwork sizes remain animated.
+
+- Portable: `release/Dino Lab.exe`, **9,702,400 bytes**, ProductVersion **0.1.15**, SHA-256 `64006475DE887FBCF6BA26A8743BE81415FD8E7ECDFE174C3F9FC1F7742E9C8D`.
+- Installer: `release/Dino Lab Setup.exe`, **6,109,486 bytes**, ProductVersion **0.1.15**, SHA-256 `E38055067AE13B48BE33B8FD515C81ACA7DC8A0D0304C04CE1B067D5F7350C0B`.
+- Byte-identical versioned preview and release-upload copies are retained in ignored output folders.
+- Sequential production packaging passed TypeScript, Vite, isolated desktop staging, Rust and NSIS. Rust compilation reported **1m 22s**; staging contains **34 files / 12,291,734 bytes**.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.15, index present, all 34 assets, no missing files or hash mismatches. Canonical and upload copies match the verified previews by SHA-256.
+- **138/138 nonvisual tests passed**, including the new sanctuary attribution/coverage/clipping cases, visible-unfocused phase continuity and native window state query/subscription races and cleanup. Independent read-only reviews found no sanctuary-data or animation integration blocker. Default Tauri permissions were confirmed to include the two native read-only window-state getters; no native capability expansion was required.
+
+Under the user's standing authorization, only previous canonical app PID **71396** was stopped after artifact verification. The verified app, installer and report were promoted; the canonical app was reopened as PID **35680**, title **Dino Lab**, window handle **960299820**, Responding **true**, ProductVersion **0.1.15**, path `E:\Dino Lab\release\Dino Lab.exe`. These are read-only process observations after a local file-copy restart. No Windows installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance and native minimize/restore acceptance remain with the user's manual session. GitHub publication is performed separately by the release publisher after these artifact checks.
+
+## Historical version 0.1.14
+
+Built on 29 October 2026 with the selected Emerald Lab animated backdrop across all workspaces. The persistent canvas draws particulate rotating DNA, scan rings, grids, changing decorative coordinates/gene sequences, telemetry and particles, plus a generated transparent wireframe skull. Dark text veils and container-based dimming preserve the existing opaque content surfaces. The scene remains outside page transitions and scrolling content. Original species data, attack calculations and Gallimimus speeds are unchanged; existing artwork motion remains included. See [implementation and verification scope](EMERALD-BACKGROUND.md) and [generated asset prompt/provenance](EMERALD-SKULL-PROMPT.md).
+
+- Portable: `release/Dino Lab.exe`, **9,701,888 bytes**, ProductVersion **0.1.14**, SHA-256 `267756CCDF4AEF8DF9B04EAE215C06A20FFCC5D224EC2332BD4D74B39A7522F1`.
+- Installer: `release/Dino Lab Setup.exe`, **6,110,356 bytes**, ProductVersion **0.1.14**, SHA-256 `A6DBD8910C905EEA66A96A4E027824D187C7A19A7260B39A0F8FFB71052F88B1`.
+- Matching versioned previews and diagnostic report are retained under ignored `preview/`.
+- Sequential production packaging passed TypeScript, Vite, isolated asset staging, Rust and NSIS. Rust release compilation reported **1m 36s**; staging contains **34 files / 12,291,419 bytes**, including the generated PNG.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.14, index present, all 34 assets, no missing files or hash mismatches. The source and staged skull asset hashes match; decoded PNG inspection confirmed genuine transparency and visible content. Canonical portable, setup and report hashes match the verified previews.
+- **128/128 nonvisual tests passed**, including 7 background-runtime cases and 4 renderer cases. Coverage includes reduced motion, hidden/focus pause, cleanup, 30fps cap, finite bounded backing allocation, deterministic valid canvas commands, context balance and bounded work through 4K/extreme inputs. Two independent code reviews found no blocker in integration, stacking, readability masks, scheduling or rendering. No native behavior changed in this revision.
+
+The immediate pre-copy inventory found no canonical app process, so none was stopped. Under the user's standing authorization, the verified files were promoted and the canonical app opened: PID **71396**, title **Dino Lab**, main-window handle **2228300**, Responding **true**, ProductVersion **0.1.14**, path `E:\Dino Lab\release\Dino Lab.exe`. These are read-only process observations after a local file-copy update. No Windows installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual, sustained-frame-rate or game QA was performed. The user owns appearance review. No GitHub publication was performed for this revision.
+
+## Historical version 0.1.13
+
+Built on 29 October 2026 with the same subtle species-specific idle motion on all 22 large species-page pictures and library cards. The shared SpeciesArtwork component uses independent transforms for the continuous wrapper motion and the existing 0.35-second hero image entrance. Hero image dimensions, filters, descriptive alt and stationary coordinate/caption labels are preserved; wildlife placeholders remain unchanged. Offscreen/hidden-document pausing, stable species timing and both reduced-motion preferences are shared across both artwork sizes. No species or combat data changed.
+
+- Portable: `release/Dino Lab.exe`, **7,592,448 bytes**, ProductVersion **0.1.13**, SHA-256 `18B3A7E1DB6A002507C37EB95058B6A16B1B3EBDED436926ED8F893D83D335A9`.
+- Installer: `release/Dino Lab Setup.exe`, **3,974,564 bytes**, ProductVersion **0.1.13**, SHA-256 `99D6A01FD734D8621984C34C9A12C92E5F14C3A5821365816BFFE7DB99FCCA08`.
+- Matching versioned preview binaries and diagnostic report are retained under ignored `preview/`.
+- Sequential production packaging passed TypeScript, Vite, isolated asset staging, Rust and NSIS. Rust compilation reported **1m 14s**; staging contains **33 files / 10,078,279 bytes**.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.13, index present, all 33 assets, no missing files or hash mismatches. Canonical copies match the verified preview hashes.
+- **117/117 existing nonvisual checks passed**. Independent read-only code review confirmed image sizing, label stacking, accessible alt, separate entrance/idle transforms, visibility cleanup and reduced-motion handling. No visual acceptance is claimed.
+
+Under the user's standing authorization, only canonical previous-app PID **78376** was stopped after asset verification. The verified app, setup and report were promoted and the canonical app reopened: PID **68696**, title **Dino Lab**, window handle **364120168**, Responding **true**, ProductVersion **0.1.13**, path `E:\Dino Lab\release\Dino Lab.exe`. These are read-only process observations after a local file-copy restart. No browser, headless-browser, screenshot, visual or game QA was performed; no installer/update helper was executed and no GitHub publication was performed.
+
+## Historical version 0.1.12
+
+Built on 29 October 2026 with subtle continuous motion for all 22 species-library dinosaur pictures. Stable species-based timing varies breathing/sway; Pteranodon has a gentle hovering loop, and heavy or low silhouettes move less. Only each cutout wrapper transforms, preserving fixed card dimensions and the existing child-image hover lift. Offscreen and hidden-document loops pause; app and system reduced-motion settings disable/reset the movement. Artwork, original species data, Gallimimus speeds and Attacks behavior are unchanged from 0.1.11.
+
+- Portable: `release/Dino Lab.exe`, **7,592,448 bytes**, ProductVersion **0.1.12**, SHA-256 `7024EE829C9183610D84A70A16FC9A8F56653248BEE6F94FD1DEC43E85BC6FA4`.
+- Installer: `release/Dino Lab Setup.exe`, **3,974,494 bytes**, ProductVersion **0.1.12**, SHA-256 `98CD3E035B1EC685BCDD17F5FFFD80FE55E9D0E76CEDE6A9740F6CD550F7AB86`.
+- Versioned preview binaries and the diagnostic report are retained under ignored `preview/` and match the canonical copies by SHA-256.
+- Sequential production packaging passed TypeScript, Vite, isolated asset staging, Rust and NSIS. Rust release compilation reported **1m 13s**; staging contains **33 files / 10,078,077 bytes**.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.12, index present, all 33 expected files, no missing assets or hash mismatches. Static staged-output inspection confirmed the new animation classes/keyframes and the absence of discarded headshot controls.
+- **117/117 existing nonvisual JavaScript checks passed**. Independent read-only code review found no blocker in transform composition, stable timing, visibility pause/cleanup or reduced-motion behavior. No visual acceptance is claimed.
+
+Under the user's standing authorization, only canonical previous-app PID **67640** was stopped after artifact verification. The verified app, setup and report were copied to their canonical paths, and the app was reopened: PID **78376**, title **Dino Lab**, window handle **60884050**, Responding **true**, ProductVersion **0.1.12**, path `E:\Dino Lab\release\Dino Lab.exe`. These are read-only process observations after a local file-copy restart.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. No Windows installer or update helper was executed. No GitHub publication was performed for this revision.
+
+## Historical version 0.1.11
 
 Built on 29 October 2026 with the explicit Update now installer workflow. Available-update notices and the bottom-left panel offer download/verification progress, retry on preparation errors, full process exit and a cached helper that waits for exit before opening normal Windows setup. Launch-time checks remain read-only. Gallimimus data is unchanged.
 
