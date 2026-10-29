@@ -4,10 +4,10 @@ A Windows desktop companion for **The Isle: EVRIMA**, built with Tauri 2, React 
 
 ## Download
 
-Get **[Dino Lab 0.1.15](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.15)**:
+Get **[Dino Lab 0.1.16](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.16)**:
 
-- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.15/Dino-Lab-0.1.15-Windows-Setup.exe)** — install Dino Lab on your computer.
-- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.15/Dino-Lab-0.1.15-Windows-Portable.exe)** — run the executable directly.
+- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.16/Dino-Lab-0.1.16-Windows-Setup.exe)** — install Dino Lab on your computer.
+- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.16/Dino-Lab-0.1.16-Windows-Portable.exe)** — run the executable directly.
 
 ## Features
 
@@ -18,7 +18,7 @@ Get **[Dino Lab 0.1.15](https://github.com/Chucksterboy/dino-lab/releases/tag/v0
 - A sortable statistics table with independent source and growth settings for each row.
 - A searchable catalog of 41 active mutations, grouped as Universal, Carnivore and Herbivore, with unlock requirements.
 - Independent mutation scenarios for both combatants, including eligible damage bonuses, conditional resistance, starting health and bleeding.
-- Animated Emerald Lab background, continuous dinosaur artwork motion, animated navigation and reduced-motion preferences.
+- Animated Emerald Lab background on the opening scene and main workspace, continuous dinosaur artwork motion, animated navigation and reduced-motion preferences.
 - Sanctuary reference overlays on both growth graphs; visible unfocused windows keep animating.
 - Favorites and saved comparison/table settings stored on your device.
 - A GitHub version checker with **Update now** in updater-enabled builds: download, verify, quit and open Windows setup.

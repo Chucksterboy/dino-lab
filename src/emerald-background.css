@@ -60,3 +60,8 @@
 }
 .reduce-motion .emerald-background-skull{animation:none;transform:none}
 @media(prefers-reduced-motion:reduce){.emerald-background-skull{animation:none;transform:none}}
+
+/* The opening logo sits above the same scene, with its original layout/timing. */
+.startup-emerald{isolation:isolate;overflow:hidden;container:research-scene / inline-size;background:#09130e}
+.startup-foreground{position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.startup-foreground>p{font-size:11px;letter-spacing:3px;color:#75926d;margin-top:12px}

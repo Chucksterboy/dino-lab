@@ -1,6 +1,21 @@
 # Windows build verification
 
-## Current version 0.1.15
+## Current version 0.1.16
+
+Built on 29 October 2026 with the same Emerald Lab background on the opening/loading screen. StartupScreen preserves the pulsating logo, title and loading/error copy above the shared scene. Saved/system reduced motion and hidden/minimized window state apply from the intro onward. Bootstrap readiness checks and its original 3.5-second duration/300ms fade are unchanged; there is no skip control. The covered App's canvas and CSS loops stay paused until the intro is removed, leaving one active background loop.
+
+- Portable: `release/Dino Lab.exe`, **9,702,912 bytes**, ProductVersion **0.1.16**, SHA-256 `8F41B50C011515F39E3B1C7C9C16E290D5CDE596718FAF1E282468762D55AEA0`.
+- Installer: `release/Dino Lab Setup.exe`, **6,111,602 bytes**, ProductVersion **0.1.16**, SHA-256 `71E16FFA7BC3E58E785E2660738252E98205BCA389B77EB0918D2EBB9ED772CA`.
+- Versioned preview copies/report are retained under ignored `preview/`; canonical hashes match.
+- Sequential production packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 19s**; staging contains **34 files / 12,292,680 bytes**.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.16, index present, all 34 assets, no missing files or hash mismatches.
+- **138/138 existing nonvisual checks passed**. Independent source review confirmed foreground stacking, paragraph/loading layout, saved-motion initialization, lightweight startup dependencies, no duplicate active canvas and unchanged readiness/timer code. No visual or runtime timing acceptance is claimed.
+
+Under the user's standing authorization, only canonical previous-app PID **13592** was stopped after artifact verification. The verified files were promoted and the canonical app reopened: PID **5584**, title **Dino Lab**, window handle **463145152**, Responding **true**, ProductVersion **0.1.16**, path `E:\Dino Lab\release\Dino Lab.exe`. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. The user owns appearance review. GitHub publication is performed separately after these artifact checks.
+
+## Historical version 0.1.15
 
 Built on 29 October 2026 with the Source 1 sanctuary reference also available on Source 2 graphs, without changing Source 2 keyframes or statistics. Reference bands begin at observed coverage and clip to the plot; missing flags remain unknown. Visible unfocused windows now continue animating; native minimized/hidden state suspends the canvas and CSS loops, and saved/system reduced-motion preferences remain effective. The library footer and requested table/scatter explanation paragraphs are removed. Emerald Lab and both dinosaur artwork sizes remain animated.
 
