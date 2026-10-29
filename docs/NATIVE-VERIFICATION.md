@@ -1,6 +1,53 @@
 # Windows build verification
 
-## Current version 0.1.16
+## Current version 0.1.19
+
+Built on 29 October 2026 with mutation category colours matching the library: Carnivore red #ff9898, Herbivore green #b8ee75 and Universal purple #caa7ff. Filters, counts, group headings, card family labels and accents share the same category palette. Filter/category text is larger and retains its colour through selection, hover and keyboard focus. All 41 active entries and their effects/unlocks are unchanged.
+
+Comparison specimens and the Complete Picture table now use Source 1 only. Per-specimen/per-row, bulk and scatter source selectors are removed; Prime/Frail and growth controls remain. Saved Source 2 configurations migrate through the same normalizer as defaults, additions, changes and resets, retaining condition and clamping growth to 25–100% before selecting the nearest Source 1 record. Old workbook column indices are dropped. Hypsilophodon stays unavailable in these views because it has no Source 1 records. Individual species profiles and their Source 2 charts remain available. A pre-existing multi-child scatter SVG title was converted to one text string with the same displayed measurements, removing warnings surfaced by the new regression coverage.
+
+- Portable: `release/Dino Lab.exe`, **11,486,208 bytes**, ProductVersion **0.1.19**, SHA-256 `760ED37A9C62A3B8AFB99AB3DD19601094F241AA7E3F69EDEC58740F2534329F`.
+- Installer: `release/Dino Lab Setup.exe`, **7,916,973 bytes**, ProductVersion **0.1.19**, SHA-256 `B598831932988D7D021B3F579BD744216C9DC7F8CEB129234103440A13CD800D`.
+- Versioned preview files/report are retained under ignored `preview/`; canonical hashes match.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 19s**; staging contains **35 files / 14,318,381 bytes**. Both generated artwork files match their original hashes and the original species-data files are unchanged.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.19, index present, all 35 assets, no missing files or hash mismatches. All six package/native version fields match.
+- **145/145 nonvisual tests passed**, including four new SSR/action regression cases for all-row saved Source 2 migration, missing Source 1 data, condition/growth retention, table bulk/reset/scatter and comparison add/edit/reset. Existing Source 2 profile/chart, mutation content/eligibility, calculation and motion checks passed. Independent source review found no functional migration/source-isolation blocker.
+
+Under the user's standing authorization, only previous canonical app PID **26828** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **16164**, title **Dino Lab**, window handle **304022162**, Responding **true**, ProductVersion **0.1.19**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. GitHub publication is performed separately after these artifact checks.
+
+## Historical version 0.1.18
+
+Built on 29 October 2026 with larger, colour-coded library diet labels: 13px/600 weight on cards and 15px/600 weight in filters. Carnivore uses red #ff9898, Herbivore green #b8ee75 and Omnivore purple #caa7ff. Selected, hover and keyboard-focus states preserve each colour. Filtering logic remains unchanged, and filter selection is exposed with aria-pressed. The single shared application titlebar now reads “Species research centre”, using British spelling across every view. Fossil Blueprint and the other existing features remain included.
+
+- Portable: `release/Dino Lab.exe`, **11,486,208 bytes**, ProductVersion **0.1.18**, SHA-256 `0EE4162AC08BA52B04DE20A721BBCA096E77C424541836AD2059D9BF36E5B8E7`.
+- Installer: `release/Dino Lab Setup.exe`, **7,917,510 bytes**, ProductVersion **0.1.18**, SHA-256 `11894AFD39BCF3A518C163447AC25559F433290E0B655B838E586DA5975B78CA`.
+- Versioned preview files/report are retained in ignored `preview/`; canonical hashes match.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 20s**; staging contains **35 files / 14,321,522 bytes**. Both generated artwork files match their original source hashes.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.18, index present, all 35 assets, no missing files or hash mismatches. All six package/native version fields match.
+- **141/141 existing nonvisual tests passed**. No new tests were added for the small styling/copy change. Independent source review confirmed selector precedence, diet colours in active/hover/focus and smaller-window rules, unchanged filtering and the shared titlebar copy. The selected text colours each exceed 7:1 contrast against the base card surface; this is a colour-value calculation, not rendered appearance QA.
+
+Under the user's standing authorization, only previous canonical app PID **4264** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **48080**, title **Dino Lab**, window handle **64097272**, Responding **true**, ProductVersion **0.1.18**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. GitHub publication remains paused at the user's request; no GitHub writes were made for this local update.
+
+## Historical version 0.1.17
+
+Built on 29 October 2026 with the user-selected Fossil Blueprint filling the centre of the shared Emerald Lab background. Generated transparent skeletal artwork sits below the existing canvas and opaque interface surfaces. The same renderer adds a 24-second scan plane, pulsing anchor points, drafting marks, short rulers and changing decorative coordinates throughout the central field. Responsive veils keep the centre visible in smaller workspaces. Both side motifs remain in place. The opening scene inherits the new background without changing its 3.5-second timing, and motion still continues in visible unfocused windows while pausing for reduced motion or minimized/hidden state.
+
+- Portable: `release/Dino Lab.exe`, **11,486,720 bytes**, ProductVersion **0.1.17**, SHA-256 `2BE9C4CDA8F44DF17DF9F3C7B55309A20CE77213058F15274C6833A0F4948B6E`.
+- Installer: `release/Dino Lab Setup.exe`, **7,917,145 bytes**, ProductVersion **0.1.17**, SHA-256 `CDD56977F2E7EDF024BB1FCB19A23BBCF27B55C8FC19928027CAF59F23DB1C13`.
+- Versioned preview copies and the embedded-asset report are retained under ignored `preview/`; canonical hashes match.
+- Sequential production packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **1m 56s**; staging contains **35 files / 14,320,402 bytes**.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.17, index present, all 35 assets, no missing files or hash mismatches. Both original and new generated artwork match their staged hashes. PNG metadata and decoded alpha were independently checked; see [artwork provenance](FOSSIL-BLUEPRINT-PROMPT.md).
+- **141/141 nonvisual tests passed**, including three new scanner tests covering finite geometry, central clipping, deterministic static frames, moving scan/readouts, bounded work, invalid inputs and caller context preservation. Existing scene frame-budget and motion lifecycle tests passed. Independent integration review found no lifecycle or packaging blocker.
+
+Under the user's standing authorization, only previous canonical app PID **77768** was stopped after artifact verification. Windows briefly retained the old executable lock; the file-copy retry succeeded after the process had fully exited. The verified files were promoted and the canonical app reopened: PID **4264**, title **Dino Lab**, window handle **21499352**, Responding **true**, ProductVersion **0.1.17**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. The user owns appearance review. GitHub publication is performed separately after these artifact checks.
+
+## Historical version 0.1.16
 
 Built on 29 October 2026 with the same Emerald Lab background on the opening/loading screen. StartupScreen preserves the pulsating logo, title and loading/error copy above the shared scene. Saved/system reduced motion and hidden/minimized window state apply from the intro onward. Bootstrap readiness checks and its original 3.5-second duration/300ms fade are unchanged; there is no skip control. The covered App's canvas and CSS loops stay paused until the intro is removed, leaving one active background loop.
 

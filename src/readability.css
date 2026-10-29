@@ -56,13 +56,22 @@
 .overview-bottom .footnote{font-size:12px}
 .library-toolbar{flex-wrap:wrap;row-gap:15px}
 .library-filters{flex-wrap:wrap;gap:5px}
+/* Keep the same diet identity on cards and in every filter state. */
+.library [data-diet="carnivore"]{--library-diet-color:#ff9898;--library-diet-surface:#ff989816;--library-diet-border:#ff989870}
+.library [data-diet="herbivore"]{--library-diet-color:#b8ee75;--library-diet-surface:#b8ee7516;--library-diet-border:#b8ee7570}
+.library [data-diet="omnivore"]{--library-diet-color:#caa7ff;--library-diet-surface:#caa7ff16;--library-diet-border:#caa7ff70}
+.card-topline>span[data-diet]{font-size:13px;font-weight:600;line-height:1.35;color:var(--library-diet-color)}
+.library-filters button[data-diet]{font-size:15px;font-weight:600;color:var(--library-diet-color);border:1px solid transparent}
+.library-filters button[data-diet]:hover{color:var(--library-diet-color);background:var(--library-diet-surface)}
+.library-filters button[data-diet].selected{color:var(--library-diet-color);background:var(--library-diet-surface);border-color:var(--library-diet-border)}
+.library-filters button[data-diet]:focus-visible{outline:2px solid var(--library-diet-color);outline-offset:3px}
 .library-search input{font-size:13px}
 .library-search{min-height:37px}
 .library-footer{font-size:11px}
 .analysis-view>.page-header{flex-wrap:wrap;align-items:flex-start}
 .analysis-view .page-header>.header-actions .btn{font-size:12px}
 .comparison-builder .section-heading p{max-width:760px}
-.comparison-slot .selection-controls{grid-template-columns:1fr .85fr}
+.comparison-slot .selection-controls{grid-template-columns:1fr}
 .comparison-slot select{font-size:12px}
 .comparison-table small{font-size:11px}
 .table-filter-row{flex-wrap:wrap}

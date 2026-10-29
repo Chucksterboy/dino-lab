@@ -16,8 +16,8 @@ export interface MutationFilters {
 
 const dietNames: Record<MutationDiet, string> = { carnivore: 'Carnivore', herbivore: 'Herbivore', omnivore: 'Omnivore' };
 const categoryInfo: Record<Exclude<MutationFilterCategory, 'all'>, { label: string; color: string; icon: LucideIcon }> = {
-  universal: { label: 'Universal', color: '#81e3d0', icon: Globe2 },
-  carnivore: { label: 'Carnivore', color: '#f49aa0', icon: Drumstick },
+  universal: { label: 'Universal', color: '#caa7ff', icon: Globe2 },
+  carnivore: { label: 'Carnivore', color: '#ff9898', icon: Drumstick },
   herbivore: { label: 'Herbivore', color: '#b8ee75', icon: Leaf },
 };
 const combatInfo: Record<Mutation['combatRole'], { label: string; icon: LucideIcon } | null> = {
@@ -73,16 +73,14 @@ export function MutationsView() {
   };
   const filtered = Boolean(query.trim() || category !== 'all' || combatOnly);
   const reset = () => { setQuery(''); setCategory('all'); setCombatOnly(false); };
-  const groups: { id: Exclude<MutationFilterCategory, 'all'>; label: string; icon: LucideIcon; color: string; items: Mutation[] }[] = [
-    { id: 'universal', label: 'Universal mutations', icon: Globe2, color: '#81e3d0', items: visible.filter(item => mutationGroup(item) === 'universal') },
-    { id: 'carnivore', label: 'Carnivore mutations', icon: Drumstick, color: '#f49aa0', items: visible.filter(item => mutationGroup(item) === 'carnivore') },
-    { id: 'herbivore', label: 'Herbivore mutations', icon: Leaf, color: '#b8ee75', items: visible.filter(item => mutationGroup(item) === 'herbivore') },
-  ];
+  const groups = (['universal', 'carnivore', 'herbivore'] as const).map(id => ({
+    ...categoryInfo[id], id, label: categoryInfo[id].label + ' mutations', items: visible.filter(item => mutationGroup(item) === id),
+  }));
   return <div className="mutations-view">
     <header className="mutations-header"><div className="mutations-heading"><div className="mutations-heading-icon" aria-hidden="true"><Dna size={31} strokeWidth={1.5} /><span /></div><div><div className="eyebrow">DINO LAB / TRAIT REFERENCE</div><h1>Mutations<span>.</span></h1><p>Effects, progression and unlock conditions.</p></div></div><div className="mutations-totals"><div><strong>{active.length}</strong><span>ACTIVE MUTATIONS</span></div></div></header>
     <section className="mutations-toolbar" aria-label="Mutation filters">
       <div className="mutations-search-row"><label className="mutations-search"><Search size={18} /><input aria-label="Search mutations" placeholder="Search names, effects or unlock conditions…" value={query} onChange={event => setQuery(event.target.value)} />{query && <button aria-label="Clear mutation search" onClick={() => setQuery('')}><X size={16} /></button>}</label><label className={`mutation-combat-filter${combatOnly ? ' is-active' : ''}`}><input type="checkbox" checked={combatOnly} onChange={event => setCombatOnly(event.target.checked)} /><Swords size={15} /><span>Combat effects</span></label></div>
-      <div className="mutations-category-row"><div className="mutation-categories" role="group" aria-label="Mutation category">{([{ id: 'all', label: 'All mutations', icon: Dna }, { id: 'universal', label: 'Universal', icon: Globe2 }, { id: 'carnivore', label: 'Carnivore', icon: Drumstick }, { id: 'herbivore', label: 'Herbivore', icon: Leaf }] as const).map(({ id, label, icon: Icon }) => <button key={id} aria-pressed={category === id} className={category === id ? 'is-selected' : ''} onClick={() => setCategory(id)}><Icon size={15} /><span>{label}</span><small>{counts[id]}</small></button>)}</div></div>
+      <div className="mutations-category-row"><div className="mutation-categories" role="group" aria-label="Mutation category">{([{ id: 'all', label: 'All mutations', icon: Dna }, { id: 'universal', label: 'Universal', icon: Globe2 }, { id: 'carnivore', label: 'Carnivore', icon: Drumstick }, { id: 'herbivore', label: 'Herbivore', icon: Leaf }] as const).map(({ id, label, icon: Icon }) => <button key={id} aria-pressed={category === id} data-category={id === 'all' ? undefined : id} style={id === 'all' ? undefined : { '--mutation-accent': categoryInfo[id].color } as CSSProperties} className={category === id ? 'is-selected' : ''} onClick={() => setCategory(id)}><Icon size={15} /><span>{label}</span><small>{counts[id]}</small></button>)}</div></div>
     </section>
     <div className="mutations-result-line" role="status" aria-live="polite"><p><strong>{visible.length}</strong> of {active.length} active mutations{query.trim() && <> matching <span>“{query.trim()}”</span></>}</p>{filtered ? <button className="text-button" onClick={reset}>Reset filters<X size={12} /></button> : <span className="mutations-result-hint"><span />Grouped by mutation type</span>}</div>
     <motion.div className="mutations-results" key={`${category}-${combatOnly}-${query}`} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .14 }}>

@@ -20,6 +20,21 @@
  background:radial-gradient(ellipse at 8% 29%,#18392a9c,transparent 42%),radial-gradient(ellipse at 91% 57%,#15362785,transparent 43%),radial-gradient(ellipse at 55% -12%,#24463359,transparent 54%),#09130e;
 }
 .emerald-background-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.94;pointer-events:none}
+.emerald-background-fossil{
+ position:absolute;
+ top:0;
+ left:50%;
+ width:76%;
+ height:100%;
+ max-width:1900px;
+ object-fit:cover;
+ object-position:center;
+ transform:translateX(-50%);
+ z-index:0;
+ opacity:.3;
+ mix-blend-mode:screen;
+ mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
 .emerald-background-skull{
  position:absolute;
  top:28%;
@@ -42,7 +57,7 @@
  inset:0;
  z-index:2;
  pointer-events:none;
- background:radial-gradient(ellipse at 48% 8%,#09130ed9,transparent 64%),linear-gradient(90deg,transparent 3%,#0b15102b 14%,#0b15108f 28%,#0b1510a3 52%,#0b151070 73%,transparent 96%);
+ background:linear-gradient(180deg,#09130e8a,transparent 30%),linear-gradient(90deg,transparent 3%,#0b15102b 14%,#0b151047 28%,#0b151047 52%,#0b151038 73%,transparent 96%);
 }
 @keyframes emerald-specimen-drift{
  0%,100%{transform:translate3d(0,0,0) rotate(-.5deg);opacity:calc(var(--emerald-skull-alpha) * .87)}
@@ -50,13 +65,15 @@
 }
 @container research-scene (max-width:1280px){
  .emerald-background-canvas{opacity:.54}
- .emerald-background::after{background:linear-gradient(90deg,#0b151047,#0b1510b5 20%,#0b1510b5 79%,#0b15105c)}
+ .emerald-background::after{background:linear-gradient(90deg,#0b151047,#0b151066 20%,#0b151066 79%,#0b15105c)}
  .emerald-background-skull{--emerald-skull-alpha:.13}
+ .emerald-background-fossil{opacity:.28;width:82%}
 }
 @container research-scene (max-width:900px){
  .emerald-background-canvas{opacity:.37}
  .emerald-background::after{background:#0b151087}
  .emerald-background-skull{display:none}
+ .emerald-background-fossil{opacity:.22;width:92%}
 }
 .reduce-motion .emerald-background-skull{animation:none;transform:none}
 @media(prefers-reduced-motion:reduce){.emerald-background-skull{animation:none;transform:none}}

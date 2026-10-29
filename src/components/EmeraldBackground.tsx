@@ -11,6 +11,7 @@ export function EmeraldBackground({reducedMotion}:{reducedMotion:boolean}){
 
  return <div className="emerald-background" aria-hidden="true">
   <canvas ref={canvas} className="emerald-background-canvas" data-motion-active="false"/>
+  <img className="emerald-background-fossil" src="/backgrounds/fossil-blueprint.png" alt="" draggable={false} decoding="async" onError={event=>{event.currentTarget.style.display='none';}}/>
   <img className="emerald-background-skull" src="/backgrounds/emerald-skull.png" alt="" draggable={false} decoding="async" onError={event=>{event.currentTarget.style.display='none';}}/>
  </div>;
 }

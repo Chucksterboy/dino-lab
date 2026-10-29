@@ -4,21 +4,21 @@ A Windows desktop companion for **The Isle: EVRIMA**, built with Tauri 2, React 
 
 ## Download
 
-Get **[Dino Lab 0.1.16](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.16)**:
+Get **[Dino Lab 0.1.19](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.19)**:
 
-- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.16/Dino-Lab-0.1.16-Windows-Setup.exe)** — install Dino Lab on your computer.
-- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.16/Dino-Lab-0.1.16-Windows-Portable.exe)** — run the executable directly.
+- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.19/Dino-Lab-0.1.19-Windows-Setup.exe)** — install Dino Lab on your computer.
+- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.19/Dino-Lab-0.1.19-Windows-Portable.exe)** — run the executable directly.
 
 ## Features
 
 - Profiles and artwork for 22 playable species, plus eight wildlife entries.
-- Independent **Source 1 / Source 2** growth selections and **Prime / Frail** conditions.
+- Species profiles with independent **Source 1 / Source 2** growth selections and **Prime / Frail** conditions.
 - Growth charts, movement statistics, survival timers and attack analysis.
-- Comparisons with up to six specimens, including different life stages of the same species.
-- A sortable statistics table with independent source and growth settings for each row.
-- A searchable catalog of 41 active mutations, grouped as Universal, Carnivore and Herbivore, with unlock requirements.
+- Source 1 comparisons with up to six specimens, including different life stages of the same species.
+- A sortable Source 1 statistics table with independent condition and growth settings for each row.
+- A searchable catalog of 41 active mutations, grouped as Universal, Carnivore and Herbivore, with colour-coded categories and unlock requirements.
 - Independent mutation scenarios for both combatants, including eligible damage bonuses, conditional resistance, starting health and bleeding.
-- Animated Emerald Lab background on the opening scene and main workspace, continuous dinosaur artwork motion, animated navigation and reduced-motion preferences.
+- Animated Emerald Lab and Fossil Blueprint background on the opening scene and main workspace, continuous dinosaur artwork motion, animated navigation and reduced-motion preferences.
 - Sanctuary reference overlays on both growth graphs; visible unfocused windows keep animating.
 - Favorites and saved comparison/table settings stored on your device.
 - A GitHub version checker with **Update now** in updater-enabled builds: download, verify, quit and open Windows setup.
@@ -30,6 +30,8 @@ The opening animation lasts 3.5 seconds. **Ctrl K** opens species search, keyboa
 ## Data and calculation model
 
 Source 1 uses recorded dashboard growth rows from 25–100% for 21 playable species. Source 2 uses exact workbook keyframes from hatchling onward for all 22 workbook species. The two sources remain independent; intermediate values are not invented or averaged.
+
+Comparisons and the Complete Picture table use Source 1 exclusively. Species without Source 1 records retain unavailable values in these views; their Source 2 profiles remain accessible.
 
 Attack counts are body-hit estimates. Selected mutation conditions and stacking assumptions affect the estimate; a complete fight, bleed damage over time, armor and changing conditions are outside the model. See [the numeric audit](docs/NUMERIC-AUDIT.md), [mutation sources](docs/MUTATIONS-SOURCES.md) and [the combat model](docs/MUTATION-COMBAT-MODEL.md).
 

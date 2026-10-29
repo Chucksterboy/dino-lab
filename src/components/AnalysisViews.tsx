@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowDown, ArrowDownUp, ArrowUp, Check, Plus, RotateCcw, Search, Settings2, X } from 'lucide-react';
 import { dataset, formatMetric, getSample, getSpecies, isRemovedSpeciesId, metricByKey, metrics, species } from '../data';
-import type { Metric, SheetColumn, SheetRow, Species, State } from '../data';
-import { accentOf, num, sheetRow, comparisonDifference as percentDifference } from '../lib/ui';
-import type { SourceMode } from '../lib/ui';
+import type { Metric, Species, State } from '../data';
+import { accentOf, num, comparisonDifference as percentDifference } from '../lib/ui';
 import { GrowthChart, ScatterChart } from './Chart';
 
 type ViewProps = { onSelect: (specimen: Species) => void; notify: (message: string) => void };
-type Selection = { speciesId: string; source: SourceMode; growth: number; state: State; column?: number };
+type Selection = { speciesId: string; source: 'dashboard'; growth: number; state: State };
+type SelectionInput = { speciesId: string; growth: number; state: State; source?: unknown; column?: unknown };
 type Slot = Selection & { id: string };
 type RowConfig = Record<string, Selection>;
 const COMPARISON_KEY = 'dino-lab-comparison-v1';
@@ -15,53 +15,30 @@ const TABLE_KEY = 'dino-lab-table-v1';
 const COLORS = ['#b8ee75', '#7ed6c6', '#e9ad7f', '#c8b3ef', '#78b8ea', '#e59da6'];
 const CORE_KEYS = ['weight', 'bite', 'speed', 'hp'];
 const uid = () => globalThis.crypto?.randomUUID?.() ?? `slot-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-const sourceName = (source: SourceMode) => source === 'sheet' ? 'Source 2' : 'Source 1';
-
-function columnsFor(specimen: Species, state: State): SheetColumn[] {
-  return specimen.sheet?.columns.filter(column => column.state === state) ?? [];
-}
-
-function normalizeSelection(input: Selection): Selection {
+/** Comparison and Complete Picture always use Source 1, including old saved Source 2 setups. */
+function normalizeSelection(input: SelectionInput): Selection {
   const specimen = getSpecies(input.speciesId) ?? species[0];
-  const source: SourceMode = input.source === 'sheet' && specimen.sheet ? 'sheet' : specimen.samples.length ? 'dashboard' : 'sheet';
   const state: State = input.state === 'Frail' ? 'Frail' : 'Prime';
-  const growth = Number.isFinite(input.growth) ? input.growth : 75;
-  if (source === 'sheet') {
-    const columns = columnsFor(specimen, state);
-    const column = columns.find(item => item.index === input.column) ?? columns.reduce<SheetColumn | undefined>((best, item) => !best || Math.abs(item.growth - growth) < Math.abs(best.growth - growth) ? item : best, undefined);
-    return { speciesId: specimen.id, source, state, growth: column?.growth ?? growth, column: column?.index };
-  }
-  const sample = getSample(specimen, Math.max(25, Math.min(100, growth)), state);
-  return { speciesId: specimen.id, source, state, growth: sample?.growth ?? growth };
+  const growth = Math.max(25, Math.min(100, Number.isFinite(input.growth) ? input.growth : 75));
+  const sample = getSample(specimen, growth, state);
+  return { speciesId: specimen.id, source: 'dashboard', state, growth: sample?.growth ?? growth };
 }
 
 function initialSelection(specimen: Species): Selection {
-  return normalizeSelection({ speciesId: specimen.id, source: specimen.samples.length ? 'dashboard' : 'sheet', growth: 75, state: 'Prime' });
+  return normalizeSelection({ speciesId: specimen.id, growth: 75, state: 'Prime' });
 }
 
-/** Keep source keyframe indices, so neighboring authored breakpoints stay distinct. */
 function patchedSelection(previous: Selection, patch: Partial<Selection>): Selection {
-  return normalizeSelection({ ...previous, column: undefined, ...patch });
-}
-
-function movementSheetRow(specimen: Species, key: string): SheetRow | undefined {
-  if (key === 'sprint') return sheetRow(specimen, 'speed');
-  return sheetRow(specimen, key);
+  return normalizeSelection({ ...previous, ...patch });
 }
 
 function valueFor(selection: Selection, key: string): number | null {
-  const specimen = getSpecies(selection.speciesId);
-  if (!specimen) return null;
-  if (selection.source === 'dashboard') return getSample(specimen, selection.growth, selection.state)?.values[key] ?? null;
-  const row = movementSheetRow(specimen, key);
-  return row?.values.find(value => value.state === selection.state && value.column === selection.column)?.value ?? null;
+  return getSample(selection.speciesId, selection.growth, selection.state)?.values[key] ?? null;
 }
 
-function labelFor(selection: Selection, key: string): string {
-  const specimen = getSpecies(selection.speciesId);
-  return selection.source === 'sheet' && specimen ? movementSheetRow(specimen, key)?.label ?? metricByKey[key]?.label ?? key : metricByKey[key]?.label ?? key;
+function labelFor(_selection: Selection, key: string): string {
+  return metricByKey[key]?.label ?? key;
 }
-
 
 function SpeciesOptions() {
   return <>{(['playable', 'wildlife'] as const).map(kind => <optgroup key={kind} label={kind === 'playable' ? 'Playable species' : 'Wildlife'}>{species.filter(item => item.kind === kind).map(item => <option value={item.id} key={item.id}>{item.name}</option>)}</optgroup>)}</>;
@@ -76,18 +53,12 @@ function GrowthNumber({ growth, onGrowth, label }: { growth: number; onGrowth: (
 
 function SelectionControls({ value, onChange, compact = false }: { value: Selection; onChange: (patch: Partial<Selection>) => void; compact?: boolean }) {
   const specimen = getSpecies(value.speciesId)!;
-  const columns = columnsFor(specimen, value.state);
-  const columnPosition = Math.max(0, columns.findIndex(column => column.index === value.column));
   const fixed = specimen.kind === 'wildlife';
   return <div className={`selection-controls ${compact ? 'compact' : ''}`}>
-    <label className="control-field"><span>Data source</span><select aria-label={`${specimen.name} data source`} value={value.source} onChange={event => onChange({ source: event.target.value as SourceMode })}><option value="dashboard" disabled={!specimen.samples.length}>Source 1</option><option value="sheet" disabled={!specimen.sheet}>Source 2</option></select></label>
     <label className="control-field"><span>Condition</span><select aria-label={`${specimen.name} condition`} value={value.state} onChange={event => onChange({ state: event.target.value as State })}><option>Prime</option><option>Frail</option></select></label>
     <div className="growth-control">
-      <div className="data-line"><span>{fixed ? 'Fixed wildlife entry' : value.source === 'sheet' ? 'Source keyframe' : 'Growth'}</span><strong>{num(value.growth, 5)}%</strong></div>
-      {value.source === 'sheet' ? <>
-        {!compact && <input type="range" aria-label={`${specimen.name} Source 2 keyframe`} min="0" max={Math.max(0, columns.length - 1)} step="1" value={columnPosition} onChange={event => { const column = columns[Number(event.target.value)]; if (column) onChange({ column: column.index, growth: column.growth }); }} />}
-        <select aria-label={`${specimen.name} exact keyframe`} value={value.column ?? ''} onChange={event => { const column = columns.find(item => item.index === Number(event.target.value)); if (column) onChange({ column: column.index, growth: column.growth }); }}>{columns.map(column => <option key={column.index} value={column.index}>{num(column.growth, 5)}% · {column.letter}{column.stage ? ` · ${column.stage}` : ''}</option>)}</select>
-      </> : fixed ? <span className="muted">Wildlife do not grow.</span> : <>
+      <div className="data-line"><span>{fixed ? 'Fixed wildlife entry' : 'Growth'}</span><strong>{num(value.growth, 5)}%</strong></div>
+      {fixed ? <span className="muted">Wildlife do not grow.</span> : <>
         <input type="range" aria-label={`${specimen.name} growth`} min="25" max="100" step="1" value={value.growth} onChange={event => onChange({ growth: Number(event.target.value) })} />
         {!compact && <label className="growth-number"><GrowthNumber growth={value.growth} label={`${specimen.name} growth percentage`} onGrowth={growth => onChange({ growth })} /><span>%</span></label>}
       </>}
@@ -161,11 +132,11 @@ export function CompareView({ onSelect, notify }: ViewProps) {
         <div className="panel"><div className="section-heading"><div><div className="eyebrow">DINO LAB / COMPARISON</div><h2>Numbers that tell the story.</h2></div><label className="checkbox-control"><input type="checkbox" checked={allMetrics} onChange={event => setAllMetrics(event.target.checked)} /> Include survival & recovery</label></div>
           <div className="table-wrap"><table className="comparison-table"><thead><tr><th>Metric</th>{slots.map((slot, index) => <th key={slot.id}><span style={{ color: COLORS[index] }}>{getSpecies(slot.speciesId)!.name}</span><small>{num(slot.growth, 5)}% · {slot.state}</small>{index === 0 && <small>Reference</small>}</th>)}</tr></thead><tbody>{comparedMetrics.map((metric, metricIndex) => {
             const groupStart = metricIndex === 0 || comparedMetrics[metricIndex - 1].group !== metric.group;
-            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}><th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>{slots.map((slot, index) => { const value = valueFor(slot, metric.key); const difference = percentDifference(value, valueFor(slots[0], metric.key)); return <td key={slot.id} title={`${labelFor(slot, metric.key)} · ${sourceName(slot.source)} · ${value??'Unavailable'} ${metric.unit}`}><strong>{formatMetric(value, metric.key)}</strong>{index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}</td>; })}</tr>;
-          })}</tbody></table></div><p className="muted table-note">— means this source has no value for the field. Source 2 attack names can differ from Source 1’s bite label. Fields marked * carry source uncertainty.</p>
+            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}><th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>{slots.map((slot, index) => { const value = valueFor(slot, metric.key); const difference = percentDifference(value, valueFor(slots[0], metric.key)); return <td key={slot.id} title={`${labelFor(slot, metric.key)} · Source 1 · ${value??'Unavailable'} ${metric.unit}`}><strong>{formatMetric(value, metric.key)}</strong>{index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}</td>; })}</tr>;
+          })}</tbody></table></div><p className="muted table-note">— means this source has no value for the field. Fields marked * carry source uncertainty.</p>
         </div>
-        <div className="section-heading chart-section-heading"><div><h2>Growth, side by side.</h2><p className="muted">Each chart uses its specimen’s own source. Click a chart to select nearby growth.</p></div><div className="header-actions"><select aria-label="Comparison chart metric" value={chartMetric} onChange={event => setChartMetric(event.target.value)}>{metrics.filter(metric => metric.group === 'core' || metric.group === 'movement').map(metric => <option key={metric.key} value={metric.key}>{metric.label}</option>)}</select><label className="checkbox-control"><input type="checkbox" checked={log} onChange={event => setLog(event.target.checked)} /> Log scale</label></div></div>
-        <div className="comparison-chart-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(310px,1fr))', gap: 16 }}>{slots.map((slot, index) => { const specimen = getSpecies(slot.speciesId)!; return <div className="panel" key={slot.id}><div className="section-heading"><h3 style={{ color: COLORS[index] }}>{specimen.name}</h3><span className="tag">{num(slot.growth, 5)}% · {slot.state}</span></div><p className="muted">{sourceName(slot.source)} · {metricByKey[chartMetric]?.label}</p><GrowthChart specimen={specimen} metric={chartMetric} growth={slot.growth} state={slot.state} source={slot.source} log={log} compact onGrowth={growth => changeSlot(slot.id, { growth })} /></div>; })}</div>
+        <div className="section-heading chart-section-heading"><div><h2>Growth, side by side.</h2><p className="muted">Click a chart to select nearby growth.</p></div><div className="header-actions"><select aria-label="Comparison chart metric" value={chartMetric} onChange={event => setChartMetric(event.target.value)}>{metrics.filter(metric => metric.group === 'core' || metric.group === 'movement').map(metric => <option key={metric.key} value={metric.key}>{metric.label}</option>)}</select><label className="checkbox-control"><input type="checkbox" checked={log} onChange={event => setLog(event.target.checked)} /> Log scale</label></div></div>
+        <div className="comparison-chart-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(310px,1fr))', gap: 16 }}>{slots.map((slot, index) => { const specimen = getSpecies(slot.speciesId)!; return <div className="panel" key={slot.id}><div className="section-heading"><h3 style={{ color: COLORS[index] }}>{specimen.name}</h3><span className="tag">{num(slot.growth, 5)}% · {slot.state}</span></div><p className="muted">Source 1 · {metricByKey[chartMetric]?.label}</p><GrowthChart specimen={specimen} metric={chartMetric} growth={slot.growth} state={slot.state} source={slot.source} log={log} compact onGrowth={growth => changeSlot(slot.id, { growth })} /></div>; })}</div>
         <p className="muted snapshot-note">Offline snapshot · {dataset.importedAt.slice(0, 10)} · Dino Lab</p>
       </div>
     </>}
@@ -196,11 +167,9 @@ export function TableView({ onSelect, notify }: ViewProps) {
   const [group, setGroup] = useState('core');
   const [sort, setSort] = useState<{ key: string; direction: 1 | -1 }>({ key: 'weight', direction: -1 });
   const [bulkOpen, setBulkOpen] = useState(false);
-  const [bulkSource, setBulkSource] = useState<'keep' | SourceMode>('keep');
   const [bulkGrowth, setBulkGrowth] = useState(75);
   const [bulkState, setBulkState] = useState<State>('Prime');
   const [showScatter, setShowScatter] = useState(false);
-  const [scatterSource, setScatterSource] = useState<SourceMode>('dashboard');
   const [scatterPeak, setScatterPeak] = useState(true);
   const [scatterState, setScatterState] = useState<State>('Prime');
   const [scatterGrowth, setScatterGrowth] = useState(75);
@@ -221,9 +190,9 @@ export function TableView({ onSelect, notify }: ViewProps) {
   return <div className="analysis-view species-table-view">
     <div className="page-header"><div><div className="eyebrow">THE COMPLETE PICTURE</div><h1 className="page-heading">Every species. Every detail.</h1><p className="muted">Explore {dataset.counts.playable} playable species and {dataset.counts.wildlife} wildlife entries. Set growth and condition for each row.</p></div><div className="header-actions"><button className="btn" onClick={() => { setRows(defaultRows()); notify('Species table reset to 75% Prime.'); }}><RotateCcw size={15} /> Reset rows</button></div></div>
     <div className="panel table-controls"><div className="table-filter-row"><div className="search-field"><Search size={16} /><input aria-label="Search all species" placeholder="Find a species…" value={query} onChange={event => setQuery(event.target.value)} />{query && <button className="btn-icon" aria-label="Clear species search" onClick={() => setQuery('')}><X size={14} /></button>}</div><div className="segmented" role="group" aria-label="Species kind">{(['playable', 'wildlife', 'all'] as const).map(value => <button key={value} className={kind === value ? 'active' : ''} onClick={() => setKind(value)}>{value === 'all' ? 'All species' : value === 'playable' ? 'Playable' : 'Wildlife'}</button>)}</div><select aria-label="Statistics group" value={group} onChange={event => { setGroup(event.target.value); const next = TABLE_GROUPS.find(item => item.id === event.target.value); if (next && !next.keys.includes(sort.key)) setSort({ key: next.keys[0], direction: -1 }); }}>{TABLE_GROUPS.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select><button className={`btn ${bulkOpen ? 'active' : ''}`} onClick={() => setBulkOpen(open => !open)}><Settings2 size={15} /> Set visible rows</button></div>
-      {bulkOpen && <div className="bulk-controls"><label className="control-field"><span>Data source</span><select value={bulkSource} onChange={event => setBulkSource(event.target.value as 'keep' | SourceMode)}><option value="keep">Keep each source</option><option value="dashboard">Source 1 where available</option><option value="sheet">Source 2 where available</option></select></label><label className="control-field"><span>Growth</span><input aria-label="Bulk growth percentage" type="number" min="0" max="100" value={bulkGrowth} onChange={event => setBulkGrowth(Math.max(0, Math.min(100, Number(event.target.value))))} /></label><label className="control-field"><span>Condition</span><select value={bulkState} onChange={event => setBulkState(event.target.value as State)}><option>Prime</option><option>Frail</option></select></label><button className="btn btn-primary" disabled={!filtered.length} onClick={() => { setRows(previous => { const next = { ...previous }; for (const specimen of filtered) next[specimen.id] = patchedSelection(previous[specimen.id], { growth: bulkGrowth, state: bulkState, source: bulkSource === 'keep' ? previous[specimen.id].source : bulkSource }); return next; }); notify(`Updated ${filtered.length} visible rows to their nearest available source growth.`); }}><Check size={15} /> Apply to {filtered.length} rows</button><p className="muted">Source 2 uses exact keyframes; Source 1 growth starts at 25%. Wildlife remain fixed.</p></div>}
+      {bulkOpen && <div className="bulk-controls"><label className="control-field"><span>Growth</span><input aria-label="Bulk growth percentage" type="number" min="25" max="100" value={bulkGrowth} onChange={event => setBulkGrowth(Math.max(25, Math.min(100, Number(event.target.value))))} /></label><label className="control-field"><span>Condition</span><select value={bulkState} onChange={event => setBulkState(event.target.value as State)}><option>Prime</option><option>Frail</option></select></label><button className="btn btn-primary" disabled={!filtered.length} onClick={() => { setRows(previous => { const next = { ...previous }; for (const specimen of filtered) next[specimen.id] = patchedSelection(previous[specimen.id], { growth: bulkGrowth, state: bulkState }); return next; }); notify(`Updated ${filtered.length} visible rows to their nearest available growth.`); }}><Check size={15} /> Apply to {filtered.length} rows</button><p className="muted">Growth starts at 25%. Wildlife remain fixed.</p></div>}
     </div>
-    <div className="panel species-table-capture"><div className="section-heading"><div><div className="eyebrow">DINO LAB / SPECIES INDEX</div><h2>{kind === 'wildlife' ? 'Wildlife' : kind === 'playable' ? 'Playable species' : 'All species'} <span className="muted">{sorted.length}</span></h2></div><span className="muted">{TABLE_GROUPS.find(item => item.id === group)?.label} · click a heading to sort</span></div><div className="table-wrap"><table className="species-data-table"><thead><tr><th><button onClick={() => sortBy('name')}>Species {sortIcon('name')}</button></th><th>Source / condition</th><th>Growth</th>{visibleMetrics.map(metric => <th key={metric.key}><button onClick={() => sortBy(metric.key)}>{metric.label}{metric.uncertain ? ' *' : ''} {sortIcon(metric.key)}</button><small>{metric.unit}</small></th>)}</tr></thead><tbody>{sorted.map(specimen => { const selection = rows[specimen.id]; const columns = columnsFor(specimen, selection.state); return <tr key={specimen.id}><th><button className="species-table-name" onClick={() => onSelect(specimen)}><span className="species-dot" style={{ background: accentOf(specimen) }} />{specimen.name}<span className="muted">↗</span></button><small>{specimen.kind === 'wildlife' ? 'Wildlife' : !specimen.samples.length ? 'Source 2 only' : 'Playable'}</small></th><td><div className="table-source-controls"><select aria-label={`${specimen.name} table source`} value={selection.source} onChange={event => changeRow(specimen.id, { source: event.target.value as SourceMode })}><option value="dashboard" disabled={!specimen.samples.length}>Source 1</option><option value="sheet" disabled={!specimen.sheet}>Source 2</option></select><select aria-label={`${specimen.name} table condition`} value={selection.state} onChange={event => changeRow(specimen.id, { state: event.target.value as State })}><option>Prime</option><option>Frail</option></select></div></td><td><div className="table-growth-control"><strong>{num(selection.growth, 5)}%</strong>{selection.source === 'sheet' ? <><input type="range" aria-label={`${specimen.name} table Source 2 slider`} min="0" max={Math.max(0, columns.length - 1)} step="1" value={Math.max(0, columns.findIndex(column => column.index === selection.column))} onChange={event => { const column = columns[Number(event.target.value)]; if (column) changeRow(specimen.id, { column: column.index, growth: column.growth }); }} /><select aria-label={`${specimen.name} table keyframe`} value={selection.column} onChange={event => { const column = columns.find(item => item.index === Number(event.target.value)); if (column) changeRow(specimen.id, { column: column.index, growth: column.growth }); }}>{columns.map(column => <option value={column.index} key={column.index}>{num(column.growth, 5)}% · {column.letter}</option>)}</select></> : specimen.kind === 'wildlife' ? <small>Fixed</small> : <><input type="range" aria-label={`${specimen.name} table growth`} min="25" max="100" step="1" value={selection.growth} onChange={event => changeRow(specimen.id, { growth: Number(event.target.value) })} /><GrowthNumber growth={selection.growth} label={`${specimen.name} table growth percentage`} onGrowth={growth => changeRow(specimen.id, { growth })} /></>}</div></td>{visibleMetrics.map(metric => <td key={metric.key} title={`${labelFor(selection, metric.key)} · ${sourceName(selection.source)} · ${valueFor(selection, metric.key)??'Unavailable'} ${metric.unit}`}><strong>{formatMetric(valueFor(selection, metric.key), metric.key)}</strong></td>)}</tr>; })}</tbody></table></div>{!sorted.length && <div className="empty-text">No species match “{query}”. Clear the search or choose a different species group.</div>}</div>
-    <div className="panel scatter-panel"><div className="section-heading"><div><h2>Speed meets size.</h2><p className="muted">Explore the species in your current filter. Select a point to open its profile.</p></div><button className="btn" onClick={() => setShowScatter(open => !open)}>{showScatter ? 'Hide scatter plot' : 'Explore scatter plot'}</button></div>{showScatter && <><div className="scatter-controls header-actions"><label className="control-field"><span>Source</span><select aria-label="Scatter data source" value={scatterSource} onChange={event => setScatterSource(event.target.value as SourceMode)}><option value="dashboard">Source 1</option><option value="sheet">Source 2</option></select></label><label className="control-field"><span>Condition</span><select aria-label="Scatter condition" value={scatterState} onChange={event => setScatterState(event.target.value as State)}><option>Prime</option><option>Frail</option></select></label><label className="checkbox-control"><input type="checkbox" checked={scatterPeak} onChange={event => setScatterPeak(event.target.checked)} /> Peak per species</label><label className="checkbox-control"><input type="checkbox" checked={scatterLog} onChange={event => setScatterLog(event.target.checked)} /> Log weight scale</label>{!scatterPeak && <label className="control-field"><span>Growth {scatterGrowth}%</span><input aria-label="Scatter growth" type="range" min={scatterSource === 'sheet' ? 0 : 25} max="100" value={scatterGrowth} onChange={event => setScatterGrowth(Number(event.target.value))} /></label>}</div><ScatterChart items={filtered} state={scatterState} growth={scatterGrowth} source={scatterSource} atPeak={scatterPeak} log={scatterLog} onSelect={onSelect} /></>}</div>
+    <div className="panel species-table-capture"><div className="section-heading"><div><div className="eyebrow">DINO LAB / SPECIES INDEX</div><h2>{kind === 'wildlife' ? 'Wildlife' : kind === 'playable' ? 'Playable species' : 'All species'} <span className="muted">{sorted.length}</span></h2></div><span className="muted">{TABLE_GROUPS.find(item => item.id === group)?.label} · click a heading to sort</span></div><div className="table-wrap"><table className="species-data-table"><thead><tr><th><button onClick={() => sortBy('name')}>Species {sortIcon('name')}</button></th><th>Condition</th><th>Growth</th>{visibleMetrics.map(metric => <th key={metric.key}><button onClick={() => sortBy(metric.key)}>{metric.label}{metric.uncertain ? ' *' : ''} {sortIcon(metric.key)}</button><small>{metric.unit}</small></th>)}</tr></thead><tbody>{sorted.map(specimen => { const selection = rows[specimen.id]; return <tr key={specimen.id}><th><button className="species-table-name" onClick={() => onSelect(specimen)}><span className="species-dot" style={{ background: accentOf(specimen) }} />{specimen.name}<span className="muted">↗</span></button><small>{specimen.kind === 'wildlife' ? 'Wildlife' : 'Playable'}</small></th><td><div className="table-source-controls"><select aria-label={`${specimen.name} table condition`} value={selection.state} onChange={event => changeRow(specimen.id, { state: event.target.value as State })}><option>Prime</option><option>Frail</option></select></div></td><td><div className="table-growth-control"><strong>{num(selection.growth, 5)}%</strong>{specimen.kind === 'wildlife' ? <small>Fixed</small> : <><input type="range" aria-label={`${specimen.name} table growth`} min="25" max="100" step="1" value={selection.growth} onChange={event => changeRow(specimen.id, { growth: Number(event.target.value) })} /><GrowthNumber growth={selection.growth} label={`${specimen.name} table growth percentage`} onGrowth={growth => changeRow(specimen.id, { growth })} /></>}</div></td>{visibleMetrics.map(metric => <td key={metric.key} title={`${labelFor(selection, metric.key)} · Source 1 · ${valueFor(selection, metric.key)??'Unavailable'} ${metric.unit}`}><strong>{formatMetric(valueFor(selection, metric.key), metric.key)}</strong></td>)}</tr>; })}</tbody></table></div>{!sorted.length && <div className="empty-text">No species match “{query}”. Clear the search or choose a different species group.</div>}</div>
+    <div className="panel scatter-panel"><div className="section-heading"><div><h2>Speed meets size.</h2><p className="muted">Explore the species in your current filter. Select a point to open its profile.</p></div><button className="btn" onClick={() => setShowScatter(open => !open)}>{showScatter ? 'Hide scatter plot' : 'Explore scatter plot'}</button></div>{showScatter && <><div className="scatter-controls header-actions"><label className="control-field"><span>Condition</span><select aria-label="Scatter condition" value={scatterState} onChange={event => setScatterState(event.target.value as State)}><option>Prime</option><option>Frail</option></select></label><label className="checkbox-control"><input type="checkbox" checked={scatterPeak} onChange={event => setScatterPeak(event.target.checked)} /> Peak per species</label><label className="checkbox-control"><input type="checkbox" checked={scatterLog} onChange={event => setScatterLog(event.target.checked)} /> Log weight scale</label>{!scatterPeak && <label className="control-field"><span>Growth {scatterGrowth}%</span><input aria-label="Scatter growth" type="range" min="25" max="100" value={scatterGrowth} onChange={event => setScatterGrowth(Number(event.target.value))} /></label>}</div><ScatterChart items={filtered} state={scatterState} growth={scatterGrowth} source="dashboard" atPeak={scatterPeak} log={scatterLog} onSelect={onSelect} /></>}</div>
   </div>;
 }

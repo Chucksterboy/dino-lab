@@ -4,6 +4,8 @@ The chosen green research-console concept is implemented as a persistent scene b
 
 The procedural canvas draws a rotating particulate DNA helix, scanning rings, instrument grids, changing decorative coordinates, A/C/G/T and binary sequences, histogram telemetry, motes and a slow scanner. These are decorative instrument marks, not game statistics. Time-zero produces a complete static scene. The transparent wireframe skull is generated artwork saved at public/backgrounds/emerald-skull.png; see [its exact prompt and provenance](EMERALD-SKULL-PROMPT.md).
 
+The user-selected Fossil Blueprint fills the middle with generated transparent skeletal artwork at `public/backgrounds/fossil-blueprint.png`; see [its exact prompt and provenance](FOSSIL-BLUEPRINT-PROMPT.md). It is a static image beneath the same canvas, with a moving 24-second scan plane, pulsing anatomical anchor marks, drafting grids, short rulers and slowly changing decorative coordinates. The illustration keeps its aspect ratio and crops to the central field as the window changes size. No second animation loop is created. The existing left DNA and right skull remain in place, and opaque content surfaces continue to cover the decorative artwork.
+
 ## Motion and resource limits
 
 - CSS-pixel rendering is independent of the canvas backing store. DPR is capped at 1.5, total backing pixels at 3 million and backing edge at 8192px.
@@ -15,7 +17,7 @@ The procedural canvas draws a rotating particulate DNA helix, scanning rings, in
 
 ## Readability and scope
 
-The scene has a dark header/center veil; container queries reduce intensity below 1280px and 900px of actual workspace width, accounting for the species sidebar. No data values, source snapshots, attack calculations or image motion settings change. The background remains fixed while the content scrolls.
+The scene has a dark header veil and a lighter centre veil so the blueprint remains visible; container queries reduce intensity below 1280px and 900px of actual workspace width, accounting for the species sidebar. No data values, source snapshots, attack calculations or image motion settings change. The background remains fixed while the content scrolls.
 
 Nonvisual tests validate frame scheduling, reduced motion, visibility/minimization, cleanup, capped finite allocation, deterministic and finite renderer commands, balanced canvas state and bounded drawing work. TypeScript and native asset packaging are checked separately. Visual quality, sustained frame pacing on the user's hardware and appearance at each window size remain the user's manual review; no browser, screenshot or headless QA is performed.
 

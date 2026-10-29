@@ -1,3 +1,5 @@
+import { drawFossilBlueprint } from './fossil-blueprint';
+
 /** Decorative instrument data, never game statistics. Rendering stays separate
  * from scheduling so hidden/reduced-motion windows can have no active loop. */
 const TAU=Math.PI*2;
@@ -188,6 +190,7 @@ export function drawEmeraldBackground(ctx:CanvasRenderingContext2D,width:number,
  const time=Number.isFinite(timeSeconds)?clamp(timeSeconds,0,Number.MAX_SAFE_INTEGER):0;
  const edge=clamp(width*.17,150,350);
  ctx.save();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ drawFossilBlueprint(ctx,width,height,time);
  drawGrid(ctx,width,height,edge);
  drawRing(ctx,-18,height*.34,clamp(width*.13,150,304),time,1);
  drawRing(ctx,width+22,height*.67,clamp(width*.145,170,350),time,-1);
