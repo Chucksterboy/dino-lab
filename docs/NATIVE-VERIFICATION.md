@@ -1,6 +1,21 @@
 # Windows build verification
 
-## Current version 0.1.23
+## Current version 0.1.24
+
+Built on 1 November 2026 with **Maximum sprint duration** directly below Sprint speed in the comparison table. The row is visible by default and uses the same `sprintDuration(sample.values.staminaDrain, sample.growth)` calculation as Survival. Each comparison slot resolves its own Source 1 species, selected condition and nearest growth record. Display uses readable minutes/seconds, while reference percentages use unrounded seconds. The optional raw adult-duration field remains distinct. Known fixed wildlife values are preserved; unavailable or invalid durations remain unknown, with no Source 2 field borrowing. The statistics table, chart metrics, original source data and artwork are unchanged.
+
+- Portable: `release/Dino Lab.exe`, **11,488,768 bytes**, ProductVersion **0.1.24**, SHA-256 `31E946AA4C6B4EBBFAB1C6DE8E964E7674EE5ACA4EE59A1F19F49A6AA4E3030D`.
+- Installer: `release/Dino Lab Setup.exe`, **7,918,193 bytes**, ProductVersion **0.1.24**, SHA-256 `C6AFFAC7AE63B1876F176E93B3530ACE592305A8941D5BD79564209C329ABE0B`.
+- Versioned previews, the asset report and local promotion record are retained under ignored `preview/`; canonical hashes match the verified artifacts.
+- Sequential packaging passed TypeScript, Vite, isolated staging, Rust and NSIS. Rust compilation reported **2m 43s**; staging contains **35 files / 14,332,599 bytes**. All six package/native version fields match.
+- The exact preview executable passed hidden early-exit `--verify-assets`: version 0.1.24, index present, all 35 assets, no missing files or hash mismatches.
+- **168/168 nonvisual tests passed**, including five comparison regressions for default visibility, minute/second checkpoints, unrounded reference percentages, independent actual growth/condition handlers, all 22 playable species in both conditions, known wildlife values and missing/invalid durations. Independent review confirmed adult baselines are growth-scaled once and resolved at the captured growth. Allosaurus shows 1m 45s at 75%, 3m 31s at 50% and 17m 33s at 25%; Boar retains 2m 5s at its fixed reference.
+
+Under the user's standing authorization, only previous canonical app PID **7960** was stopped after verification. The verified files were promoted and the canonical app reopened: PID **69204**, title **Dino Lab**, window handle **6295444**, Responding **true**, ProductVersion **0.1.24**, path `E:\Dino Lab\release\Dino Lab.exe`. The desktop shortcut still targets that canonical file. These are read-only process observations after a local file-copy restart. No installer or update helper was executed.
+
+No browser, headless-browser, screenshot, visual or game QA was performed. Appearance review remains with the user. GitHub publication is performed separately when requested.
+
+## Historical version 0.1.23
 
 Built on 30 October 2026 with smaller full-body portraits in both Combat Arena panels. The shared Arena-specific artwork wrapper now uses definite opposing insets, and its absolutely positioned image uses `object-fit:contain`. This removes the intrinsic image/grid sizing dependency that allowed the artwork to extend below the fixed portrait frame. A 14px top and 24px bottom inset leaves room for feet and existing idle motion. The same rule applies to all 22 playable dinosaurs without per-species exceptions. Library/profile artwork, animations, data and combat calculations are unchanged.
 

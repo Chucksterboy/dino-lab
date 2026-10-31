@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowDown, ArrowDownUp, ArrowUp, Check, Plus, RotateCcw, Search, Settings2, X } from 'lucide-react';
-import { dataset, formatMetric, getSample, getSpecies, isRemovedSpeciesId, metricByKey, metrics, species } from '../data';
+import { dataset, formatDuration, formatMetric, getSample, getSpecies, isRemovedSpeciesId, metricByKey, metrics, species } from '../data';
 import type { Metric, Species, State } from '../data';
 import { accentOf, num, comparisonDifference as percentDifference } from '../lib/ui';
+import { sprintDuration } from '../lib/calculations';
 import { GrowthChart, ScatterChart } from './Chart';
 
 type ViewProps = { onSelect: (specimen: Species) => void; notify: (message: string) => void };
@@ -14,6 +15,7 @@ const COMPARISON_KEY = 'dino-lab-comparison-v1';
 const TABLE_KEY = 'dino-lab-table-v1';
 const COLORS = ['#b8ee75', '#7ed6c6', '#e9ad7f', '#c8b3ef', '#78b8ea', '#e59da6'];
 const CORE_KEYS = ['weight', 'bite', 'speed', 'hp'];
+const MAX_SPRINT_DURATION: Metric = { key: 'maximumSprintDuration', label: 'Maximum sprint duration', unit: 's', group: 'core', sourceColumn: 'Sprint (s)' };
 const uid = () => globalThis.crypto?.randomUUID?.() ?? `slot-${Date.now()}-${Math.random().toString(36).slice(2)}`;
 /** Comparison and Complete Picture always use Source 1, including old saved Source 2 setups. */
 function normalizeSelection(input: SelectionInput): Selection {
@@ -34,6 +36,12 @@ function patchedSelection(previous: Selection, patch: Partial<Selection>): Selec
 
 function valueFor(selection: Selection, key: string): number | null {
   return getSample(selection.speciesId, selection.growth, selection.state)?.values[key] ?? null;
+}
+
+function comparisonValueFor(selection: Selection, key: string): number | null {
+  if (key !== MAX_SPRINT_DURATION.key) return valueFor(selection, key);
+  const sample = getSample(selection.speciesId, selection.growth, selection.state);
+  return sprintDuration(sample?.values.staminaDrain, sample?.growth);
 }
 
 function labelFor(_selection: Selection, key: string): string {
@@ -110,7 +118,7 @@ export function CompareView({ onSelect, notify }: ViewProps) {
   }, [notify, slots.length]);
   useEffect(() => { try { localStorage.setItem(COMPARISON_KEY, serializeSlots(slots)); } catch { /* Storage may be disabled. */ } }, [slots]);
   const changeSlot = (id: string, patch: Partial<Selection>) => setSlots(previous => previous.map(slot => slot.id === id ? { ...patchedSelection(slot, patch), id } : slot));
-  const comparedMetrics = metrics.filter(metric => allMetrics || metric.group === 'core' || metric.group === 'movement');
+  const comparedMetrics = metrics.filter(metric => allMetrics || metric.group === 'core' || metric.group === 'movement').flatMap(metric => metric.key === 'speed' ? [metric, MAX_SPRINT_DURATION] : [metric]);
   return <div className="analysis-view compare-view">
     <div className="page-header"><div><div className="eyebrow">THE COMPARISON LAB</div><h1 className="page-heading">Find your edge.</h1><p className="muted">Different species. Different growth. One clear comparison.</p></div><div className="header-actions"><button className="btn" onClick={() => { setSlots(defaultSlots()); notify('Default comparison restored.'); }}><RotateCcw size={15} /> Reset</button></div></div>
     <div className="panel comparison-builder">
@@ -132,7 +140,7 @@ export function CompareView({ onSelect, notify }: ViewProps) {
         <div className="panel"><div className="section-heading"><div><div className="eyebrow">DINO LAB / COMPARISON</div><h2>Numbers that tell the story.</h2></div><label className="checkbox-control"><input type="checkbox" checked={allMetrics} onChange={event => setAllMetrics(event.target.checked)} /> Include survival & recovery</label></div>
           <div className="table-wrap"><table className="comparison-table"><thead><tr><th>Metric</th>{slots.map((slot, index) => <th key={slot.id}><span style={{ color: COLORS[index] }}>{getSpecies(slot.speciesId)!.name}</span><small>{num(slot.growth, 5)}% · {slot.state}</small>{index === 0 && <small>Reference</small>}</th>)}</tr></thead><tbody>{comparedMetrics.map((metric, metricIndex) => {
             const groupStart = metricIndex === 0 || comparedMetrics[metricIndex - 1].group !== metric.group;
-            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}><th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>{slots.map((slot, index) => { const value = valueFor(slot, metric.key); const difference = percentDifference(value, valueFor(slots[0], metric.key)); return <td key={slot.id} title={`${labelFor(slot, metric.key)} · Source 1 · ${value??'Unavailable'} ${metric.unit}`}><strong>{formatMetric(value, metric.key)}</strong>{index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}</td>; })}</tr>;
+            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}><th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>{slots.map((slot, index) => { const value = comparisonValueFor(slot, metric.key); const difference = percentDifference(value, comparisonValueFor(slots[0], metric.key)); return <td key={slot.id} title={`${metric.label} · Source 1 · ${value??'Unavailable'} ${metric.unit}`}><strong>{metric.key === MAX_SPRINT_DURATION.key ? formatDuration(value) : formatMetric(value, metric.key)}</strong>{index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}</td>; })}</tr>;
           })}</tbody></table></div><p className="muted table-note">— means this source has no value for the field. Fields marked * carry source uncertainty.</p>
         </div>
         <div className="section-heading chart-section-heading"><div><h2>Growth, side by side.</h2><p className="muted">Click a chart to select nearby growth.</p></div><div className="header-actions"><select aria-label="Comparison chart metric" value={chartMetric} onChange={event => setChartMetric(event.target.value)}>{metrics.filter(metric => metric.group === 'core' || metric.group === 'movement').map(metric => <option key={metric.key} value={metric.key}>{metric.label}</option>)}</select><label className="checkbox-control"><input type="checkbox" checked={log} onChange={event => setLog(event.target.checked)} /> Log scale</label></div></div>

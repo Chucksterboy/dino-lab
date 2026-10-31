@@ -4,10 +4,10 @@ A Windows desktop companion for **The Isle: EVRIMA**, built with Tauri 2, React 
 
 ## Download
 
-Get **[Dino Lab 0.1.23](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.23)**:
+Get **[Dino Lab 0.1.24](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.24)**:
 
-- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.23/Dino-Lab-0.1.23-Windows-Setup.exe)** — install Dino Lab on your computer.
-- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.23/Dino-Lab-0.1.23-Windows-Portable.exe)** — run the executable directly.
+- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.24/Dino-Lab-0.1.24-Windows-Setup.exe)** — install Dino Lab on your computer.
+- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.24/Dino-Lab-0.1.24-Windows-Portable.exe)** — run the executable directly.
 
 ## Features
 
@@ -15,7 +15,7 @@ Get **[Dino Lab 0.1.23](https://github.com/Chucksterboy/dino-lab/releases/tag/v0
 - Species profiles with independent **Source 1 / Source 2** growth selections and **Prime / Frail** conditions.
 - Growth charts, movement statistics and survival timers in species profiles.
 - A dedicated **Combat Arena** with live library portraits, independent dinosaur, growth, condition and health controls, attack selection and two-way damage estimates.
-- Source 1 comparisons with up to six specimens, including different life stages of the same species.
+- Source 1 comparisons with up to six specimens, including different life stages of the same species and maximum sprint duration at each selected growth.
 - A sortable Source 1 statistics table with independent condition and growth settings for each row.
 - A searchable catalog of 41 active mutations, grouped as Universal, Carnivore and Herbivore, with colour-coded categories and unlock requirements.
 - Independent combat scenarios for both sides, including health-scaled bite force, eligible mutation bonuses, conditional resistance and bleeding.

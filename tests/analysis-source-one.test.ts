@@ -3,8 +3,9 @@ import assert from 'node:assert/strict';
 import { Children, createElement, isValidElement } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { formatMetric, getSample, getSpecies, species } from '../src/data/index.ts';
+import { formatDuration, formatMetric, getSample, getSpecies, playableSpecies, species } from '../src/data/index.ts';
 import { CompareView, TableView } from '../src/components/AnalysisViews.tsx';
+import { sprintDuration } from '../src/lib/calculations.ts';
 
 type Node = ReactElement<Record<string, any>>;
 function findAll(tree: ReactNode, predicate: (node: Node) => boolean): Node[] {
@@ -32,6 +33,13 @@ function renderDriven(View: typeof TableView|typeof CompareView, steps: ((tree:N
 function rowsOf(html:string){const table=html.match(/<table class="species-data-table">[\s\S]*?<\/table>/)?.[0]??'';return table.match(/<tr>[\s\S]*?<\/tr>/g)?.slice(1)??[];}
 const oldSheetRows=()=>Object.fromEntries(species.map(item=>[item.id,{speciesId:item.id,source:'sheet',growth:87.5,state:'Frail',column:999}]));
 function compareSelections(tree:Node){return findAll(tree,node=>typeof node.type==='function'&&node.type.name==='SelectionControls').map(node=>{const {id:_id,...selection}=node.props.value;return selection;});}
+function maximumSprintCells(html:string) {
+  const table=html.match(/<table class="comparison-table">[\s\S]*?<\/table>/)?.[0]??'';
+  const rows=(table.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/g)??[]).filter(row=>row.includes('<span>Maximum sprint duration</span>'));
+  assert.equal(rows.length,1,'maximum sprint duration appears exactly once in the comparison');
+  return {row:rows[0],cells:rows[0].match(/<td\b[^>]*>[\s\S]*?<\/td>/g)??[]};
+}
+const sprintReadings=(html:string)=>maximumSprintCells(html).cells.map(cell=>cell.match(/<strong>([^<]+)<\/strong>/)?.[1]);
 
 test('Complete Picture migrates all saved Source 2 rows to Source 1 without a workbook fallback',()=>{
   const saved=oldSheetRows();saved.hypsilophodon.growth=0;
@@ -111,4 +119,91 @@ test('comparison additions, condition/growth edits and reset cannot reintroduce 
     assert.equal(selections.length,3);assert.ok(selections.every(row=>row.source==='dashboard'&&row.state==='Prime'&&row.growth===75));
     assert.doesNotMatch(reset,/Data source|Source 2|exact keyframe/);
   });
+});
+
+test('comparison always shows maximum sprint minutes and seconds with unrounded reference differences',()=>{
+  withSaved({},()=>{
+    const html=renderDriven(CompareView);
+    assert.deepEqual(sprintReadings(html),['1m 45s','2m 34s','2m 23s']);
+    const {row,cells}=maximumSprintCells(html);
+    assert.ok(html.indexOf('<span>Sprint speed</span>')<html.indexOf(row),'duration follows the core sprint-speed statistic');
+    assert.ok(cells[1].includes('46.1% vs reference'),'153.8 / 105.3 uses unrounded duration rather than rounded display times');
+    assert.ok(cells[2].includes('35.7% vs reference'));
+    const expanded=renderDriven(CompareView,[tree=>{
+      const survival=findAll(tree,node=>node.type==='input'&&node.props.type==='checkbox')[0];
+      survival.props.onChange({target:{checked:true}});
+    }]);
+    assert.deepEqual(sprintReadings(expanded),['1m 45s','2m 34s','2m 23s'],'opening survival metrics does not duplicate or replace the maximum sprint row');
+    assert.ok(expanded.includes('Adult sprint stamina duration'),'the original adult source duration remains a separate optional field');
+  });
+});
+
+test('comparison growth and condition handlers recompute only their own specimen sprint duration',()=>{
+  const frail=getSample('allosaurus',50,'Frail')!;
+  const original=frail.values.staminaDrain;
+  // A condition-specific fixture proves that the actual handler reads the
+  // selected condition, even though current captured drain times often match.
+  frail.values.staminaDrain=97.6;
+  try{
+    withSaved({'dino-lab-comparison-v1':{slots:[
+      {speciesId:'allosaurus',source:'dashboard',growth:75,state:'Prime'},
+      {speciesId:'allosaurus',source:'dashboard',growth:75,state:'Prime'},
+      {speciesId:'carnotaurus',source:'dashboard',growth:75,state:'Prime'},
+    ]}},()=>{
+      const grown=renderDriven(CompareView,[tree=>{
+        const controls=findAll(tree,node=>typeof node.type==='function'&&node.type.name==='SelectionControls');
+        controls[0].props.onChange({growth:50});
+      }]);
+      assert.deepEqual(sprintReadings(grown),['3m 31s','1m 45s','2m 34s']);
+      const changed=renderDriven(CompareView,[
+        tree=>findAll(tree,node=>typeof node.type==='function'&&node.type.name==='SelectionControls')[0].props.onChange({growth:50,state:'Frail'}),
+        tree=>findAll(tree,node=>typeof node.type==='function'&&node.type.name==='SelectionControls')[1].props.onChange({growth:25}),
+      ]);
+      assert.deepEqual(sprintReadings(changed),['3m 15s','17m 33s','2m 34s']);
+      assert.ok(changed.includes('50% · Frail'));
+      assert.ok(changed.includes('25% · Prime'));
+    });
+  }finally{frail.values.staminaDrain=original;}
+});
+
+test('maximum sprint comparison uses the shared survival calculation for all 22 playable species and both conditions',()=>{
+  assert.equal(playableSpecies.length,22);
+  for(const state of ['Prime','Frail'] as const)for(let start=0;start<playableSpecies.length;start+=6){
+    const slots=playableSpecies.slice(start,start+6).map((specimen,index)=>({speciesId:specimen.id,source:'dashboard',growth:[25,50,75,100][(start+index)%4],state}));
+    withSaved({'dino-lab-comparison-v1':{slots}},()=>{
+      const html=renderDriven(CompareView);
+      const expected=slots.map(slot=>{
+        const sample=getSample(slot.speciesId,slot.growth,slot.state);
+        return formatDuration(sprintDuration(sample?.values.staminaDrain,sample?.growth??slot.growth));
+      });
+      assert.deepEqual(sprintReadings(html),expected,`${state} group starting at ${start} matches the same model as Survival`);
+    });
+  }
+});
+
+test('maximum sprint preserves missing Source 1 values and fixed wildlife durations without workbook borrowing',()=>{
+  withSaved({'dino-lab-comparison-v1':{slots:[
+    {speciesId:'hypsilophodon',source:'sheet',growth:0,state:'Prime'},
+    {speciesId:'boar',source:'sheet',growth:25,state:'Frail'},
+    {speciesId:'deer',source:'dashboard',growth:75,state:'Prime'},
+    {speciesId:'goat',source:'dashboard',growth:75,state:'Prime'},
+  ]}},()=>{
+    const html=renderDriven(CompareView);
+    assert.deepEqual(sprintReadings(html),['—','2m 5s','—','—']);
+    assert.doesNotMatch(maximumSprintCells(html).row,/vs reference/,'an unknown reference cannot produce a percentage');
+    assert.doesNotMatch(html,/Source 2/);
+    assert.ok(html.includes('100% · Frail'),'wildlife uses its fixed Source 1 record, not requested juvenile scaling');
+  });
+});
+
+test('invalid sprint source durations remain unavailable instead of becoming zero or refill times',()=>{
+  const sample=getSample('allosaurus',75,'Prime')!,original=sample.values.staminaDrain;
+  try{
+    for(const invalid of [null,0,-60,NaN,Infinity]){
+      sample.values.staminaDrain=invalid;
+      withSaved({'dino-lab-comparison-v1':{slots:[{speciesId:'allosaurus',source:'dashboard',growth:75,state:'Prime'}]}},()=>{
+        assert.deepEqual(sprintReadings(renderDriven(CompareView)),['—'],`invalid source ${invalid} stays unknown`);
+      });
+    }
+  }finally{sample.values.staminaDrain=original;}
 });
