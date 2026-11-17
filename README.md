@@ -4,10 +4,10 @@ A Windows desktop companion for **The Isle: EVRIMA**, built with Tauri 2, React 
 
 ## Download
 
-Get **[Dino Lab 0.1.24](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.24)**:
+Get **[Dino Lab 0.1.25](https://github.com/Chucksterboy/dino-lab/releases/tag/v0.1.25)**:
 
-- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.24/Dino-Lab-0.1.24-Windows-Setup.exe)** — install Dino Lab on your computer.
-- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.24/Dino-Lab-0.1.24-Windows-Portable.exe)** — run the executable directly.
+- **[Windows installer](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.25/Dino-Lab-0.1.25-Windows-Setup.exe)** — install Dino Lab on your computer.
+- **[Portable application](https://github.com/Chucksterboy/dino-lab/releases/download/v0.1.25/Dino-Lab-0.1.25-Windows-Portable.exe)** — run the executable directly.
 
 ## Features
 

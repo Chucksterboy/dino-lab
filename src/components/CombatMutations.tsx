@@ -1,6 +1,7 @@
 import { Dna, RotateCcw } from 'lucide-react';
 import type { Species } from '../data';
 import { byIdMap } from '../data/mutations';
+import { FRACTURE_BITE_MULTIPLIER } from '../lib/calculations';
 import { dietOf, num } from '../lib/ui';
 import { combatMutationRules, createCombatLoadout, healthDamageMultiplier, mutationBonus, mutationEligible } from '../lib/mutations';
 import type { CombatDiet, CombatMutationLoadout, ListedStrength } from '../lib/mutations';
@@ -11,11 +12,22 @@ type CombatControlProps={specimen:Species;label:string;prefix:string;value:Comba
 export function CombatHealth({specimen,label,prefix,value,onChange,maxHp,baseBite}:{specimen:Species;label:string;prefix:string;value:CombatMutationLoadout;onChange:(loadout:CombatMutationLoadout)=>void;maxHp:number|null|undefined;baseBite?:number|null}){
  const wildlife=specimen.kind==='wildlife';
  const healthMultiplier=healthDamageMultiplier(value.healthPercent);
- const healthBite=baseBite!=null&&healthMultiplier!=null?baseBite*healthMultiplier:null;
+ const fractured=value.fractured===true;
+ const fractureMultiplier=fractured?FRACTURE_BITE_MULTIPLIER:1;
+ const adjustedBite=baseBite!=null&&healthMultiplier!=null?baseBite*healthMultiplier*fractureMultiplier:null;
  const healthReduction=healthMultiplier==null?null:(1-healthMultiplier)*100;
  return <div className="arena-health">
   <label className="mutation-health" htmlFor={`${prefix}-health`}><span>Starting health <strong>{num(value.healthPercent)}%{maxHp!=null?` · ${num(maxHp*value.healthPercent/100,5)} HP`:''}</strong></span><input type="range" id={`${prefix}-health`} aria-label={`${label} starting health percentage`} min="1" max="100" step="1" value={value.healthPercent} style={{'--health-fill':`${value.healthPercent}%`} as React.CSSProperties} onChange={e=>onChange({...value,healthPercent:+e.target.value})}/></label>
-  {!wildlife&&<div className="health-damage-summary"><span><small>Bite force</small><strong aria-label={`${label} health-adjusted bite force`} title="After health reduction, before mutation modifiers">{num(healthBite,2)}</strong></span><span><small>Damage reduction</small><strong aria-label={`${label} health damage reduction`}>{healthReduction==null?'—':`${healthReduction>0?'−':''}${num(healthReduction,2)}%`}</strong></span></div>}
+  {!wildlife&&<>
+   <label className="checkbox-control arena-fracture" title="Head fracture halves bite force">
+    <input type="checkbox" aria-label={`${label} fractured`} checked={fractured} onChange={event=>onChange({...value,fractured:event.target.checked})}/>
+    Fractured
+   </label>
+   <div className="health-damage-summary">
+    <span><small>Bite force</small><strong aria-label={`${label} health-adjusted bite force`} title="After health and fracture penalties, before mutation modifiers">{num(adjustedBite,2)}</strong></span>
+    <span><small>Health penalty</small><strong aria-label={`${label} health damage reduction`}>{healthReduction==null?'—':`${healthReduction>0?'−':''}${num(healthReduction,2)}%`}</strong></span>
+   </div>
+  </>}
  </div>;
 }
 

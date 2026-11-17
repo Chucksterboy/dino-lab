@@ -180,12 +180,14 @@ test('changing either species clears its own mutations and health without leavin
  const yours=renderArena([
   {aria:'Your Hemomania',checked:true},
   {aria:'Your starting health percentage',value:'10'},
+  {aria:'Your fractured',checked:true},
   {aria:'Target Congenital Hypoalgesia',checked:true},
   {aria:'Target opponent is a larger species',checked:true},
   {aria:'Target bleeding',checked:true},
   {aria:'Your species',value:'carnotaurus'},
  ]);
  assert.doesNotMatch(input(yours,'Your Hemomania'),/checked/);
+ assert.doesNotMatch(input(yours,'Your fractured'),/checked/);
  assert.match(input(yours,'Your starting health percentage'),/value="100"/);
  assert.match(input(yours,'Target Congenital Hypoalgesia'),/checked/,'the other combatant retains its mutation selection');
  assert.match(input(yours,'Target bleeding'),/checked/);
@@ -207,6 +209,31 @@ test('changing either species clears its own mutations and health without leavin
  assert.match(input(target,'Your bleeding'),/checked/);
  assert.doesNotMatch(input(target,'Your opponent is a larger species'),/checked/);
  assert.equal(theirDamage(target),getSample('carnotaurus',75,'Prime')!.values.bite);
+});
+
+test('each Arena fracture toggle changes only its own attack and combines with health',()=>{
+ const targetFracture:Action={aria:'Target fractured',checked:true};
+ const targetOnly=renderArena([targetFracture]);
+ assert.match(input(targetOnly,'Target fractured'),/\bchecked\b/);
+ assert.doesNotMatch(input(targetOnly,'Your fractured'),/\bchecked\b/);
+ assert.equal(yourDamage(targetOnly),175);
+ assert.equal(theirDamage(targetOnly),450);
+ assert.equal(reading(targetOnly,'Target health-adjusted bite force'),450);
+
+ const allo=getSpecies('allosaurus')!;
+ const attack={...allo.mechanics[0],id:'fracture-test-attack',name:'Test attack',mode:'absolute' as const,value:200,minGrowth:0};
+ const both=renderArena([
+  targetFracture,
+  {aria:'Target starting health percentage',value:'40'},
+  {id:'attack',value:attack.id},
+  {aria:'Your fractured',checked:true},
+  {aria:'Your starting health percentage',value:'5'},
+ ],{mechanicsOverrides:{[allo.id]:[attack]}});
+ assert.equal(yourDamage(both),50);
+ assert.equal(theirDamage(both),393.75);
+ assert.equal(reading(both,'Your health-adjusted bite force'),43.75);
+ assert.equal(reading(both,'Target health-adjusted bite force'),393.75);
+ assert.match(both,/Hits to defeat Triceratops<\/span><strong[^>]*>76<\/strong>/);
 });
 
 test('species changes clear selected special attacks independently and the arena honors mechanics overrides',()=>{

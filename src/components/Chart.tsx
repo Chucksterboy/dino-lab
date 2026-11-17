@@ -1,19 +1,26 @@
 import { useId, useState } from 'react';
 import { getPeakSample, getSample, getSeries, getSheetValue, metricByKey } from '../data';
 import type { Species, State } from '../data';
+import { FRACTURE_BITE_MULTIPLIER } from '../lib/calculations';
 import { num, sheetRow, sourceLabel } from '../lib/ui';
 import type { SourceMode } from '../lib/ui';
 
-export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',source='dashboard',log=false,onGrowth,compact=false,showOther=true,showMechanics=true,showSanctuary=true,showPeak=true}:{specimen:Species,metric?:string,growth?:number,state?:State,source?:SourceMode,log?:boolean,onGrowth?:(n:number)=>void,compact?:boolean,showOther?:boolean,showMechanics?:boolean,showSanctuary?:boolean,showPeak?:boolean}){
+export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',source='dashboard',log=false,onGrowth,compact=false,showOther=true,showMechanics=true,showSanctuary=true,showPeak=true,fractured=false}:{specimen:Species,metric?:string,growth?:number,state?:State,source?:SourceMode,log?:boolean,onGrowth?:(n:number)=>void,compact?:boolean,showOther?:boolean,showMechanics?:boolean,showSanctuary?:boolean,showPeak?:boolean,fractured?:boolean}){
  const id=useId().replaceAll(':','');
  const [hover,setHover]=useState<number|null>(null);
  const [hiddenMechanics,setHiddenMechanics]=useState<string[]>([]);
  const row=source==='sheet'?sheetRow(specimen,metric):undefined;
  const otherState:State=state==='Prime'?'Frail':'Prime';
  type CurvePoint={growth:number,value:number|null};
- const readSeries=(variant:State):CurvePoint[] => (source==='sheet'
-  ? row?.values.filter(point=>point.state===variant).map(point=>({growth:point.growth,value:point.value}))??[]
-  : getSeries(specimen,metric,variant)).slice().sort((a,b)=>a.growth-b.growth);
+ const showFracture = fractured && metric === 'bite' && source === 'dashboard' && specimen.kind === 'playable';
+ const adjustedValue = (value: number | null) => showFracture && value !== null ? value * FRACTURE_BITE_MULTIPLIER : value;
+ const readSeries = (variant: State): CurvePoint[] => {
+  const values = source === 'sheet'
+   ? row?.values.filter(point => point.state === variant) ?? []
+   : getSeries(specimen, metric, variant);
+  return values.map(point => ({ growth: point.growth, value: adjustedValue(point.value) }))
+   .sort((a, b) => a.growth - b.growth);
+ };
  const series=readSeries(state);
  const otherSeries=showOther?readSeries(otherState):[];
  const valid=(value:number|null|undefined):value is number => value!=null&&Number.isFinite(value)&&(!log||value>0);
@@ -25,7 +32,7 @@ export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',so
  // to the independently versioned spreadsheet's values.
  const matchingMechanics=source==='dashboard'?specimen.mechanics.filter(mechanic=>mechanic.chart===metric&&mechanic.value!=null&&Number.isFinite(mechanic.value)&&mechanic.minGrowth<=maxG):[];
  const ownSample=source==='dashboard'?getSample(specimen,growth,state):undefined;
- const ownStat=ownSample?.values[metric]??null;
+ const ownStat=adjustedValue(ownSample?.values[metric]??null);
  const mechanicCurves=showMechanics?matchingMechanics.filter(mechanic=>!hiddenMechanics.includes(mechanic.id)&&growth>=mechanic.minGrowth).map(mechanic=>({
   mechanic,
   points:mechanic.mode==='threshold'
@@ -73,7 +80,7 @@ export function GrowthChart({specimen,metric='weight',growth=75,state='Prime',so
  const peakExplanation=sourceFlaggedPeak?'Source-flagged Prime peak growth. This is not a universal best growth.':'Prime growth with the highest equally weighted normalized weight, bite and speed score, matching the Source 1 fallback. This is not a universal best growth.';
  const axisLabel=(value:number)=>value!==0&&Math.abs(value)<.01?value.toExponential(1):num(value,Math.abs(value)<1?3:Math.abs(value)<10?1:0);
  return <div className="growth-chart" onMouseLeave={()=>setHover(null)}>
-  <div className="chart-live"><span className="dot lime"/>{hover==null?`Selected growth · ${num(source==='sheet'&&row?getSheetValue(row,growth,state)?.growth:nearest(growth).growth,5)}%`:`${num(selected.growth,5)}% growth`}<strong title={`Recorded value: ${num(hover==null?current:selected.value,12)} ${metricByKey[metric]?.unit??''}`}>{num(hover==null?current:selected.value,metric==='weight'?0:2)} <small>{metricByKey[metric]?.unit}</small></strong></div>
+  <div className="chart-live"><span className="dot lime"/>{hover==null?`Selected growth · ${num(source==='sheet'&&row?getSheetValue(row,growth,state)?.growth:nearest(growth).growth,5)}%`:`${num(selected.growth,5)}% growth`}<strong title={`${showFracture?'After head fracture':'Recorded value'}: ${num(hover==null?current:selected.value,12)} ${metricByKey[metric]?.unit??''}`}>{num(hover==null?current:selected.value,metric==='weight'?0:2)} <small>{metricByKey[metric]?.unit}</small></strong></div>
   <div className="chart-legend">
    <span className="chart-legend-item"><i style={{backgroundColor:'#b8ee75'}}/>{state}</span>
    {showOther&&otherSeries.some(point=>valid(point.value))&&<span className="chart-legend-item"><i style={{backgroundColor:'#79ded0'}}/>{otherState}</span>}

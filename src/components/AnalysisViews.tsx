@@ -3,13 +3,13 @@ import { ArrowDown, ArrowDownUp, ArrowUp, Check, Plus, RotateCcw, Search, Settin
 import { dataset, formatDuration, formatMetric, getSample, getSpecies, isRemovedSpeciesId, metricByKey, metrics, species } from '../data';
 import type { Metric, Species, State } from '../data';
 import { accentOf, num, comparisonDifference as percentDifference } from '../lib/ui';
-import { sprintDuration } from '../lib/calculations';
+import { FRACTURE_BITE_MULTIPLIER, sprintDuration } from '../lib/calculations';
 import { GrowthChart, ScatterChart } from './Chart';
 
 type ViewProps = { onSelect: (specimen: Species) => void; notify: (message: string) => void };
 type Selection = { speciesId: string; source: 'dashboard'; growth: number; state: State };
 type SelectionInput = { speciesId: string; growth: number; state: State; source?: unknown; column?: unknown };
-type Slot = Selection & { id: string };
+type Slot = Selection & { id: string; fractured: boolean };
 type RowConfig = Record<string, Selection>;
 const COMPARISON_KEY = 'dino-lab-comparison-v1';
 const TABLE_KEY = 'dino-lab-table-v1';
@@ -38,10 +38,13 @@ function valueFor(selection: Selection, key: string): number | null {
   return getSample(selection.speciesId, selection.growth, selection.state)?.values[key] ?? null;
 }
 
-function comparisonValueFor(selection: Selection, key: string): number | null {
-  if (key !== MAX_SPRINT_DURATION.key) return valueFor(selection, key);
-  const sample = getSample(selection.speciesId, selection.growth, selection.state);
-  return sprintDuration(sample?.values.staminaDrain, sample?.growth);
+function comparisonValueFor(slot: Slot, key: string): number | null {
+  if (key === MAX_SPRINT_DURATION.key) {
+    const sample = getSample(slot.speciesId, slot.growth, slot.state);
+    return sprintDuration(sample?.values.staminaDrain, sample?.growth);
+  }
+  const value = valueFor(slot, key);
+  return key === 'bite' && slot.fractured && value !== null ? value * FRACTURE_BITE_MULTIPLIER : value;
 }
 
 function labelFor(_selection: Selection, key: string): string {
@@ -80,13 +83,18 @@ function parseComparison(text: string): Slot[] {
   return input.slots.filter((item:unknown)=>!(item&&typeof item==='object'&&'speciesId' in item&&typeof item.speciesId==='string'&&isRemovedSpeciesId(item.speciesId))).map((item: unknown) => {
     if (!item || typeof item !== 'object') throw new Error('A comparison slot is invalid.');
     const row = item as Record<string, unknown>;
-    if (typeof row.speciesId !== 'string' || !getSpecies(row.speciesId) || !['dashboard', 'sheet'].includes(String(row.source)) || !['Prime', 'Frail'].includes(String(row.state)) || typeof row.growth !== 'number' || !Number.isFinite(row.growth)) throw new Error('A slot contains an unknown species, source, condition or growth.');
-    return { ...normalizeSelection(row as unknown as Selection), id: uid() };
+    const specimen = typeof row.speciesId === 'string' ? getSpecies(row.speciesId) : undefined;
+    if (!specimen || !['dashboard', 'sheet'].includes(String(row.source)) || !['Prime', 'Frail'].includes(String(row.state)) || typeof row.growth !== 'number' || !Number.isFinite(row.growth)) throw new Error('A slot contains an unknown species, source, condition or growth.');
+    return { ...normalizeSelection(row as unknown as Selection), id: uid(), fractured: specimen.kind === 'playable' && row.fractured === true };
   });
 }
 
+function initialSlot(specimen: Species): Slot {
+  return { ...initialSelection(specimen), id: uid(), fractured: false };
+}
+
 function defaultSlots(): Slot[] {
-  return ['allosaurus', 'carnotaurus', 'ceratosaurus'].flatMap(id => { const specimen = getSpecies(id); return specimen ? [{ ...initialSelection(specimen), id: uid() }] : []; });
+  return ['allosaurus', 'carnotaurus', 'ceratosaurus'].flatMap(id => { const specimen = getSpecies(id); return specimen ? [initialSlot(specimen)] : []; });
 }
 
 function loadSlots(): Slot[] {
@@ -113,38 +121,61 @@ export function CompareView({ onSelect, notify }: ViewProps) {
     const specimen = pending ? getSpecies(pending) : undefined;
     if (!specimen) return;
     if (slots.length >= 6) { notify('The comparison has six slots. Remove a specimen, then add another.'); return; }
-    setSlots(previous => [...previous, { ...initialSelection(specimen), id: uid() }].slice(0, 6));
+    setSlots(previous => [...previous, initialSlot(specimen)].slice(0, 6));
     notify(`${specimen.name} added to the comparison.`);
   }, [notify, slots.length]);
   useEffect(() => { try { localStorage.setItem(COMPARISON_KEY, serializeSlots(slots)); } catch { /* Storage may be disabled. */ } }, [slots]);
-  const changeSlot = (id: string, patch: Partial<Selection>) => setSlots(previous => previous.map(slot => slot.id === id ? { ...patchedSelection(slot, patch), id } : slot));
+  const changeSlot = (id: string, patch: Partial<Selection & Pick<Slot, 'fractured'>>) => setSlots(previous => previous.map(slot => {
+    if (slot.id !== id) return slot;
+    const selection = patchedSelection(slot, patch);
+    const fractured = slot.speciesId === selection.speciesId && (patch.fractured ?? slot.fractured);
+    return { ...selection, id, fractured };
+  }));
   const comparedMetrics = metrics.filter(metric => allMetrics || metric.group === 'core' || metric.group === 'movement').flatMap(metric => metric.key === 'speed' ? [metric, MAX_SPRINT_DURATION] : [metric]);
   return <div className="analysis-view compare-view">
     <div className="page-header"><div><div className="eyebrow">THE COMPARISON LAB</div><h1 className="page-heading">Find your edge.</h1><p className="muted">Different species. Different growth. One clear comparison.</p></div><div className="header-actions"><button className="btn" onClick={() => { setSlots(defaultSlots()); notify('Default comparison restored.'); }}><RotateCcw size={15} /> Reset</button></div></div>
     <div className="panel comparison-builder">
       <div className="section-heading"><div><h2>Your specimens <span className="muted">{slots.length}/6</span></h2><p className="muted">Add a species twice to compare life stages.</p></div><button className="btn" onClick={() => setSlots([])} disabled={!slots.length}>Clear all</button></div>
       <div className="comparison-slots" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 14 }}>
-        {slots.map((slot, index) => { const specimen = getSpecies(slot.speciesId)!; return <div className="comparison-slot" key={slot.id} style={{ borderTop: `2px solid ${COLORS[index]}`, padding: 16 }}>
-          <div className="section-heading"><span className="tag" style={{ color: COLORS[index] }}>{index === 0 ? 'REFERENCE' : `SPECIMEN ${index + 1}`}</span><button className="btn-icon" aria-label={`Remove specimen ${index + 1}`} onClick={() => setSlots(previous => previous.filter(item => item.id !== slot.id))}><X size={15} /></button></div>
-          <select className="specimen-select" aria-label={`Species in comparison slot ${index + 1}`} value={slot.speciesId} onChange={event => changeSlot(slot.id, { speciesId: event.target.value })}><SpeciesOptions /></select>
-          <SelectionControls value={slot} onChange={patch => changeSlot(slot.id, patch)} />
-          <div className="slot-foot"><button className="text-button" onClick={() => onSelect(specimen)}>Open species ↗</button></div>
+        {slots.map(({ id, fractured, ...selection }, index) => { const specimen = getSpecies(selection.speciesId)!; return <div className="comparison-slot" key={id} style={{ borderTop: `2px solid ${COLORS[index]}`, padding: 16 }}>
+          <div className="section-heading"><span className="tag" style={{ color: COLORS[index] }}>{index === 0 ? 'REFERENCE' : `SPECIMEN ${index + 1}`}</span><button className="btn-icon" aria-label={`Remove specimen ${index + 1}`} onClick={() => setSlots(previous => previous.filter(item => item.id !== id))}><X size={15} /></button></div>
+          <select className="specimen-select" aria-label={`Species in comparison slot ${index + 1}`} value={selection.speciesId} onChange={event => changeSlot(id, { speciesId: event.target.value })}><SpeciesOptions /></select>
+          <SelectionControls value={selection} onChange={patch => changeSlot(id, patch)} />
+          <div className="slot-foot">
+            {specimen.kind === 'playable' && <label className="checkbox-control" style={{ marginRight: 'auto' }} title="Head fracture halves bite force">
+              <input type="checkbox" aria-label={`Fractured in comparison slot ${index + 1}`} checked={fractured} onChange={event => changeSlot(id, { fractured: event.target.checked })} /> Fractured
+            </label>}
+            <button className="text-button" onClick={() => onSelect(specimen)}>Open species ↗</button>
+          </div>
         </div>; })}
       </div>
-      <div className="add-specimen-row"><select aria-label="Species to add" value={addSpecies} onChange={event => setAddSpecies(event.target.value)}><SpeciesOptions /></select><button className="btn btn-primary" disabled={slots.length >= 6} onClick={() => { const specimen = getSpecies(addSpecies); if (specimen) setSlots(previous => [...previous, { ...initialSelection(specimen), id: uid() }].slice(0, 6)); }}><Plus size={16} /> Add specimen</button>{slots.length >= 6 && <span className="muted">Six slots are active. Remove one to add another.</span>}</div>
+      <div className="add-specimen-row"><select aria-label="Species to add" value={addSpecies} onChange={event => setAddSpecies(event.target.value)}><SpeciesOptions /></select><button className="btn btn-primary" disabled={slots.length >= 6} onClick={() => { const specimen = getSpecies(addSpecies); if (specimen) setSlots(previous => [...previous, initialSlot(specimen)].slice(0, 6)); }}><Plus size={16} /> Add specimen</button>{slots.length >= 6 && <span className="muted">Six slots are active. Remove one to add another.</span>}</div>
     </div>
 
 
     {!!slots.length && <>
       <div className="comparison-results">
-        <div className="panel"><div className="section-heading"><div><div className="eyebrow">DINO LAB / COMPARISON</div><h2>Numbers that tell the story.</h2></div><label className="checkbox-control"><input type="checkbox" checked={allMetrics} onChange={event => setAllMetrics(event.target.checked)} /> Include survival & recovery</label></div>
-          <div className="table-wrap"><table className="comparison-table"><thead><tr><th>Metric</th>{slots.map((slot, index) => <th key={slot.id}><span style={{ color: COLORS[index] }}>{getSpecies(slot.speciesId)!.name}</span><small>{num(slot.growth, 5)}% · {slot.state}</small>{index === 0 && <small>Reference</small>}</th>)}</tr></thead><tbody>{comparedMetrics.map((metric, metricIndex) => {
+        <div className="panel"><div className="section-heading"><div><div className="eyebrow">DINO LAB / COMPARISON</div><h2>Numbers that tell the story.</h2></div><label className="checkbox-control"><input type="checkbox" aria-label="Include survival & recovery" checked={allMetrics} onChange={event => setAllMetrics(event.target.checked)} /> Include survival & recovery</label></div>
+          <div className="table-wrap"><table className="comparison-table"><thead><tr><th>Metric</th>{slots.map((slot, index) => <th key={slot.id}><span style={{ color: COLORS[index] }}>{getSpecies(slot.speciesId)!.name}</span><small>{num(slot.growth, 5)}% · {slot.state}{slot.fractured && ' · Fractured'}</small>{index === 0 && <small>Reference</small>}</th>)}</tr></thead><tbody>{comparedMetrics.map((metric, metricIndex) => {
             const groupStart = metricIndex === 0 || comparedMetrics[metricIndex - 1].group !== metric.group;
-            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}><th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>{slots.map((slot, index) => { const value = comparisonValueFor(slot, metric.key); const difference = percentDifference(value, comparisonValueFor(slots[0], metric.key)); return <td key={slot.id} title={`${metric.label} · Source 1 · ${value??'Unavailable'} ${metric.unit}`}><strong>{metric.key === MAX_SPRINT_DURATION.key ? formatDuration(value) : formatMetric(value, metric.key)}</strong>{index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}</td>; })}</tr>;
+            const reference = comparisonValueFor(slots[0], metric.key);
+            return <tr className={groupStart ? 'metric-group-start' : ''} key={metric.key}>
+              <th><span>{metric.label}{metric.uncertain ? ' *' : ''}</span>{groupStart && <small className="metric-group-label">{metric.group}</small>}</th>
+              {slots.map((slot, index) => {
+                const value = index === 0 ? reference : comparisonValueFor(slot, metric.key);
+                const difference = percentDifference(value, reference);
+                const adjustment = metric.key === 'bite' && slot.fractured ? ' · Head fracture (−50%)' : '';
+                const title = `${metric.label} · Source 1 · ${value ?? 'Unavailable'} ${metric.unit}`.trimEnd() + adjustment;
+                return <td key={slot.id} title={title}>
+                  <strong>{metric.key === MAX_SPRINT_DURATION.key ? formatDuration(value) : formatMetric(value, metric.key)}</strong>
+                  {index > 0 && difference !== null && <small className="comparison-delta">{difference} vs reference</small>}
+                </td>;
+              })}
+            </tr>;
           })}</tbody></table></div><p className="muted table-note">— means this source has no value for the field. Fields marked * carry source uncertainty.</p>
         </div>
         <div className="section-heading chart-section-heading"><div><h2>Growth, side by side.</h2><p className="muted">Click a chart to select nearby growth.</p></div><div className="header-actions"><select aria-label="Comparison chart metric" value={chartMetric} onChange={event => setChartMetric(event.target.value)}>{metrics.filter(metric => metric.group === 'core' || metric.group === 'movement').map(metric => <option key={metric.key} value={metric.key}>{metric.label}</option>)}</select><label className="checkbox-control"><input type="checkbox" checked={log} onChange={event => setLog(event.target.checked)} /> Log scale</label></div></div>
-        <div className="comparison-chart-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(310px,1fr))', gap: 16 }}>{slots.map((slot, index) => { const specimen = getSpecies(slot.speciesId)!; return <div className="panel" key={slot.id}><div className="section-heading"><h3 style={{ color: COLORS[index] }}>{specimen.name}</h3><span className="tag">{num(slot.growth, 5)}% · {slot.state}</span></div><p className="muted">Source 1 · {metricByKey[chartMetric]?.label}</p><GrowthChart specimen={specimen} metric={chartMetric} growth={slot.growth} state={slot.state} source={slot.source} log={log} compact onGrowth={growth => changeSlot(slot.id, { growth })} /></div>; })}</div>
+        <div className="comparison-chart-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(310px,1fr))', gap: 16 }}>{slots.map((slot, index) => { const specimen = getSpecies(slot.speciesId)!; return <div className="panel" key={slot.id}><div className="section-heading"><h3 style={{ color: COLORS[index] }}>{specimen.name}</h3><span className="tag">{num(slot.growth, 5)}% · {slot.state}</span></div><p className="muted">Source 1 · {metricByKey[chartMetric]?.label}{slot.fractured && chartMetric === 'bite' && ' · Fractured'}</p><GrowthChart specimen={specimen} metric={chartMetric} growth={slot.growth} state={slot.state} source={slot.source} fractured={slot.fractured} log={log} compact onGrowth={growth => changeSlot(slot.id, { growth })} /></div>; })}</div>
         <p className="muted snapshot-note">Offline snapshot · {dataset.importedAt.slice(0, 10)} · Dino Lab</p>
       </div>
     </>}

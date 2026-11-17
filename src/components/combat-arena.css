@@ -44,6 +44,8 @@
 .arena-health input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:#0e1b14;border:1px solid #b8ee7545}
 .arena-health input[type=range]::-moz-range-progress{height:8px;background:#a8e76f;border-radius:8px}
 .arena-health input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;border:2px solid #dcf8b3;background:#b8ee75}
+.arena-health .arena-fracture{width:fit-content;min-height:28px;margin:0 0 6px;color:#d1e1ca;font-size:13px;cursor:pointer}
+.arena-fracture input{width:15px;height:15px;accent-color:var(--arena-accent)}
 .arena-health .health-damage-summary{margin-bottom:0;background:#0d19145c;border-color:#8abb7730;padding:10px 12px}
 .arena-health .health-damage-summary strong{font-size:18px}
 .arena-versus{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px;padding:30px 0;color:#d0e5c2}

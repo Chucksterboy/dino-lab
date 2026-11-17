@@ -33,13 +33,15 @@ function renderDriven(View: typeof TableView|typeof CompareView, steps: ((tree:N
 function rowsOf(html:string){const table=html.match(/<table class="species-data-table">[\s\S]*?<\/table>/)?.[0]??'';return table.match(/<tr>[\s\S]*?<\/tr>/g)?.slice(1)??[];}
 const oldSheetRows=()=>Object.fromEntries(species.map(item=>[item.id,{speciesId:item.id,source:'sheet',growth:87.5,state:'Frail',column:999}]));
 function compareSelections(tree:Node){return findAll(tree,node=>typeof node.type==='function'&&node.type.name==='SelectionControls').map(node=>{const {id:_id,...selection}=node.props.value;return selection;});}
-function maximumSprintCells(html:string) {
+function comparisonCells(html:string,label:string) {
   const table=html.match(/<table class="comparison-table">[\s\S]*?<\/table>/)?.[0]??'';
-  const rows=(table.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/g)??[]).filter(row=>row.includes('<span>Maximum sprint duration</span>'));
-  assert.equal(rows.length,1,'maximum sprint duration appears exactly once in the comparison');
+  const rows=(table.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/g)??[]).filter(row=>row.includes(`<span>${label}</span>`));
+  assert.equal(rows.length,1,`${label} appears exactly once in the comparison`);
   return {row:rows[0],cells:rows[0].match(/<td\b[^>]*>[\s\S]*?<\/td>/g)??[]};
 }
-const sprintReadings=(html:string)=>maximumSprintCells(html).cells.map(cell=>cell.match(/<strong>([^<]+)<\/strong>/)?.[1]);
+const maximumSprintCells=(html:string)=>comparisonCells(html,'Maximum sprint duration');
+const comparisonReadings=(html:string,label:string)=>comparisonCells(html,label).cells.map(cell=>cell.match(/<strong>([^<]+)<\/strong>/)?.[1]);
+const sprintReadings=(html:string)=>comparisonReadings(html,'Maximum sprint duration');
 
 test('Complete Picture migrates all saved Source 2 rows to Source 1 without a workbook fallback',()=>{
   const saved=oldSheetRows();saved.hypsilophodon.growth=0;
@@ -130,11 +132,48 @@ test('comparison always shows maximum sprint minutes and seconds with unrounded 
     assert.ok(cells[1].includes('46.1% vs reference'),'153.8 / 105.3 uses unrounded duration rather than rounded display times');
     assert.ok(cells[2].includes('35.7% vs reference'));
     const expanded=renderDriven(CompareView,[tree=>{
-      const survival=findAll(tree,node=>node.type==='input'&&node.props.type==='checkbox')[0];
-      survival.props.onChange({target:{checked:true}});
+      labelled(tree,'Include survival & recovery').props.onChange({target:{checked:true}});
     }]);
     assert.deepEqual(sprintReadings(expanded),['1m 45s','2m 34s','2m 23s'],'opening survival metrics does not duplicate or replace the maximum sprint row');
     assert.ok(expanded.includes('Adult sprint stamina duration'),'the original adult source duration remains a separate optional field');
+  });
+});
+
+test('comparison fracture is per-slot and updates bite force and the reference difference',()=>{
+  const unfractured={speciesId:'allosaurus',source:'dashboard',growth:75,state:'Prime'};
+  withSaved({'dino-lab-comparison-v1':{slots:[unfractured,unfractured]}},()=>{
+    const html=renderDriven(CompareView,[
+      tree=>{
+        assert.equal(labelled(tree,'Fractured in comparison slot 1').props.checked,false);
+        labelled(tree,'Fractured in comparison slot 2').props.onChange({target:{checked:true}});
+      },
+      tree=>labelled(tree,'Comparison chart metric').props.onChange({target:{value:'bite'}}),
+    ]);
+    assert.deepEqual(comparisonReadings(html,'Bite force'),['175','87.5']);
+    assert.match(comparisonCells(html,'Bite force').cells[1],/−50% vs reference|-50% vs reference/);
+    assert.deepEqual(comparisonReadings(html,'Sprint speed'),['39.8 km/h','39.8 km/h']);
+    assert.deepEqual(sprintReadings(html),['1m 45s','1m 45s']);
+    const chartReadings=[...html.matchAll(/<strong title="((?:Recorded value|After head fracture): [^"]+)"/g)];
+    assert.deepEqual(chartReadings.map(reading=>reading[1].trim()),['Recorded value: 175','After head fracture: 87.5']);
+  });
+});
+
+test('comparison restores valid fractures and defaults legacy or malformed values off',()=>{
+  const allo={speciesId:'allosaurus',source:'dashboard',growth:75,state:'Prime'};
+  withSaved({'dino-lab-comparison-v1':{slots:[
+    {...allo,fractured:true},
+    {...allo,fractured:'true'},
+    {...allo,speciesId:'hypsilophodon',source:'sheet',fractured:true},
+  ]}},()=>{
+    const html=renderDriven(CompareView,[],tree=>{
+      assert.equal(labelled(tree,'Fractured in comparison slot 1').props.checked,true);
+      assert.equal(labelled(tree,'Fractured in comparison slot 2').props.checked,false);
+    });
+    assert.deepEqual(comparisonReadings(html,'Bite force'),['87.5','175','—']);
+    assert.match(comparisonCells(html,'Bite force').cells[1],/\+100% vs reference/);
+    assert.doesNotMatch(comparisonCells(html,'Bite force').cells[2],/vs reference/);
+    const reset=renderDriven(CompareView,[tree=>button(tree,'Reset').props.onClick()]);
+    assert.equal(comparisonReadings(reset,'Bite force')[0],'175');
   });
 });
 

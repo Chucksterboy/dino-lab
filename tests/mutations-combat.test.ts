@@ -43,6 +43,40 @@ test('both directions use their own health and independently reduce the recipien
  assert.equal(incoming.startingHp,400);assert.deepEqual(incoming.hits,{min:4,max:4});
 });
 
+test('head fracture halves the Triceratops example before the existing health penalty',()=>{
+ const defender=actor();
+ for(const [healthPercent,healthMultiplier,expectedDamage,expectedHits] of [
+  [100,1,517.565,20],
+  [40,.875,452.869375,23],
+  [5,.5,258.7825,39],
+ ]){
+  const attacker=actor('herbivore',[],{healthPercent,fractured:true});
+  const result=mutationCombat(1035.13,10000,attacker,defender);
+  near(result.firstDamage?.min,expectedDamage);
+  near(result.healthMultiplier??undefined,healthMultiplier);
+  assert.deepEqual(result.hits,{min:expectedHits,max:expectedHits});
+  assert.equal(result.baselineHits,expectedHits);
+ }
+});
+
+test('fracture remains in the baseline when mutation attack bonuses and defense are removed',()=>{
+ const attacker=actor('carnivore',['hemomania','hypermetabolic-inanition'],{
+  healthPercent:40,fractured:true,strength:2,hyperMode:'manual',hyperBonusPercent:25,
+ });
+ const defender=actor('herbivore',['congenital-hypoalgesia'],{
+  strength:2,bleeding:true,largerSpeciesOpponent:true,
+ });
+ const baseDamage=200;
+ const additive=mutationCombat(baseDamage,1000,attacker,defender,'additive');
+ const multiplicative=mutationCombat(baseDamage,1000,attacker,defender,'multiplicative');
+ near(additive.firstDamage?.min,88.59375);
+ near(multiplicative.firstDamage?.min,90.234375);
+ assert.equal(additive.baselineHits,12);
+ assert.equal(multiplicative.baselineHits,12);
+ assert.equal(mutationCombat(null,1000,attacker,defender).firstDamage,null);
+ assert.equal(mutationCombat(35,1000,actor('wildlife',[],{fractured:true}),actor()).firstDamage?.min,35);
+});
+
 test('health scales known absolute damage without rounding and keeps wildlife attacks unchanged',()=>{
  const injured=actor('herbivore',[],{healthPercent:49});
  const absolute=mutationCombat(950,10000,injured,actor());

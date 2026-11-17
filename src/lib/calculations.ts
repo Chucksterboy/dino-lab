@@ -13,6 +13,10 @@
 
 type OptionalNumber = number | null | undefined;
 
+/** Head fracture halves the original bite force in the supplied measurements. */
+export const FRACTURE_BITE_MULTIPLIER = 0.5;
+
+
 function finite(value: OptionalNumber): value is number {
   return typeof value === 'number' && Number.isFinite(value);
 }

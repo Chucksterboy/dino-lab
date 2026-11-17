@@ -18,6 +18,8 @@ Congenital Hypoalgesia requires an explicit statement that the opponent is a lar
 
 The calculator offers **Default**, **Entombed 1** and **Entombed 2**, following the requested product labels. These select the first three listed percentages. The source's fourth repeated maximum is retained internally for reference but is not a selectable calculator level. Slot restrictions are shown where supplied; this is a combat scenario, not an unlock/inheritance/slot validator.
 
+**Fractured** represents a head fracture for one playable dinosaur. It multiplies bite force by 0.5. Combat Arena combines that multiplier with the existing health multiplier before applying mutations. At 40% HP, the combined multiplier is 0.4375. At 10% HP and below, it is 0.25. With the reported Triceratops baseline of 1,035.13, that gives 452.87 at 40% HP and 258.78 at 5% HP. The latter corrects the arithmetic in the supplied example. The comparison page uses the same 0.5 multiplier for the selected slot's bite force.
+
 ## Damage model
 
 | Mutation | Default / Entombed 1 / Entombed 2 | Model condition |
@@ -27,7 +29,7 @@ The calculator offers **Default**, **Entombed 1** and **Entombed 2**, following 
 | Hypermetabolic Inanition | 15%, 20%, 25% | Carnivore attacker; unknown curve gives a 0–listed-value scenario range, or a manually entered effective bonus |
 | Congenital Hypoalgesia | 15%, 20%, 25% | Recipient selected it and the attacking species is explicitly larger |
 
-For outgoing bonuses `b`, the default scenario adds them: `health-adjusted base damage × (1 + sum(b))`. The alternate scenario multiplies them: `health-adjusted base damage × product(1 + b)`. Both are labeled **stacking assumptions**. Conditional Congenital reduction is applied afterward, multiplying by `1 − reduction`. Neither choice is presented as a verified game stacking law. The selected attacker health remains fixed throughout its event-count sequence. “Without mutations” counts keep the same health penalty.
+For outgoing bonuses `b`, the default scenario adds them: `adjusted base damage × (1 + sum(b))`. The alternate scenario multiplies them: `adjusted base damage × product(1 + b)`. Adjusted base damage includes the attacker's selected health and fracture penalties. Both are labeled **stacking assumptions**. Conditional Congenital reduction is applied afterward, multiplying by `1 − reduction`. Neither choice is presented as a verified game stacking law. The selected attacker health remains fixed throughout its event-count sequence. “Without mutations” counts keep both penalties.
 
 Hypermetabolic does not turn a hunger percentage into a fabricated linear bonus. Its default result is a range between zero and the listed reference bonus. An informed user may switch to a manual effective percentage within that range. The smaller required-event bound uses higher damage and vice versa. These are bounds within the chosen scenario, not validated engine caps.
 

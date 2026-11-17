@@ -1,6 +1,14 @@
 # Windows build verification
 
-## Current version 0.1.24
+## Current version 0.1.25
+
+Built on 17 November 2026 with an independent **Fractured** toggle for each playable combatant and comparison specimen. It halves bite force, including the comparison bite curve. In Combat Arena it multiplies with the health penalty before mutations and hit counts. Both penalties remain in the comparison without mutations. Saved comparison slots default Fractured to off when the field is missing.
+
+- Portable: `release/Dino Lab.exe`, **11,489,792 bytes**, ProductVersion **0.1.25**, SHA-256 `CAF19D844D93FF91BF1BC98E598F1E53FEA7C58AA0D7AC064D844766E05A17C5`.
+- Installer: `release/Dino Lab Setup.exe`, **7,919,874 bytes**, ProductVersion **0.1.25**, SHA-256 `9F3F0E71CA901E77CFD120357600948678F2585E4402AF892B17ADBC612720CD`.
+- Windows packaging and all **173 automated tests** passed. The portable build verified all 35 embedded assets, including `index.html`. The verified files were promoted and the app opened as PID **26044**. Local records are under `preview/`.
+
+## Historical version 0.1.24
 
 Built on 1 November 2026 with **Maximum sprint duration** directly below Sprint speed in the comparison table. The row is visible by default and uses the same `sprintDuration(sample.values.staminaDrain, sample.growth)` calculation as Survival. Each comparison slot resolves its own Source 1 species, selected condition and nearest growth record. Display uses readable minutes/seconds, while reference percentages use unrounded seconds. The optional raw adult-duration field remains distinct. Known fixed wildlife values are preserved; unavailable or invalid durations remain unknown, with no Source 2 field borrowing. The statistics table, chart metrics, original source data and artwork are unchanged.
 

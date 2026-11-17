@@ -1,4 +1,4 @@
-import { hitsToKill } from './calculations';
+import { FRACTURE_BITE_MULTIPLIER, hitsToKill } from './calculations';
 
 export const COMBAT_MUTATION_IDS = ['accelerated-prey-drive','hemomania','hypermetabolic-inanition','congenital-hypoalgesia'] as const;
 export type CombatMutationId = typeof COMBAT_MUTATION_IDS[number];
@@ -23,6 +23,7 @@ export interface CombatMutationLoadout {
  strength:ListedStrength;
  selected:CombatMutationId[];
  healthPercent:number;
+ fractured?:boolean;
  bleeding:boolean;
  largerSpeciesOpponent:boolean;
  hyperMode:'range'|'manual';
@@ -44,7 +45,7 @@ export interface MutationCombatResult {
 }
 
 export function createCombatLoadout():CombatMutationLoadout {
- return {strength:0,selected:[],healthPercent:100,bleeding:false,largerSpeciesOpponent:false,hyperMode:'range',hyperBonusPercent:0};
+ return {strength:0,selected:[],healthPercent:100,fractured:false,bleeding:false,largerSpeciesOpponent:false,hyperMode:'range',hyperBonusPercent:0};
 }
 /** Supplied-guide eligibility. All choices remain visible; disabled controls
  * explain diet restrictions instead of concealing the available combat effects.
@@ -112,8 +113,12 @@ export function mutationCombat(baseDamage:number|null|undefined,maxHp:number|nul
  const health=recipient.loadout.healthPercent;
  const startingHp=positive(maxHp)&&finite(health)?maxHp*(clamp(health,0,100)/100):null;
  const healthMultiplier=attacker.kind==='playable'?healthDamageMultiplier(attacker.loadout.healthPercent):1;
- const healthAdjustedBase=positive(baseDamage)&&healthMultiplier!=null?baseDamage*healthMultiplier:null;
- const baselineHits=startingHp===0?0:hitsToKill(startingHp,healthAdjustedBase);
+ const fractured = attacker.kind === 'playable' && attacker.loadout.fractured === true;
+ const fractureMultiplier = fractured ? FRACTURE_BITE_MULTIPLIER : 1;
+ const adjustedBase = positive(baseDamage) && healthMultiplier != null
+  ? baseDamage * healthMultiplier * fractureMultiplier
+  : null;
+ const baselineHits=startingHp===0?0:hitsToKill(startingHp,adjustedBase);
  const apd=mutationSelected('accelerated-prey-drive',attacker)?mutationBonus('accelerated-prey-drive',attacker.loadout.strength):0;
  const hemo=mutationSelected('hemomania',attacker)&&recipient.loadout.bleeding?mutationBonus('hemomania',attacker.loadout.strength):0;
  const hyperSelected=mutationSelected('hypermetabolic-inanition',attacker);
@@ -125,13 +130,14 @@ export function mutationCombat(baseDamage:number|null|undefined,maxHp:number|nul
  const percentage=(bonus:number)=>Number((bonus*100).toFixed(4));
  const applied:string[]=[];
  if(healthMultiplier!=null&&healthMultiplier<1)applied.push(`Health penalty −${percentage(1-healthMultiplier)}% damage`);
+ if (fractured) applied.push(`Head fracture −${percentage(1 - FRACTURE_BITE_MULTIPLIER)}% bite force`);
  if(hemo)applied.push(`Hemomania +${percentage(hemo)}%`);
  if(apd)applied.push(`Prey Drive +${percentage(apd)}% below 35% HP`);
  if(hyperSelected)applied.push(manualHyper?`Hypermetabolic +${percentage(hyper.max)}% scenario`:`Hypermetabolic 0–${percentage(hyper.max)}% range`);
  if(reduction)applied.push(`Hypoalgesia −${percentage(reduction)}%`);
  const unknown:MutationCombatResult={healthMultiplier,firstDamage:null,lowHealthDamage:null,hits:null,baselineHits,startingHp,preyDriveActive:apd>0,unresolvedHyper:hyperSelected&&!manualHyper,applied};
- if(!positive(healthAdjustedBase))return unknown;
- const damage=(bonus:number,low:boolean)=>healthAdjustedBase*combineBonuses([hemo,bonus,...(low?[apd]:[])],stacking)*(1-reduction);
+ if(!positive(adjustedBase))return unknown;
+ const damage=(bonus:number,low:boolean)=>adjustedBase*combineBonuses([hemo,bonus,...(low?[apd]:[])],stacking)*(1-reduction);
  const normal:NumericRange={min:damage(hyper.min,false),max:damage(hyper.max,false)};
  const low:NumericRange={min:damage(hyper.min,true),max:damage(hyper.max,true)};
  if(![normal.min,normal.max,low.min,low.max].every(Number.isFinite))return unknown;
